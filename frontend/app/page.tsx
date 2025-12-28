@@ -15,7 +15,8 @@ export default function Home() {
 
   useEffect(() => {
     // Load the pricing data on mount
-    fetch('/data.json')
+    const basePath = process.env.NEXT_PUBLIC_BASE_PATH || '';
+    fetch(`${basePath}/data.json`)
       .then(res => res.json())
       .then(data => setPricingData(data))
       .catch(err => console.error("Failed to load pricing data", err));
