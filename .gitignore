@@ -1,0 +1,11 @@
+# Tools / Backend Artifacts
+tools/node_modules/
+tools/dist/
+tools/.env
+tools/*.log
+tools/prisma/*.db
+tools/prisma/*.db-journal
+
+# General
+.DS_Store
+*.log
