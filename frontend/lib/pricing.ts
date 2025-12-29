@@ -18,7 +18,7 @@ export interface Rule {
 export interface Product {
   id: number;
   sku: string;
-  price: number;
+  cost: number;
   vendorId: number;
   vendorName: string;
   name?: string;
@@ -48,7 +48,6 @@ export interface CalculationResult {
 
 export function calculatePrice(cost: number, data: PricingData, itemType?: string): CalculationResult {
   // 1. Find the range
-  // Filter for userId: 1 (assuming single user for static site or exported data is already filtered)
   const range = data.pricingMatrix.find(
     (m) => cost >= m.minCost && cost <= m.maxCost
   );
@@ -174,7 +173,7 @@ export function calculatePriceBySku(sku: string, data: PricingData, itemType?: s
     throw new Error(`Product with SKU ${sku} not found`);
   }
 
-  const result = calculatePrice(product.price, data, itemType);
+  const result = calculatePrice(product.cost, data, itemType);
   return {
     ...result,
     productName: product.name

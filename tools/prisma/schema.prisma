@@ -43,8 +43,10 @@ model User {
 model Product {
   id         Int     @id @default(autoincrement())
   sku        String  @unique
-  price      Float
-  vendorId   Int     @default(1)
-  vendorName String  @default("chesapeake")
-  name       String  @default("")
+  cost       Float
+  vendorId   Int
+  vendorName String
+  name       String   @default("")
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
 }

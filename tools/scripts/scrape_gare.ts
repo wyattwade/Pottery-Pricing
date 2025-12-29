@@ -27,43 +27,23 @@ async function scrape() {
   console.log('Navigating to login page...');
   await page.goto(LOGIN_URL, { waitUntil: 'networkidle0' });
 
+  // Robust login detection
+  console.log('Waiting for login... (Time limit: 5 minutes)');
   console.log('Please log in manually in the browser window.');
-  console.log('Waiting for you to log in...');
-
-  // Wait for a signal that login is complete. 
-  // We can look for the "Sign Out" link or check if we are on the account page with a specific element.
-  // A safe bet is to wait until the "Sign In" button/text is gone or "Sign Out" appears.
-  // Based on typical sites, finding 'a[href*="logout"]' or similar is good.
-  // Or we can just wait for a long timeout or loop checking.
-  // Let's wait for the URL to potentially settle or a specific "Welcome" element.
-  // We will wait for the user to NOT be on the login form, or for a "Sign Out" link.
-  
-  // Wait indefinitely (timeout: 0) for a selector that likely indicates authentication.
-  // Adjust this selector if "Sign Out" is different. 
-  // Often it's 'a[href*="logout"]' or text "Sign Out".
-  // Note: If the user is ALREADY logged in (unlikely with fresh puppeteer session), this might hang if we only check for transition.
-  // But puppeteer starts fresh.
   
   try {
-    // Wait for the specific "Sign Out" link or similar indicator. 
-    // We'll try to match a common logout pattern or the absence of the login form.
-    // Looking at the previous analysis, there was a "Sign In" link.
-    // We can wait for that to disappear or for 'a[href*="logout"]' to appear.
-    // Let's use a function to check.
-    await page.waitForFunction(() => {
-        // @ts-ignore
-        const links = Array.from(document.querySelectorAll('a'));
-        // @ts-ignore
-        return links.some(a => a.innerText.toLowerCase().includes('sign out') || a.innerText.toLowerCase().includes('log out'));
-    }, { timeout: 0, polling: 1000 });
-    
+      await page.waitForFunction(() => {
+          // @ts-ignore
+          const body = document.body.innerText.toLowerCase();
+          // Stricter check: Only 'sign out' or 'log out' to avoid false positives on 'my account'
+          return body.includes('sign out') || body.includes('log out');
+      }, { timeout: 300000, polling: 1000 });
   } catch (e) {
-    console.log("Error waiting for login:", e);
+      console.error('Login timed out.');
+      throw e;
   }
 
   console.log('Login detected! Starting scrape...');
-  
-  // Small delay to ensure state is settled
   await new Promise(r => setTimeout(r, 2000));
 
   const allProducts: Product[] = [];
@@ -120,7 +100,7 @@ async function scrape() {
   await browser.close();
 
   // Save to JSON for backup/reference
-  const outputPath = path.resolve(process.cwd(), '../gare_products.json');
+  const outputPath = path.resolve(process.cwd(), 'gare_products.json');
   fs.writeFileSync(outputPath, JSON.stringify(allProducts, null, 2));
   console.log(`Scraping complete. Data saved to ${outputPath}`);
 
@@ -139,14 +119,14 @@ async function scrape() {
         await prisma.product.upsert({
             where: { sku: product.sku },
             update: {
-                price: priceFloat,
+                cost: priceFloat,
                 vendorName: 'gare',
                 vendorId: 2,
                 name: product.title
             },
             create: {
                 sku: product.sku,
-                price: priceFloat,
+                cost: priceFloat,
                 vendorName: 'gare',
                 vendorId: 2,
                 name: product.title
@@ -157,6 +137,23 @@ async function scrape() {
     }
   }
   console.log('Database sync complete.');
+  
+  // Running export
+  console.log('Running data export...');
+  const { exec } = await import('child_process');
+  await new Promise<void>((resolve, reject) => {
+      // Use process.cwd() for path resolution
+      const scriptPath = path.resolve(process.cwd(), 'tools/scripts/export-data.ts');
+      exec(`npx ts-node "${scriptPath}"`, { cwd: process.cwd() }, (error: any, stdout: any, stderr: any) => {
+          if (error) {
+              console.error(`Export error: ${error}`);
+              // Don't reject, just log
+          }
+          console.log(`Export output: ${stdout}`);
+          resolve();
+      });
+  });
+
   await prisma.$disconnect();
 }
 

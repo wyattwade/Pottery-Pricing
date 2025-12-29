@@ -9,15 +9,32 @@ async function exportData() {
   try {
     const rules = await prisma.rule.findMany({ where: { userId: 1 } });
     const pricingMatrix = await prisma.pricingMatrix.findMany({ where: { userId: 1 } });
-    const products = await prisma.product.findMany();
+    console.log('Fetching products...');
+    const products = await prisma.product.findMany({
+      select: {
+        id: true,
+        sku: true,
+        cost: true,
+        vendorName: true,
+        name: true
+      }
+    });
+
+    const productData = products.map((p) => ({
+      id: p.id,
+      sku: p.sku,
+      cost: p.cost,
+      vendor: p.vendorName,
+      name: p.name
+    }));
 
     const data = {
       rules,
       pricingMatrix,
-      products
+      products: productData
     };
 
-    const outputPath = path.resolve(process.cwd(), '../../frontend/public/data.json');
+    const outputPath = path.resolve(process.cwd(), 'frontend/public/data.json');
     console.log(`Writing data to ${outputPath}...`);
     
     fs.writeFileSync(outputPath, JSON.stringify(data, null, 2));

@@ -1,0 +1,4879 @@
+<span style="display: none; background-color: #6B056B;" class="cp-wishlist-right" id="cp-wishlist-float-action">
+        <svg width="21px" height="21px" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="heart" class="svg-inline--fa fa-heart fa-w-16 fa-lg " role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M462.3 62.6C407.5 15.9 326 24.3 275.7 76.2L256 96.5l-19.7-20.3C186.1 24.3 104.5 15.9 49.7 62.6c-62.8 53.6-66.1 149.8-9.9 207.9l193.5 199.8c12.5 12.9 32.8 12.9 45.3 0l193.5-199.8c56.3-58.1 53-154.3-9.8-207.9z"></path></svg>
+        My Wishlist    </span>
+<div id="cpmywish" class="cpmodal" style="display: none;"><div class="cpmodal-content"><span class="class cpcloseModal">×</span><div class="cp-wishlist-pagepopup"></div></div></div>
+<div id="cpnotificationbar"><a class="close-btn" href="javascript:void(0)"></a><div><p id="notificationMsg"></p></div></div>
+<div id="cpConform01" class="cpConformmodal" style="display: none;">
+    <div class="pConformmodal-content">
+        <div class="cpwishShareTitle"><h2>Share My Wishlist</h2></div>
+        <span class="class cpConformcloseModal">×</span>
+        <div class="pConformcontainer">
+            <div id="cpConfromShareBtn">
+            </div>
+        </div>
+    </div>
+</div>
+<div id="cpConformBox" class="cpConformBoxmodal" style="display: none;">
+    <div class="pConformmodal-content">
+        <span class="class cpConformConformcloseModal">×</span>
+        <div class="pConformcontainer">
+            <h2 id="cpSure"></h2>
+            <p id="cpmsgsure"></p>
+            <span id="cp_delete"></span>
+            <span id="cp_nodelete"></span>
+        </div>
+    </div>
+</div>
+
+<script>
+    var customerIsLogged = true;
+    var customerIsLoggedBasic = true;
+    var webPandaHidePriceSettings = {"subscription": 1, "hide_price_enabled": true, "message": "{LOGIN} | {REGISTRATION} to see price and add to cart", "label_login": "Login", "label_registration": "Register", "font_size": 14.0, "style_by_page": false, "font_size_listing_page": 14.0, "font_size_product_page": 14.0, "font_size_search_page": 14.0, "text_color": "#d77e6a", "has_background_color": true, "background_color": "#faf9f7", "has_border": true, "border_width": 2.0, "border_color": "#e2a192", "border_radius": 8.0, "has_custom_registration": false, "registration_url": null, "by_product_id": false, "by_product_tags": false, "by_collection": false, "product_tags": "", "language_config": null, "by_customer_tags": false, "customer_tags": "", "depth": 5, "depth_on_search": 5, "parent_depth": 3, "parent_depth_on_search": 2, "custom_price_selector": ".custom-money-wrapper", "custom_cart_selector": null, "force_hide_on_cart": false}
+
+    window.onload = function() {
+                    let removeWpPHidePrice = true;
+                    let pageScripts = document.getElementsByTagName("script");
+                    for (var i = 0; i < pageScripts.length; i++) {
+                        if (pageScripts[i].src.includes('assets/hide_main.js')) {
+                            removeWpPHidePrice = false;
+                        }
+                    }
+                    if (removeWpPHidePrice) {
+                        let appStyle = document.getElementById("hide-price-guest-style");
+                        appStyle.remove();
+                    }
+                }
+</script>
+  
+<!-- BEGIN app block: shopify://apps/persistent-cart/blocks/script_js/4ce05194-341e-4641-aaf4-5a8dad5444cb --><script>
+  window.cffPCLiquidPlaced = true;
+</script>
+
+
+  <script>
+    window.cffCustomer = {
+      name: 'Wyatt Elliott',
+      email: 'santamonica@colormemine.com',
+      hasAccount: 'true',
+      id: '7789717455092',
+    };
+  </script>
+
+
+
+
+
+
+  
+  
+  <script defer="" src="https://cdn.shopify.com/extensions/019a793c-ad27-7882-8471-201b37e34f5e/persistent-cart-66/assets/cffPC.production.min.js" onerror="this.onerror=null;this.remove();var s=document.createElement('script');s.defer=true;s.src='https://customer-first-focus.b-cdn.net/cffPC.production.min.js';document.head.appendChild(s);"></script>
+
+
+
+
+<!-- END app block --><!-- BEGIN app block: shopify://apps/webpanda-login-to-see-price/blocks/app-embed/e096f673-8110-4907-bc30-a026a34a7e70 -->
+
+
+
+
+<script>
+    var wpbCustomerIsLogged = true;
+    var wpbCustomerIsLoggedBasic = true;
+    
+        let wpbHidePriceSettings = false;
+    
+</script>
+
+<!-- END app block --><script src="https://cdn.shopify.com/extensions/01997af4-2c29-7dcd-a499-22ba10c48134/hide-price-test-98/assets/hide_main.js" type="text/javascript" defer="defer"></script>
+<link href="https://monorail-edge.shopifysvc.com" rel="dns-prefetch">
+<script>(function(){if ("sendBeacon" in navigator && "performance" in window) {try {var session_token_from_headers = performance.getEntriesByType('navigation')[0].serverTiming.find(x => x.name == '_s').description;} catch {var session_token_from_headers = undefined;}var session_cookie_matches = document.cookie.match(/_shopify_s=([^;]*)/);var session_token_from_cookie = session_cookie_matches && session_cookie_matches.length === 2 ? session_cookie_matches[1] : "";var session_token = session_token_from_headers || session_token_from_cookie || "";function handle_abandonment_event(e) {var entries = performance.getEntries().filter(function(entry) {return /monorail-edge.shopifysvc.com/.test(entry.name);});if (!window.abandonment_tracked && entries.length === 0) {window.abandonment_tracked = true;var currentMs = Date.now();var navigation_start = performance.timing.navigationStart;var payload = {shop_id: 58804306120,url: window.location.href,navigation_start,duration: currentMs - navigation_start,session_token,page_type: "index"};window.navigator.sendBeacon("https://monorail-edge.shopifysvc.com/v1/produce", JSON.stringify({schema_id: "online_store_buyer_site_abandonment/1.1",payload: payload,metadata: {event_created_at_ms: currentMs,event_sent_at_ms: currentMs}}));}}window.addEventListener('pagehide', handle_abandonment_event);}}());</script>
+<script id="web-pixels-manager-setup">(function e(e,d,r,n,o){if(void 0===o&&(o={}),!Boolean(null===(a=null===(i=window.Shopify)||void 0===i?void 0:i.analytics)||void 0===a?void 0:a.replayQueue)){var i,a;window.Shopify=window.Shopify||{};var t=window.Shopify;t.analytics=t.analytics||{};var s=t.analytics;s.replayQueue=[],s.publish=function(e,d,r){return s.replayQueue.push([e,d,r]),!0};try{self.performance.mark("wpm:start")}catch(e){}var l=function(){var e={modern:/Edge?\/(1{2}[4-9]|1[2-9]\d|[2-9]\d{2}|\d{4,})\.\d+(\.\d+|)|Firefox\/(1{2}[4-9]|1[2-9]\d|[2-9]\d{2}|\d{4,})\.\d+(\.\d+|)|Chrom(ium|e)\/(9{2}|\d{3,})\.\d+(\.\d+|)|(Maci|X1{2}).+ Version\/(15\.\d+|(1[6-9]|[2-9]\d|\d{3,})\.\d+)([,.]\d+|)( \(\w+\)|)( Mobile\/\w+|) Safari\/|Chrome.+OPR\/(9{2}|\d{3,})\.\d+\.\d+|(CPU[ +]OS|iPhone[ +]OS|CPU[ +]iPhone|CPU IPhone OS|CPU iPad OS)[ +]+(15[._]\d+|(1[6-9]|[2-9]\d|\d{3,})[._]\d+)([._]\d+|)|Android:?[ /-](13[3-9]|1[4-9]\d|[2-9]\d{2}|\d{4,})(\.\d+|)(\.\d+|)|Android.+Firefox\/(13[5-9]|1[4-9]\d|[2-9]\d{2}|\d{4,})\.\d+(\.\d+|)|Android.+Chrom(ium|e)\/(13[3-9]|1[4-9]\d|[2-9]\d{2}|\d{4,})\.\d+(\.\d+|)|SamsungBrowser\/([2-9]\d|\d{3,})\.\d+/,legacy:/Edge?\/(1[6-9]|[2-9]\d|\d{3,})\.\d+(\.\d+|)|Firefox\/(5[4-9]|[6-9]\d|\d{3,})\.\d+(\.\d+|)|Chrom(ium|e)\/(5[1-9]|[6-9]\d|\d{3,})\.\d+(\.\d+|)([\d.]+$|.*Safari\/(?![\d.]+ Edge\/[\d.]+$))|(Maci|X1{2}).+ Version\/(10\.\d+|(1[1-9]|[2-9]\d|\d{3,})\.\d+)([,.]\d+|)( \(\w+\)|)( Mobile\/\w+|) Safari\/|Chrome.+OPR\/(3[89]|[4-9]\d|\d{3,})\.\d+\.\d+|(CPU[ +]OS|iPhone[ +]OS|CPU[ +]iPhone|CPU IPhone OS|CPU iPad OS)[ +]+(10[._]\d+|(1[1-9]|[2-9]\d|\d{3,})[._]\d+)([._]\d+|)|Android:?[ /-](13[3-9]|1[4-9]\d|[2-9]\d{2}|\d{4,})(\.\d+|)(\.\d+|)|Mobile Safari.+OPR\/([89]\d|\d{3,})\.\d+\.\d+|Android.+Firefox\/(13[5-9]|1[4-9]\d|[2-9]\d{2}|\d{4,})\.\d+(\.\d+|)|Android.+Chrom(ium|e)\/(13[3-9]|1[4-9]\d|[2-9]\d{2}|\d{4,})\.\d+(\.\d+|)|Android.+(UC? ?Browser|UCWEB|U3)[ /]?(15\.([5-9]|\d{2,})|(1[6-9]|[2-9]\d|\d{3,})\.\d+)\.\d+|SamsungBrowser\/(5\.\d+|([6-9]|\d{2,})\.\d+)|Android.+MQ{2}Browser\/(14(\.(9|\d{2,})|)|(1[5-9]|[2-9]\d|\d{3,})(\.\d+|))(\.\d+|)|K[Aa][Ii]OS\/(3\.\d+|([4-9]|\d{2,})\.\d+)(\.\d+|)/},d=e.modern,r=e.legacy,n=navigator.userAgent;return n.match(d)?"modern":n.match(r)?"legacy":"unknown"}(),u="modern"===l?"modern":"legacy",c=(null!=n?n:{modern:"",legacy:""})[u],f=function(e){return[e.baseUrl,"/wpm","/b",e.hashVersion,"modern"===e.buildTarget?"m":"l",".js"].join("")}({baseUrl:d,hashVersion:r,buildTarget:u}),m=function(e){var d=e.version,r=e.bundleTarget,n=e.surface,o=e.pageUrl,i=e.monorailEndpoint;return{emit:function(e){var a=e.status,t=e.errorMsg,s=(new Date).getTime(),l=JSON.stringify({metadata:{event_sent_at_ms:s},events:[{schema_id:"web_pixels_manager_load/3.1",payload:{version:d,bundle_target:r,page_url:o,status:a,surface:n,error_msg:t},metadata:{event_created_at_ms:s}}]});if(!i)return console&&console.warn&&console.warn("[Web Pixels Manager] No Monorail endpoint provided, skipping logging."),!1;try{return self.navigator.sendBeacon.bind(self.navigator)(i,l)}catch(e){}var u=new XMLHttpRequest;try{return u.open("POST",i,!0),u.setRequestHeader("Content-Type","text/plain"),u.send(l),!0}catch(e){return console&&console.warn&&console.warn("[Web Pixels Manager] Got an unhandled error while logging to Monorail."),!1}}}}({version:r,bundleTarget:l,surface:e.surface,pageUrl:self.location.href,monorailEndpoint:e.monorailEndpoint});try{o.browserTarget=l,function(e){var d=e.src,r=e.async,n=void 0===r||r,o=e.onload,i=e.onerror,a=e.sri,t=e.scriptDataAttributes,s=void 0===t?{}:t,l=document.createElement("script"),u=document.querySelector("head"),c=document.querySelector("body");if(l.async=n,l.src=d,a&&(l.integrity=a,l.crossOrigin="anonymous"),s)for(var f in s)if(Object.prototype.hasOwnProperty.call(s,f))try{l.dataset[f]=s[f]}catch(e){}if(o&&l.addEventListener("load",o),i&&l.addEventListener("error",i),u)u.appendChild(l);else{if(!c)throw new Error("Did not find a head or body element to append the script");c.appendChild(l)}}({src:f,async:!0,onload:function(){if(!function(){var e,d;return Boolean(null===(d=null===(e=window.Shopify)||void 0===e?void 0:e.analytics)||void 0===d?void 0:d.initialized)}()){var d=window.webPixelsManager.init(e)||void 0;if(d){var r=window.Shopify.analytics;r.replayQueue.forEach((function(e){var r=e[0],n=e[1],o=e[2];d.publishCustomEvent(r,n,o)})),r.replayQueue=[],r.publish=d.publishCustomEvent,r.visitor=d.visitor,r.initialized=!0}}},onerror:function(){return m.emit({status:"failed",errorMsg:"".concat(f," has failed to load")})},sri:function(e){var d=/^sha384-[A-Za-z0-9+/=]+$/;return"string"==typeof e&&d.test(e)}(c)?c:"",scriptDataAttributes:o}),m.emit({status:"loading"})}catch(e){m.emit({status:"failed",errorMsg:(null==e?void 0:e.message)||"Unknown error"})}}})({shopId: 58804306120,storefrontBaseUrl: "https://chesapeakeceramics.com",extensionsBaseUrl: "https://extensions.shopifycdn.com/cdn/shopifycloud/web-pixels-manager",monorailEndpoint: "https://monorail-edge.shopifysvc.com/unstable/produce_batch",surface: "storefront-renderer",enabledBetaFlags: ["2dca8a86","a0d5f9d2"],webPixelsConfigList: [{"id":"1047396596","configuration":"{\"swymApiEndpoint\":\"https:\/\/swymstore-v3starter-01.swymrelay.com\",\"swymTier\":\"v3starter-01\"}","eventPayloadVersion":"v1","runtimeContext":"STRICT","scriptVersion":"5b6f6917e306bc7f24523662663331c0","type":"APP","apiClientId":1350849,"privacyPurposes":["ANALYTICS","MARKETING","PREFERENCES"],"dataSharingAdjustments":{"protectedCustomerApprovalScopes":["read_customer_email","read_customer_name","read_customer_personal_data","read_customer_phone"]}},{"id":"446202100","configuration":"{\"config\":\"{\\\"pixel_id\\\":\\\"G-5JWF9XLMJZ\\\",\\\"gtag_events\\\":[{\\\"type\\\":\\\"purchase\\\",\\\"action_label\\\":\\\"G-5JWF9XLMJZ\\\"},{\\\"type\\\":\\\"page_view\\\",\\\"action_label\\\":\\\"G-5JWF9XLMJZ\\\"},{\\\"type\\\":\\\"view_item\\\",\\\"action_label\\\":\\\"G-5JWF9XLMJZ\\\"},{\\\"type\\\":\\\"search\\\",\\\"action_label\\\":\\\"G-5JWF9XLMJZ\\\"},{\\\"type\\\":\\\"add_to_cart\\\",\\\"action_label\\\":\\\"G-5JWF9XLMJZ\\\"},{\\\"type\\\":\\\"begin_checkout\\\",\\\"action_label\\\":\\\"G-5JWF9XLMJZ\\\"},{\\\"type\\\":\\\"add_payment_info\\\",\\\"action_label\\\":\\\"G-5JWF9XLMJZ\\\"}],\\\"enable_monitoring_mode\\\":false}\"}","eventPayloadVersion":"v1","runtimeContext":"OPEN","scriptVersion":"b2a88bafab3e21179ed38636efcd8a93","type":"APP","apiClientId":1780363,"privacyPurposes":[],"dataSharingAdjustments":{"protectedCustomerApprovalScopes":["read_customer_address","read_customer_email","read_customer_name","read_customer_personal_data","read_customer_phone"]}},{"id":"shopify-app-pixel","configuration":"{}","eventPayloadVersion":"v1","runtimeContext":"STRICT","scriptVersion":"0450","apiClientId":"shopify-pixel","type":"APP","privacyPurposes":["ANALYTICS","MARKETING"]},{"id":"shopify-custom-pixel","eventPayloadVersion":"v1","runtimeContext":"LAX","scriptVersion":"0450","apiClientId":"shopify-pixel","type":"CUSTOM","privacyPurposes":["ANALYTICS","MARKETING"]}],isMerchantRequest: false,initData: {"shop":{"name":"Chesapeake Ceramics ","paymentSettings":{"currencyCode":"USD"},"myshopifyDomain":"chesapeake-ceramics.myshopify.com","countryCode":"US","storefrontUrl":"https:\/\/chesapeakeceramics.com"},"customer":{"id":"7789717455092","email":"santamonica@colormemine.com","firstName":"Wyatt","lastName":"Elliott","ordersCount":22,"phone":null},"cart":null,"checkout":null,"productVariants":[],"purchasingCompany":null},},"https://chesapeakeceramics.com/cdn","da62cc92w68dfea28pcf9825a4m392e00d0",{"modern":"","legacy":""},{"shopId":"58804306120","storefrontBaseUrl":"https:\/\/chesapeakeceramics.com","extensionBaseUrl":"https:\/\/extensions.shopifycdn.com\/cdn\/shopifycloud\/web-pixels-manager","surface":"storefront-renderer","enabledBetaFlags":"[\"2dca8a86\", \"a0d5f9d2\"]","isMerchantRequest":"false","hashVersion":"da62cc92w68dfea28pcf9825a4m392e00d0","publish":"custom","events":"[[\"page_viewed\",{}]]"});</script><script>
+  window.ShopifyAnalytics = window.ShopifyAnalytics || {};
+  window.ShopifyAnalytics.meta = window.ShopifyAnalytics.meta || {};
+  window.ShopifyAnalytics.meta.currency = 'USD';
+  var meta = {"page":{"pageType":"home","customerId":7789717455092,"requestId":"7f87f0c9-d604-4005-9452-83b08ff540a5-1767048186"}};
+  for (var attr in meta) {
+    window.ShopifyAnalytics.meta[attr] = meta[attr];
+  }
+</script>
+<script class="analytics">
+  (function () {
+    var customDocumentWrite = function(content) {
+      var jquery = null;
+
+      if (window.jQuery) {
+        jquery = window.jQuery;
+      } else if (window.Checkout && window.Checkout.$) {
+        jquery = window.Checkout.$;
+      }
+
+      if (jquery) {
+        jquery('body').append(content);
+      }
+    };
+
+    var hasLoggedConversion = function(token) {
+      if (token) {
+        return document.cookie.indexOf('loggedConversion=' + token) !== -1;
+      }
+      return false;
+    }
+
+    var setCookieIfConversion = function(token) {
+      if (token) {
+        var twoMonthsFromNow = new Date(Date.now());
+        twoMonthsFromNow.setMonth(twoMonthsFromNow.getMonth() + 2);
+
+        document.cookie = 'loggedConversion=' + token + '; expires=' + twoMonthsFromNow;
+      }
+    }
+
+    var trekkie = window.ShopifyAnalytics.lib = window.trekkie = window.trekkie || [];
+    if (trekkie.integrations) {
+      return;
+    }
+    trekkie.methods = [
+      'identify',
+      'page',
+      'ready',
+      'track',
+      'trackForm',
+      'trackLink'
+    ];
+    trekkie.factory = function(method) {
+      return function() {
+        var args = Array.prototype.slice.call(arguments);
+        args.unshift(method);
+        trekkie.push(args);
+        return trekkie;
+      };
+    };
+    for (var i = 0; i < trekkie.methods.length; i++) {
+      var key = trekkie.methods[i];
+      trekkie[key] = trekkie.factory(key);
+    }
+    trekkie.load = function(config) {
+      trekkie.config = config || {};
+      trekkie.config.initialDocumentCookie = document.cookie;
+      var first = document.getElementsByTagName('script')[0];
+      var script = document.createElement('script');
+      script.type = 'text/javascript';
+      script.onerror = function(e) {
+        var scriptFallback = document.createElement('script');
+        scriptFallback.type = 'text/javascript';
+        scriptFallback.onerror = function(error) {
+                var Monorail = {
+      produce: function produce(monorailDomain, schemaId, payload) {
+        var currentMs = new Date().getTime();
+        var event = {
+          schema_id: schemaId,
+          payload: payload,
+          metadata: {
+            event_created_at_ms: currentMs,
+            event_sent_at_ms: currentMs
+          }
+        };
+        return Monorail.sendRequest("https://" + monorailDomain + "/v1/produce", JSON.stringify(event));
+      },
+      sendRequest: function sendRequest(endpointUrl, payload) {
+        // Try the sendBeacon API
+        if (window && window.navigator && typeof window.navigator.sendBeacon === 'function' && typeof window.Blob === 'function' && !Monorail.isIos12()) {
+          var blobData = new window.Blob([payload], {
+            type: 'text/plain'
+          });
+
+          if (window.navigator.sendBeacon(endpointUrl, blobData)) {
+            return true;
+          } // sendBeacon was not successful
+
+        } // XHR beacon
+
+        var xhr = new XMLHttpRequest();
+
+        try {
+          xhr.open('POST', endpointUrl);
+          xhr.setRequestHeader('Content-Type', 'text/plain');
+          xhr.send(payload);
+        } catch (e) {
+          console.log(e);
+        }
+
+        return false;
+      },
+      isIos12: function isIos12() {
+        return window.navigator.userAgent.lastIndexOf('iPhone; CPU iPhone OS 12_') !== -1 || window.navigator.userAgent.lastIndexOf('iPad; CPU OS 12_') !== -1;
+      }
+    };
+    Monorail.produce('monorail-edge.shopifysvc.com',
+      'trekkie_storefront_load_errors/1.1',
+      {shop_id: 58804306120,
+      theme_id: 137545646324,
+      app_name: "storefront",
+      context_url: window.location.href,
+      source_url: "//chesapeakeceramics.com/cdn/s/trekkie.storefront.8f32c7f0b513e73f3235c26245676203e1209161.min.js"});
+
+        };
+        scriptFallback.async = true;
+        scriptFallback.src = '//chesapeakeceramics.com/cdn/s/trekkie.storefront.8f32c7f0b513e73f3235c26245676203e1209161.min.js';
+        first.parentNode.insertBefore(scriptFallback, first);
+      };
+      script.async = true;
+      script.src = '//chesapeakeceramics.com/cdn/s/trekkie.storefront.8f32c7f0b513e73f3235c26245676203e1209161.min.js';
+      first.parentNode.insertBefore(script, first);
+    };
+    trekkie.load(
+      {"Trekkie":{"appName":"storefront","development":false,"defaultAttributes":{"shopId":58804306120,"isMerchantRequest":null,"themeId":137545646324,"themeCityHash":"1291402801473975783","contentLanguage":"en","currency":"USD"},"isServerSideCookieWritingEnabled":true,"monorailRegion":"shop_domain","enabledBetaFlags":["65f19447"]},"Session Attribution":{},"S2S":{"facebookCapiEnabled":false,"customerId":7789717455092,"source":"trekkie-storefront-renderer","apiClientId":580111}}
+    );
+
+    var loaded = false;
+    trekkie.ready(function() {
+      if (loaded) return;
+      loaded = true;
+
+      window.ShopifyAnalytics.lib = window.trekkie;
+
+      var originalDocumentWrite = document.write;
+      document.write = customDocumentWrite;
+      try { window.ShopifyAnalytics.merchantGoogleAnalytics.call(this); } catch(error) {};
+      document.write = originalDocumentWrite;
+
+      window.ShopifyAnalytics.lib.page(null,{"pageType":"home","customerId":7789717455092,"requestId":"7f87f0c9-d604-4005-9452-83b08ff540a5-1767048186","shopifyEmitted":true});
+
+      var match = window.location.pathname.match(/checkouts\/(.+)\/(thank_you|post_purchase)/)
+      var token = match? match[1]: undefined;
+      if (!hasLoggedConversion(token)) {
+        setCookieIfConversion(token);
+        
+      }
+    });
+
+
+        var eventsListenerScript = document.createElement('script');
+        eventsListenerScript.async = true;
+        eventsListenerScript.src = "//chesapeakeceramics.com/cdn/shopifycloud/storefront/assets/shop_events_listener-3da45d37.js";
+        document.getElementsByTagName('head')[0].appendChild(eventsListenerScript);
+
+})();</script>
+<script defer="" src="https://chesapeakeceramics.com/cdn/shopifycloud/perf-kit/shopify-perf-kit-2.1.2.min.js" data-application="storefront-renderer" data-shop-id="58804306120" data-render-region="gcp-us-central1" data-page-type="index" data-theme-instance-id="137545646324" data-theme-name="Superstore" data-theme-version="3.2.5" data-monorail-region="shop_domain" data-resource-timing-sampling-rate="10" data-shs="true" data-shs-beacon="true" data-shs-export-with-fetch="true" data-shs-logs-sample-rate="1" data-shs-beacon-endpoint="https://chesapeakeceramics.com/api/collect"></script>
+
+
+    <a class="skip-to-main" href="#site-main">Skip to content</a>
+    <div id="shopify-section-static-announcement" class="shopify-section site-announcement"><script type="application/json" data-section-id="static-announcement" data-section-type="static-announcement">
+</script>
+
+
+
+
+
+
+
+
+
+  
+    <div class="
+        announcement-bar
+        
+      " style="
+        color: #ffffff;
+        background: #d9461b;
+      ">
+      
+
+      
+        <div class="announcement-bar-text">
+          We will be closed 12/24 &amp; 12/25 and will reopen on 12/26
+        </div>
+      
+
+      <div class="announcement-bar-text-mobile">
+        
+          We will be closed 12/24 &amp; 12/25 and will reopen on 12/26
+        
+      </div>
+    </div>
+  
+
+
+</div>
+    <div id="shopify-section-static-utility-bar" class="shopify-section"><style data-shopify="">
+  .utility-bar {
+    background-color: #342e37;
+  }
+
+  .utility-bar a {
+    color: #ffffff;
+  }
+
+  .utility-bar a:hover {
+    color: #ffffff;
+  }
+</style>
+
+<script type="application/json" data-section-type="static-utility-bar" data-section-id="static-utility-bar" data-section-data="">
+  {
+    "settings": {
+      "mobile_layout": "below"
+    }
+  }
+</script>
+
+
+
+  <div class="utility-bar utility-bar-full-width">
+    <div class="utility-bar-content">
+      
+        <div class="utility-bar-left">
+          
+            <a href="/pages/about-us">About Us</a>
+          
+            <a href="/pages/faqs">Policies &amp; Shipping</a>
+          
+            <a href="/pages/faqs-1">FAQ's</a>
+          
+            <a href="/pages/contact">Contact Us</a>
+          
+            <a href="/pages/privacy">Privacy</a>
+          
+            <a href="/pages/terms-of-service">Terms Of Use</a>
+          
+        </div>
+      
+
+      
+    </div>
+
+    
+    
+    
+    
+
+    
+      <div class="utility-bar-mobile" style="display: none;" data-utility-bar-mobile="">
+        
+          <hr class="navmenu-hr">
+        
+        <div class="navmenu-utility-bar">
+          
+            
+
+
+
+<ul class="navmenu navmenu-depth-1 " data-navmenu="">
+  
+    
+
+    
+    
+
+    
+      <li class="navmenu-item navmenu-id-about-us">
+        <a class="navmenu-link " href="/pages/about-us">
+          About Us
+        </a>
+      </li>
+    
+  
+    
+
+    
+    
+
+    
+      <li class="navmenu-item navmenu-id-policies-shipping">
+        <a class="navmenu-link " href="/pages/faqs">
+          Policies &amp; Shipping
+        </a>
+      </li>
+    
+  
+    
+
+    
+    
+
+    
+      <li class="navmenu-item navmenu-id-faqs">
+        <a class="navmenu-link " href="/pages/faqs-1">
+          FAQ's
+        </a>
+      </li>
+    
+  
+    
+
+    
+    
+
+    
+      <li class="navmenu-item navmenu-id-contact-us">
+        <a class="navmenu-link " href="/pages/contact">
+          Contact Us
+        </a>
+      </li>
+    
+  
+    
+
+    
+    
+
+    
+      <li class="navmenu-item navmenu-id-privacy">
+        <a class="navmenu-link " href="/pages/privacy">
+          Privacy
+        </a>
+      </li>
+    
+  
+    
+
+    
+    
+
+    
+      <li class="navmenu-item navmenu-id-terms-of-use">
+        <a class="navmenu-link " href="/pages/terms-of-service">
+          Terms Of Use
+        </a>
+      </li>
+    
+  
+</ul>
+
+          
+
+          
+        </div>
+        
+      </div>
+    
+  </div>
+
+
+
+</div>
+
+    
+        <div id="shopify-section-static-minimal-header" class="shopify-section site-header-wrapper">
+
+<script type="application/json" data-section-id="static-minimal-header" data-section-type="static-header" data-section-data="">
+  {
+    "settings": {
+      "header_layout": "minimal",
+      "header_logo_layout": "left",
+      "sticky_header": false,
+      "live_search": {
+        "enable": true,
+        "content_types": "article,page,product",
+        "money_format": "${{amount}}",
+        "context": {
+          "view_all_results": "View all results",
+          "view_all_products": "View all products",
+          "content_results": {
+            "title": "Posts and pages",
+            "no_results": "No results."
+          },
+          "no_results_products": {
+            "title": "No products for “*terms*”.",
+            "message": "Sorry, we couldn’t find any matches."
+          }
+        }
+      }
+    }
+  }
+</script>
+
+
+<style data-shopify="">
+  
+    .site-header {
+      border-bottom: 1px solid #eaeaea;
+    }
+  
+
+  
+    @media screen and (min-width: 860px) {
+      .site-header--minimal .site-header-main-content {
+        height: 120px;
+      }
+    }
+  
+</style>
+
+<header class="site-header site-header--minimal" role="banner" data-site-header="">
+  <div class="
+      site-header-main
+      site-header-main--logo-left
+      
+        site-header--full-width
+      
+      
+        live-search-enabled
+      
+    " data-site-header-main="">
+    <a class="site-header-button site-header-menu-button" href="#" data-menu-toggle="">
+      <div class="site-header-icon site-header-menu-icon" tabindex="-1">
+        
+                                                                                      <svg class="icon-menu " aria-hidden="true" focusable="false" role="presentation" xmlns="http://www.w3.org/2000/svg" width="22" height="18" viewBox="0 0 22 18" fill="none">          <title>Menu icon</title>        <path d="M21 2H1" stroke="currentColor" stroke-width="2" stroke-linecap="square" stroke-linejoin="round"></path>      <path d="M21 9H1" stroke="currentColor" stroke-width="2" stroke-linecap="square" stroke-linejoin="round"></path>      <path d="M21 16H1" stroke="currentColor" stroke-width="2" stroke-linecap="square" stroke-linejoin="round"></path>    </svg>                            
+
+        <div class="nav-toggle-ie-11">
+          
+                                                                                          <svg class="icon-search-close " aria-hidden="true" focusable="false" role="presentation" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 18 18" fill="none">          <title>Translation missing: en.general.icons.icon_search_close icon</title>        <path d="M17 1L1 17" stroke="currentColor" stroke-width="2" stroke-linejoin="round"></path>      <path d="M1 1L17 17" stroke="currentColor" stroke-width="2" stroke-linejoin="round"></path>    </svg>                        
+
+        </div>
+        <span class="visually-hidden">Menu</span>
+      </div>
+    </a>
+    <button class="site-header-button site-header-search-button" data-search-toggle="">
+      <div class="site-header-icon site-header-search-icon" tabindex="-1">
+        <span class="search-icon">
+          
+                                                                                        <svg class="icon-search " aria-hidden="true" focusable="false" role="presentation" xmlns="http://www.w3.org/2000/svg" width="21" height="24" viewBox="0 0 21 24" fill="none">          <title>Search icon</title>        <path d="M19.5 21.5L13.6155 15.1628" stroke="currentColor" stroke-width="1.75"></path>      <circle cx="9.5" cy="9.5" r="7" stroke="currentColor" stroke-width="1.75"></circle>    </svg>                          
+
+          <span class="visually-hidden">Search</span>
+        </span>
+        <span class="close-icon">
+          
+                                                                                          <svg class="icon-search-close " aria-hidden="true" focusable="false" role="presentation" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 18 18" fill="none">          <title>Translation missing: en.general.icons.icon_search_close icon</title>        <path d="M17 1L1 17" stroke="currentColor" stroke-width="2" stroke-linejoin="round"></path>      <path d="M1 1L17 17" stroke="currentColor" stroke-width="2" stroke-linejoin="round"></path>    </svg>                        
+
+          <span class="visually-hidden">Close search</span>
+        </span>
+      </div>
+    </button>
+
+    <div class="site-header-main-content">
+      <div class="site-header-logo">
+        <a class="site-logo" href="/">
+          
+            
+
+          
+            
+            
+
+            
+
+            
+
+  
+    <noscript data-rimg-noscript="">
+      <img
+        
+          src="//chesapeakeceramics.com/cdn/shop/files/CC_logo_223x120.png?v=1643320418"
+        
+
+        alt=""
+        data-rimg="noscript"
+        srcset="//chesapeakeceramics.com/cdn/shop/files/CC_logo_223x120.png?v=1643320418 1x, //chesapeakeceramics.com/cdn/shop/files/CC_logo_281x151.png?v=1643320418 1.26x"
+        class="desktop-logo-image"
+        style="
+              height: 120px;
+            "
+        
+      >
+    </noscript>
+  
+
+  <img src="//chesapeakeceramics.com/cdn/shop/files/CC_logo_223x120.png?v=1643320418" alt="" data-rimg="lazy" data-rimg-scale="1" data-rimg-template="//chesapeakeceramics.com/cdn/shop/files/CC_logo_{size}.png?v=1643320418" data-rimg-max="282x152" data-rimg-crop="false" srcset="data:image/svg+xml;utf8,&lt;svg%20xmlns='http://www.w3.org/2000/svg'%20width='223'%20height='120'&gt;&lt;/svg&gt;" class="desktop-logo-image" style="
+              height: 120px;
+            ">
+
+
+
+
+            
+              <h1 class="desktop-logo-text visually-hidden">
+                Chesapeake Ceramics 
+              </h1>
+            
+          
+
+          
+            
+
+            
+            
+
+            
+
+            
+
+  
+    <noscript data-rimg-noscript="">
+      <img
+        
+          src="//chesapeakeceramics.com/cdn/shop/files/CC_logo_112x60.png?v=1643320418"
+        
+
+        alt=""
+        data-rimg="noscript"
+        srcset="//chesapeakeceramics.com/cdn/shop/files/CC_logo_112x60.png?v=1643320418 1x, //chesapeakeceramics.com/cdn/shop/files/CC_logo_224x120.png?v=1643320418 2x, //chesapeakeceramics.com/cdn/shop/files/CC_logo_283x152.png?v=1643320418 2.53x"
+        class="mobile-logo-image"
+        style="
+              height: 60px;
+            "
+        
+      >
+    </noscript>
+  
+
+  <img src="//chesapeakeceramics.com/cdn/shop/files/CC_logo_112x60.png?v=1643320418" alt="" data-rimg="loaded" data-rimg-scale="1" data-rimg-template="//chesapeakeceramics.com/cdn/shop/files/CC_logo_{size}.png?v=1643320418" data-rimg-max="282x152" data-rimg-crop="false" srcset="//chesapeakeceramics.com/cdn/shop/files/CC_logo_112x61.png?v=1643320418 1.00x" class="mobile-logo-image" style="
+              height: 60px;
+            " data-rimg-template-svg="data:image/svg+xml;utf8,&lt;svg%20xmlns='http://www.w3.org/2000/svg'%20width='112'%20height='60'&gt;&lt;/svg&gt;">
+
+
+
+
+            
+              <h1 class="mobile-logo-text visually-hidden">
+                Chesapeake Ceramics 
+              </h1>
+            
+          
+        </a>
+      </div>
+
+      
+
+
+
+<div class="live-search" data-live-search="">
+  <form class="live-search-form form-fields-inline" action="/search" method="get" role="search" aria-label="Product" data-live-search-form="">
+    <input type="hidden" name="type" value="article,page,product">
+    <div class="form-field no-label">
+      <input class="form-field-input live-search-form-field" type="text" name="q" aria-label="Search" placeholder="What are you looking for?" autocomplete="off" data-live-search-input="">
+      <button type="button" class="live-search-takeover-cancel" data-live-search-takeover-cancel="">
+        Cancel
+      </button>
+
+      <button class="live-search-button" type="submit" aria-label="Search" data-live-search-submit="">
+        <span class="search-icon search-icon--inactive">
+          
+                                                                                        <svg class="icon-search " aria-hidden="true" focusable="false" role="presentation" xmlns="http://www.w3.org/2000/svg" width="21" height="24" viewBox="0 0 21 24" fill="none">          <title>Search icon</title>        <path d="M19.5 21.5L13.6155 15.1628" stroke="currentColor" stroke-width="1.75"></path>      <circle cx="9.5" cy="9.5" r="7" stroke="currentColor" stroke-width="1.75"></circle>    </svg>                          
+
+        </span>
+        <span class="search-icon search-icon--active">
+          
+                                                                                                <svg class="icon-spinner " aria-hidden="true" focusable="false" role="presentation" xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 26 26" fill="none">          <title>Spinner icon</title>        <circle opacity="0.29" cx="13" cy="13" r="11" stroke="currentColor" stroke-width="2"></circle>      <path d="M24 13C24 19.0751 19.0751 24 13 24" stroke="currentColor" stroke-width="2"></path>    </svg>                  
+
+        </span>
+      </button>
+    </div>
+
+    <div class="search-flydown" data-live-search-flydown="">
+      <div class="search-flydown--placeholder" data-live-search-placeholder="">
+        <div class="search-flydown--product-items">
+          
+            <a class="search-flydown--product search-flydown--product" href="#">
+                <div class="search-flydown--product-image">
+                  <svg class="placeholder--image placeholder--content-image" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 525.5 525.5"><path d="M324.5 212.7H203c-1.6 0-2.8 1.3-2.8 2.8V308c0 1.6 1.3 2.8 2.8 2.8h121.6c1.6 0 2.8-1.3 2.8-2.8v-92.5c0-1.6-1.3-2.8-2.9-2.8zm1.1 95.3c0 .6-.5 1.1-1.1 1.1H203c-.6 0-1.1-.5-1.1-1.1v-92.5c0-.6.5-1.1 1.1-1.1h121.6c.6 0 1.1.5 1.1 1.1V308z"></path><path d="M210.4 299.5H240v.1s.1 0 .2-.1h75.2v-76.2h-105v76.2zm1.8-7.2l20-20c1.6-1.6 3.8-2.5 6.1-2.5s4.5.9 6.1 2.5l1.5 1.5 16.8 16.8c-12.9 3.3-20.7 6.3-22.8 7.2h-27.7v-5.5zm101.5-10.1c-20.1 1.7-36.7 4.8-49.1 7.9l-16.9-16.9 26.3-26.3c1.6-1.6 3.8-2.5 6.1-2.5s4.5.9 6.1 2.5l27.5 27.5v7.8zm-68.9 15.5c9.7-3.5 33.9-10.9 68.9-13.8v13.8h-68.9zm68.9-72.7v46.8l-26.2-26.2c-1.9-1.9-4.5-3-7.3-3s-5.4 1.1-7.3 3l-26.3 26.3-.9-.9c-1.9-1.9-4.5-3-7.3-3s-5.4 1.1-7.3 3l-18.8 18.8V225h101.4z"></path><path d="M232.8 254c4.6 0 8.3-3.7 8.3-8.3s-3.7-8.3-8.3-8.3-8.3 3.7-8.3 8.3 3.7 8.3 8.3 8.3zm0-14.9c3.6 0 6.6 2.9 6.6 6.6s-2.9 6.6-6.6 6.6-6.6-2.9-6.6-6.6 3-6.6 6.6-6.6z"></path></svg>
+                </div>
+
+              <div class="search-flydown--product-text">
+                <span class="search-flydown--product-title placeholder--content-text"></span>
+              
+                <span class="search-flydown--product-price placeholder--content-text"></span>
+              
+              </div>
+            </a>
+          
+            <a class="search-flydown--product search-flydown--product" href="#">
+                <div class="search-flydown--product-image">
+                  <svg class="placeholder--image placeholder--content-image" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 525.5 525.5"><path d="M324.5 212.7H203c-1.6 0-2.8 1.3-2.8 2.8V308c0 1.6 1.3 2.8 2.8 2.8h121.6c1.6 0 2.8-1.3 2.8-2.8v-92.5c0-1.6-1.3-2.8-2.9-2.8zm1.1 95.3c0 .6-.5 1.1-1.1 1.1H203c-.6 0-1.1-.5-1.1-1.1v-92.5c0-.6.5-1.1 1.1-1.1h121.6c.6 0 1.1.5 1.1 1.1V308z"></path><path d="M210.4 299.5H240v.1s.1 0 .2-.1h75.2v-76.2h-105v76.2zm1.8-7.2l20-20c1.6-1.6 3.8-2.5 6.1-2.5s4.5.9 6.1 2.5l1.5 1.5 16.8 16.8c-12.9 3.3-20.7 6.3-22.8 7.2h-27.7v-5.5zm101.5-10.1c-20.1 1.7-36.7 4.8-49.1 7.9l-16.9-16.9 26.3-26.3c1.6-1.6 3.8-2.5 6.1-2.5s4.5.9 6.1 2.5l27.5 27.5v7.8zm-68.9 15.5c9.7-3.5 33.9-10.9 68.9-13.8v13.8h-68.9zm68.9-72.7v46.8l-26.2-26.2c-1.9-1.9-4.5-3-7.3-3s-5.4 1.1-7.3 3l-26.3 26.3-.9-.9c-1.9-1.9-4.5-3-7.3-3s-5.4 1.1-7.3 3l-18.8 18.8V225h101.4z"></path><path d="M232.8 254c4.6 0 8.3-3.7 8.3-8.3s-3.7-8.3-8.3-8.3-8.3 3.7-8.3 8.3 3.7 8.3 8.3 8.3zm0-14.9c3.6 0 6.6 2.9 6.6 6.6s-2.9 6.6-6.6 6.6-6.6-2.9-6.6-6.6 3-6.6 6.6-6.6z"></path></svg>
+                </div>
+
+              <div class="search-flydown--product-text">
+                <span class="search-flydown--product-title placeholder--content-text"></span>
+              
+                <span class="search-flydown--product-price placeholder--content-text"></span>
+              
+              </div>
+            </a>
+          
+            <a class="search-flydown--product search-flydown--product" href="#">
+                <div class="search-flydown--product-image">
+                  <svg class="placeholder--image placeholder--content-image" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 525.5 525.5"><path d="M324.5 212.7H203c-1.6 0-2.8 1.3-2.8 2.8V308c0 1.6 1.3 2.8 2.8 2.8h121.6c1.6 0 2.8-1.3 2.8-2.8v-92.5c0-1.6-1.3-2.8-2.9-2.8zm1.1 95.3c0 .6-.5 1.1-1.1 1.1H203c-.6 0-1.1-.5-1.1-1.1v-92.5c0-.6.5-1.1 1.1-1.1h121.6c.6 0 1.1.5 1.1 1.1V308z"></path><path d="M210.4 299.5H240v.1s.1 0 .2-.1h75.2v-76.2h-105v76.2zm1.8-7.2l20-20c1.6-1.6 3.8-2.5 6.1-2.5s4.5.9 6.1 2.5l1.5 1.5 16.8 16.8c-12.9 3.3-20.7 6.3-22.8 7.2h-27.7v-5.5zm101.5-10.1c-20.1 1.7-36.7 4.8-49.1 7.9l-16.9-16.9 26.3-26.3c1.6-1.6 3.8-2.5 6.1-2.5s4.5.9 6.1 2.5l27.5 27.5v7.8zm-68.9 15.5c9.7-3.5 33.9-10.9 68.9-13.8v13.8h-68.9zm68.9-72.7v46.8l-26.2-26.2c-1.9-1.9-4.5-3-7.3-3s-5.4 1.1-7.3 3l-26.3 26.3-.9-.9c-1.9-1.9-4.5-3-7.3-3s-5.4 1.1-7.3 3l-18.8 18.8V225h101.4z"></path><path d="M232.8 254c4.6 0 8.3-3.7 8.3-8.3s-3.7-8.3-8.3-8.3-8.3 3.7-8.3 8.3 3.7 8.3 8.3 8.3zm0-14.9c3.6 0 6.6 2.9 6.6 6.6s-2.9 6.6-6.6 6.6-6.6-2.9-6.6-6.6 3-6.6 6.6-6.6z"></path></svg>
+                </div>
+
+              <div class="search-flydown--product-text">
+                <span class="search-flydown--product-title placeholder--content-text"></span>
+              
+                <span class="search-flydown--product-price placeholder--content-text"></span>
+              
+              </div>
+            </a>
+          
+        </div>
+      </div>
+
+      <div class="
+          search-flydown--results
+          search-flydown--results--content-enabled
+        " data-live-search-results=""></div>
+
+      
+    </div>
+  </form>
+</div>
+
+    </div>
+
+    <div class="site-header-main-actions">
+      
+        <a class="site-header-button site-header-account-button" href="/account">
+          <div class="site-header-icon site-header-account-icon">
+            
+            <svg class="icon-account " aria-hidden="true" focusable="false" role="presentation" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">          <title>Account icon</title>        <path d="M20.5 19.5V21.525C20.5 21.5802 20.4552 21.625 20.4 21.625H3.6C3.54477 21.625 3.5 21.5802 3.5 21.525V19.5C3.5 18.3728 3.94777 17.2918 4.7448 16.4948C5.54183 15.6978 6.62283 15.25 7.75 15.25H16.25C17.3772 15.25 18.4582 15.6978 19.2552 16.4948C20.0522 17.2918 20.5 18.3728 20.5 19.5Z" stroke="currentColor" stroke-width="1.75"></path>      <path d="M12 11C14.3472 11 16.25 9.09721 16.25 6.75C16.25 4.40279 14.3472 2.5 12 2.5C9.65279 2.5 7.75 4.40279 7.75 6.75C7.75 9.09721 9.65279 11 12 11Z" stroke="currentColor" stroke-width="1.75" stroke-linejoin="round"></path>    </svg>                                                                                                      
+
+            <span class="visually-hidden">View account</span>
+          </div>
+        </a>
+      
+
+      <a class="site-header-button site-header-cart-button" href="/cart">
+        <div class="site-header-icon site-header-cart-icon">
+          <span class="site-header-cart--count " data-header-cart-count="0">
+          </span>
+
+          
+              <svg class="icon-cart " aria-hidden="true" focusable="false" role="presentation" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">          <title>Cart icon</title>        <path d="M4.28572 1.85718L5.13117 1.63172C5.02903 1.24869 4.68214 0.982178 4.28572 0.982178V1.85718ZM6.85715 17.7143L6.01581 17.4739C5.94038 17.7379 5.99325 18.022 6.15859 18.2412C6.32393 18.4604 6.58258 18.5893 6.85715 18.5893V17.7143ZM18.4286 13.8572L18.4984 14.7294C18.8104 14.7044 19.0853 14.5147 19.2193 14.2318L18.4286 13.8572ZM22.2857 5.71432L23.0765 6.0889L23.637 4.90557L22.3293 4.84041L22.2857 5.71432ZM0.857147 2.73218H4.28572V0.982178H0.857147V2.73218ZM6.87296 14.4739L6.01581 17.4739L7.69848 17.9547L8.55562 14.9547L6.87296 14.4739ZM6.85715 18.5893H19.2857V16.8393H6.85715V18.5893ZM7.78407 15.5865L18.4984 14.7294L18.3588 12.985L7.64451 13.8421L7.78407 15.5865ZM19.2193 14.2318L23.0765 6.0889L21.4949 5.33975L17.6378 13.4826L19.2193 14.2318ZM3.44026 2.08263L4.24026 5.08263L5.93117 4.63172L5.13117 1.63172L3.44026 2.08263ZM4.24026 5.08263L6.86883 14.9398L8.55975 14.4889L5.93117 4.63172L4.24026 5.08263ZM22.3293 4.84041L5.12927 3.98326L5.04217 5.73109L22.2422 6.58824L22.3293 4.84041Z" fill="currentColor"></path>      <path d="M7.6875 20.8C8.0672 20.8 8.375 21.1079 8.375 21.4875C8.375 21.8672 8.0672 22.175 7.6875 22.175C7.3078 22.175 7 21.8672 7 21.4875C7 21.1079 7.3078 20.8 7.6875 20.8" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"></path>      <path d="M18.6875 20.8C19.0672 20.8 19.375 21.1079 19.375 21.4875C19.375 21.8672 19.0672 22.175 18.6875 22.175C18.3078 22.175 18 21.8672 18 21.4875C18 21.1079 18.3078 20.8 18.6875 20.8" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"></path>    </svg>                                                                                                    
+
+          <span class="visually-hidden">View cart</span>
+        </div>
+      </a>
+    </div>
+  </div>
+
+  <div class="
+      site-navigation-wrapper
+      
+        site-navigation--has-actions
+      
+      
+        site-header--full-width
+      
+    " data-site-navigation="" id="site-header-nav" style="margin-top: -120px;">
+    <nav class="site-navigation" aria-label="Main">
+      
+
+
+
+
+
+<ul class="navmenu navmenu-depth-1" data-navmenu="" aria-label="Main menu">
+  
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+<li class="navmenu-item            navmenu-id-home            " data-test-linkthing="">
+      <a class="navmenu-link  navmenu-link-active" href="/">
+        Home
+        
+      </a>
+
+      
+
+      
+    </li>
+  
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+<li class="navmenu-item      navmenu-item-parent      navmenu-id-color-me-mine            " data-test-linkthing="" data-navmenu-parent="">
+      <a class="navmenu-link navmenu-link-parent " href="/collections/cmm-color" aria-haspopup="true" aria-expanded="false">
+        Color Me Mine
+        
+          <span class="navmenu-icon navmenu-icon-depth-1" data-navmenu-trigger="">
+            
+                                <svg class="icon-chevron-down-small " aria-hidden="true" focusable="false" role="presentation" xmlns="http://www.w3.org/2000/svg" width="8" height="6" viewBox="0 0 8 6" fill="none">          <title>Chevron down icon</title>        <path class="icon-chevron-down-left" d="M4 4.5L7 1.5" stroke="currentColor" stroke-width="1.25" stroke-linecap="square"></path>      <path class="icon-chevron-down-right" d="M4 4.5L1 1.5" stroke="currentColor" stroke-width="1.25" stroke-linecap="square"></path>    </svg>                                                                                  
+
+          </span>
+        
+      </a>
+
+      
+
+      
+        
+
+
+
+<ul class="navmenu navmenu-depth-2 navmenu-submenu" data-navmenu="" data-navmenu-submenu="" aria-label="Main menu">
+  
+    
+
+    
+    
+
+    
+      <li class="navmenu-item navmenu-id-clear-glaze">
+        <a class="navmenu-link " href="/collections/cmm-clear">
+          Clear Glaze
+        </a>
+      </li>
+    
+  
+    
+
+    
+    
+
+    
+      <li class="navmenu-item navmenu-id-color">
+        <a class="navmenu-link " href="/collections/cmm-color">
+          Color
+        </a>
+      </li>
+    
+  
+    
+
+    
+    
+
+    
+      <li class="navmenu-item navmenu-id-accessories">
+        <a class="navmenu-link " href="/collections/cmm-accessories">
+          Accessories
+        </a>
+      </li>
+    
+  
+    
+
+    
+    
+
+    
+      <li class="navmenu-item navmenu-id-exclusive">
+        <a class="navmenu-link " href="/collections/cmm-exclusives">
+          Exclusive
+        </a>
+      </li>
+    
+  
+</ul>
+
+      
+    </li>
+  
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+<li class="navmenu-item      navmenu-item-parent      navmenu-id-bisque            " data-test-linkthing="" data-navmenu-parent="">
+      <a class="navmenu-link navmenu-link-parent " href="/collections/bisque" aria-haspopup="true" aria-expanded="false">
+        Bisque
+        
+          <span class="navmenu-icon navmenu-icon-depth-1" data-navmenu-trigger="">
+            
+                                <svg class="icon-chevron-down-small " aria-hidden="true" focusable="false" role="presentation" xmlns="http://www.w3.org/2000/svg" width="8" height="6" viewBox="0 0 8 6" fill="none">          <title>Chevron down icon</title>        <path class="icon-chevron-down-left" d="M4 4.5L7 1.5" stroke="currentColor" stroke-width="1.25" stroke-linecap="square"></path>      <path class="icon-chevron-down-right" d="M4 4.5L1 1.5" stroke="currentColor" stroke-width="1.25" stroke-linecap="square"></path>    </svg>                                                                                  
+
+          </span>
+        
+      </a>
+
+      
+
+      
+        
+
+
+
+<ul class="navmenu navmenu-depth-2 navmenu-submenu" data-navmenu="" data-navmenu-submenu="" aria-label="Main menu">
+  
+    
+
+    
+    
+
+    
+      <li class="navmenu-item navmenu-id-new">
+        <a class="navmenu-link " href="/collections/new-bisque">
+          New!
+        </a>
+      </li>
+    
+  
+    
+
+    
+    
+
+    
+      <li class="navmenu-item navmenu-id-last-chance">
+        <a class="navmenu-link " href="/collections/last-chance">
+          Last Chance!
+        </a>
+      </li>
+    
+  
+    
+
+    
+    
+
+    
+      <li class="navmenu-item navmenu-id-bisque-accessories">
+        <a class="navmenu-link " href="/collections/bisque-accessories">
+          Bisque Accessories
+        </a>
+      </li>
+    
+  
+    
+
+    
+    
+
+    
+      <li class="navmenu-item navmenu-id-stoneware">
+        <a class="navmenu-link " href="/collections/stoneware">
+          Stoneware
+        </a>
+      </li>
+    
+  
+    
+
+    
+    
+
+    
+      <li class="navmenu-item navmenu-id-plates">
+        <a class="navmenu-link " href="/collections/plates">
+          Plates
+        </a>
+      </li>
+    
+  
+    
+
+    
+    
+
+    
+      <li class="navmenu-item navmenu-id-platters-servers">
+        <a class="navmenu-link " href="/collections/platters-and-servers">
+          Platters &amp; Servers
+        </a>
+      </li>
+    
+  
+    
+
+    
+    
+
+    
+      <li class="navmenu-item navmenu-id-bowls">
+        <a class="navmenu-link " href="/collections/bowls">
+          Bowls
+        </a>
+      </li>
+    
+  
+    
+
+    
+    
+
+    
+      <li class="navmenu-item navmenu-id-drinkware">
+        <a class="navmenu-link " href="/collections/drinkware">
+          Drinkware
+        </a>
+      </li>
+    
+  
+    
+
+    
+    
+
+    
+      <li class="navmenu-item navmenu-id-home-decor">
+        <a class="navmenu-link " href="/collections/home-decor">
+          Home Décor
+        </a>
+      </li>
+    
+  
+    
+
+    
+    
+
+    
+      <li class="navmenu-item navmenu-id-holiday-seasons">
+        <a class="navmenu-link " href="/collections/holidays-season">
+          Holiday &amp; Seasons
+        </a>
+      </li>
+    
+  
+    
+
+    
+    
+
+    
+      <li class="navmenu-item navmenu-id-kids">
+        <a class="navmenu-link " href="/collections/kids-1">
+          Kids
+        </a>
+      </li>
+    
+  
+</ul>
+
+      
+    </li>
+  
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+<li class="navmenu-item      navmenu-item-parent      navmenu-id-color            " data-test-linkthing="" data-navmenu-parent="">
+      <a class="navmenu-link navmenu-link-parent " href="/collections/stroke-coat" aria-haspopup="true" aria-expanded="false">
+        Color
+        
+          <span class="navmenu-icon navmenu-icon-depth-1" data-navmenu-trigger="">
+            
+                                <svg class="icon-chevron-down-small " aria-hidden="true" focusable="false" role="presentation" xmlns="http://www.w3.org/2000/svg" width="8" height="6" viewBox="0 0 8 6" fill="none">          <title>Chevron down icon</title>        <path class="icon-chevron-down-left" d="M4 4.5L7 1.5" stroke="currentColor" stroke-width="1.25" stroke-linecap="square"></path>      <path class="icon-chevron-down-right" d="M4 4.5L1 1.5" stroke="currentColor" stroke-width="1.25" stroke-linecap="square"></path>    </svg>                                                                                  
+
+          </span>
+        
+      </a>
+
+      
+
+      
+        
+
+
+
+<ul class="navmenu navmenu-depth-2 navmenu-submenu" data-navmenu="" data-navmenu-submenu="" aria-label="Main menu">
+  
+    
+
+    
+    
+
+    
+      <li class="navmenu-item navmenu-id-fired-color">
+        <a class="navmenu-link " href="/collections/mayco-fired">
+          Fired Color
+        </a>
+      </li>
+    
+  
+    
+
+    
+    
+
+    
+      <li class="navmenu-item navmenu-id-non-fired-color">
+        <a class="navmenu-link " href="/collections/mayco-non-fired">
+          Non-Fired Color
+        </a>
+      </li>
+    
+  
+    
+
+    
+    
+
+    
+      <li class="navmenu-item navmenu-id-clear-glazes">
+        <a class="navmenu-link " href="/collections/clear-glazes-dipping-supplies">
+          Clear Glazes
+        </a>
+      </li>
+    
+  
+    
+
+    
+    
+
+    
+      <li class="navmenu-item navmenu-id-fired-accessories">
+        <a class="navmenu-link " href="/collections/fired-accessories">
+          Fired Accessories
+        </a>
+      </li>
+    
+  
+    
+
+    
+    
+
+    
+      <li class="navmenu-item navmenu-id-non-fired-accessories">
+        <a class="navmenu-link " href="/collections/non-fired-accessories">
+          Non Fired Accessories
+        </a>
+      </li>
+    
+  
+</ul>
+
+      
+    </li>
+  
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+<li class="navmenu-item      navmenu-item-parent      navmenu-id-color-applicators            " data-test-linkthing="" data-navmenu-parent="">
+      <a class="navmenu-link navmenu-link-parent " href="/search" aria-haspopup="true" aria-expanded="false">
+        Color Applicators
+        
+          <span class="navmenu-icon navmenu-icon-depth-1" data-navmenu-trigger="">
+            
+                                <svg class="icon-chevron-down-small " aria-hidden="true" focusable="false" role="presentation" xmlns="http://www.w3.org/2000/svg" width="8" height="6" viewBox="0 0 8 6" fill="none">          <title>Chevron down icon</title>        <path class="icon-chevron-down-left" d="M4 4.5L7 1.5" stroke="currentColor" stroke-width="1.25" stroke-linecap="square"></path>      <path class="icon-chevron-down-right" d="M4 4.5L1 1.5" stroke="currentColor" stroke-width="1.25" stroke-linecap="square"></path>    </svg>                                                                                  
+
+          </span>
+        
+      </a>
+
+      
+
+      
+        
+
+
+
+<ul class="navmenu navmenu-depth-2 navmenu-submenu" data-navmenu="" data-navmenu-submenu="" aria-label="Main menu">
+  
+    
+
+    
+    
+
+    
+      <li class="navmenu-item navmenu-id-last-chance">
+        <a class="navmenu-link " href="/collections/last-chance-color-applicators">
+          Last Chance!
+        </a>
+      </li>
+    
+  
+    
+
+    
+    
+
+    
+      <li class="navmenu-item navmenu-id-applicator-accessories">
+        <a class="navmenu-link " href="/collections/plate-hangers-easels">
+          Applicator Accessories
+        </a>
+      </li>
+    
+  
+    
+
+    
+    
+
+    
+      <li class="navmenu-item navmenu-id-brushes">
+        <a class="navmenu-link " href="/collections/brushes-1">
+          Brushes
+        </a>
+      </li>
+    
+  
+    
+
+    
+    
+
+    
+      <li class="navmenu-item navmenu-id-sponges">
+        <a class="navmenu-link " href="/collections/sponges">
+          Sponges
+        </a>
+      </li>
+    
+  
+    
+
+    
+    
+
+    
+      <li class="navmenu-item navmenu-id-writers">
+        <a class="navmenu-link " href="/collections/writer">
+          Writers
+        </a>
+      </li>
+    
+  
+    
+
+    
+    
+
+    
+      <li class="navmenu-item navmenu-id-pencils-pens">
+        <a class="navmenu-link " href="/collections/pencil-pens">
+          Pencils &amp; Pens
+        </a>
+      </li>
+    
+  
+    
+
+    
+    
+
+    
+      <li class="navmenu-item navmenu-id-silk-screens">
+        <a class="navmenu-link " href="/collections/discontinued">
+          Silk Screens
+        </a>
+      </li>
+    
+  
+</ul>
+
+      
+    </li>
+  
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+<li class="navmenu-item      navmenu-item-parent      navmenu-id-clay-products            " data-test-linkthing="" data-navmenu-parent="">
+      <a class="navmenu-link navmenu-link-parent " href="/search" aria-haspopup="true" aria-expanded="false">
+        Clay Products
+        
+          <span class="navmenu-icon navmenu-icon-depth-1" data-navmenu-trigger="">
+            
+                                <svg class="icon-chevron-down-small " aria-hidden="true" focusable="false" role="presentation" xmlns="http://www.w3.org/2000/svg" width="8" height="6" viewBox="0 0 8 6" fill="none">          <title>Chevron down icon</title>        <path class="icon-chevron-down-left" d="M4 4.5L7 1.5" stroke="currentColor" stroke-width="1.25" stroke-linecap="square"></path>      <path class="icon-chevron-down-right" d="M4 4.5L1 1.5" stroke="currentColor" stroke-width="1.25" stroke-linecap="square"></path>    </svg>                                                                                  
+
+          </span>
+        
+      </a>
+
+      
+
+      
+        
+
+
+
+<ul class="navmenu navmenu-depth-2 navmenu-submenu" data-navmenu="" data-navmenu-submenu="" aria-label="Main menu">
+  
+    
+
+    
+    
+
+    
+      <li class="navmenu-item navmenu-id-clay-equipment">
+        <a class="navmenu-link " href="/collections/clay-equipment">
+          Clay Equipment
+        </a>
+      </li>
+    
+  
+    
+
+    
+    
+
+    
+      <li class="navmenu-item navmenu-id-clay-ceramic-tools">
+        <a class="navmenu-link " href="/collections/cutters-drills">
+          Clay &amp; Ceramic Tools
+        </a>
+      </li>
+    
+  
+    
+
+    
+    
+
+    
+      <li class="navmenu-item navmenu-id-clay-ceramic-accessories">
+        <a class="navmenu-link " href="/collections/clay-accessories">
+          Clay &amp; Ceramic Accessories
+        </a>
+      </li>
+    
+  
+    
+
+    
+    
+
+    
+      <li class="navmenu-item navmenu-id-clay-slip">
+        <a class="navmenu-link " href="/collections/clay-slip">
+          Clay &amp; Slip
+        </a>
+      </li>
+    
+  
+</ul>
+
+      
+    </li>
+  
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+<li class="navmenu-item      navmenu-item-parent      navmenu-id-kiln-room            " data-test-linkthing="" data-navmenu-parent="">
+      <a class="navmenu-link navmenu-link-parent " href="/search" aria-haspopup="true" aria-expanded="false">
+        Kiln Room
+        
+          <span class="navmenu-icon navmenu-icon-depth-1" data-navmenu-trigger="">
+            
+                                <svg class="icon-chevron-down-small " aria-hidden="true" focusable="false" role="presentation" xmlns="http://www.w3.org/2000/svg" width="8" height="6" viewBox="0 0 8 6" fill="none">          <title>Chevron down icon</title>        <path class="icon-chevron-down-left" d="M4 4.5L7 1.5" stroke="currentColor" stroke-width="1.25" stroke-linecap="square"></path>      <path class="icon-chevron-down-right" d="M4 4.5L1 1.5" stroke="currentColor" stroke-width="1.25" stroke-linecap="square"></path>    </svg>                                                                                  
+
+          </span>
+        
+      </a>
+
+      
+
+      
+        
+
+
+
+<ul class="navmenu navmenu-depth-2 navmenu-submenu" data-navmenu="" data-navmenu-submenu="" aria-label="Main menu">
+  
+    
+
+    
+    
+
+    
+      <li class="navmenu-item navmenu-id-kiln-accessories">
+        <a class="navmenu-link " href="/collections/kiln-accessories">
+          Kiln Accessories
+        </a>
+      </li>
+    
+  
+    
+
+    
+    
+
+    
+      <li class="navmenu-item navmenu-id-kiln-stilts">
+        <a class="navmenu-link " href="/collections/stilts">
+          Kiln Stilts
+        </a>
+      </li>
+    
+  
+    
+
+    
+    
+
+    
+      <li class="navmenu-item navmenu-id-kiln-furniture">
+        <a class="navmenu-link " href="/collections/shelves">
+          Kiln Furniture
+        </a>
+      </li>
+    
+  
+    
+
+    
+    
+
+    
+      <li class="navmenu-item navmenu-id-skutt-kilns">
+        <a class="navmenu-link " href="/collections/skutt">
+          Skutt Kilns
+        </a>
+      </li>
+    
+  
+    
+
+    
+    
+
+    
+      <li class="navmenu-item navmenu-id-kiln-parts">
+        <a class="navmenu-link " href="/collections/kiln-parts">
+          Kiln Parts
+        </a>
+      </li>
+    
+  
+</ul>
+
+      
+    </li>
+  
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+<li class="navmenu-item            navmenu-id-my-wishlist            " data-test-linkthing="">
+      <a class="navmenu-link  " href="#swym-wishlist" data-swym-loaded="true">
+        My Wishlist
+        
+      </a>
+
+      
+
+      
+    </li>
+  
+</ul>
+
+
+      <ul class="site-header-actions" data-header-actions="">
+        
+          
+            <li class="site-header-account-link">
+              <a href="/account/logout" data-no-instant="">
+                Log out
+              </a>
+            </li>
+          
+        
+      </ul>
+    </nav>
+  </div>
+
+  <div class="site-mobile-nav" id="site-mobile-nav" data-mobile-nav="" tabindex="0">
+  <div class="mobile-nav-panel" data-mobile-nav-panel="">
+    <div class="header-actions-wrapper">
+      
+
+<ul class="site-header-actions" data-header-actions="">
+  
+    
+      <li class="site-header-account-link">
+        <a href="/account" class="account-link">
+          
+            <svg class="icon-account " aria-hidden="true" focusable="false" role="presentation" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">          <title>Account icon</title>        <path d="M20.5 19.5V21.525C20.5 21.5802 20.4552 21.625 20.4 21.625H3.6C3.54477 21.625 3.5 21.5802 3.5 21.525V19.5C3.5 18.3728 3.94777 17.2918 4.7448 16.4948C5.54183 15.6978 6.62283 15.25 7.75 15.25H16.25C17.3772 15.25 18.4582 15.6978 19.2552 16.4948C20.0522 17.2918 20.5 18.3728 20.5 19.5Z" stroke="currentColor" stroke-width="1.75"></path>      <path d="M12 11C14.3472 11 16.25 9.09721 16.25 6.75C16.25 4.40279 14.3472 2.5 12 2.5C9.65279 2.5 7.75 4.40279 7.75 6.75C7.75 9.09721 9.65279 11 12 11Z" stroke="currentColor" stroke-width="1.75" stroke-linejoin="round"></path>    </svg>                                                                                                      
+
+          My Account
+        </a>
+      </li>
+
+      <li class="site-header-account-link">
+        <a href="/account/logout" data-no-instant="" class="mobile-logout">
+          (Log out)
+        </a>
+      </li>
+    
+  
+</ul>
+
+      <a class="mobile-nav-close" href="#site-header-nav" data-mobile-nav-close="">
+        
+                                                                                            <svg class="icon-burger-close " aria-hidden="true" focusable="false" role="presentation" xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="none">          <title>Close icon</title>        <path d="M17 1L1 17M1 1l16 16" stroke="currentColor" stroke-width="1.75" stroke-linejoin="round"></path>    </svg>                      
+
+        <span class="visually-hidden">Close</span>
+      </a>
+    </div>
+
+    <div class="mobile-nav-content" data-mobile-nav-content="">
+      
+
+
+
+
+
+<ul class="navmenu navmenu-depth-1" data-navmenu="" aria-label="Main menu">
+  
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+<li class="navmenu-item            navmenu-id-home            " data-test-linkthing="">
+      <a class="navmenu-link  navmenu-link-active" href="/">
+        Home
+        
+      </a>
+
+      
+
+      
+    </li>
+  
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+<li class="navmenu-item      navmenu-item-parent      navmenu-id-color-me-mine            " data-test-linkthing="" data-navmenu-parent="">
+      <a class="navmenu-link navmenu-link-parent " href="/collections/cmm-color" aria-haspopup="true" aria-expanded="false">
+        Color Me Mine
+        
+      </a>
+
+      
+        
+
+<button class="navmenu-button" data-navmenu-trigger="" aria-expanded="false">
+  <div class="navmenu-button-wrapper" tabindex="-1">
+    <span class="navmenu-icon navmenu-icon-depth-1">
+      
+      
+                                <svg class="icon-chevron-down-small " aria-hidden="true" focusable="false" role="presentation" xmlns="http://www.w3.org/2000/svg" width="8" height="6" viewBox="0 0 8 6" fill="none">          <title>Chevron down icon</title>        <path class="icon-chevron-down-left" d="M4 4.5L7 1.5" stroke="currentColor" stroke-width="1.25" stroke-linecap="square"></path>      <path class="icon-chevron-down-right" d="M4 4.5L1 1.5" stroke="currentColor" stroke-width="1.25" stroke-linecap="square"></path>    </svg>                                                                                  
+
+    </span>
+    <span class="visually-hidden">Color Me Mine</span>
+  </div>
+</button>
+
+      
+
+      
+        
+
+
+
+<ul class="navmenu navmenu-depth-2 navmenu-submenu" data-navmenu="" data-navmenu-submenu="" aria-label="Main menu">
+  
+    
+
+    
+    
+
+    
+      <li class="navmenu-item navmenu-id-clear-glaze">
+        <a class="navmenu-link " href="/collections/cmm-clear">
+          Clear Glaze
+        </a>
+      </li>
+    
+  
+    
+
+    
+    
+
+    
+      <li class="navmenu-item navmenu-id-color">
+        <a class="navmenu-link " href="/collections/cmm-color">
+          Color
+        </a>
+      </li>
+    
+  
+    
+
+    
+    
+
+    
+      <li class="navmenu-item navmenu-id-accessories">
+        <a class="navmenu-link " href="/collections/cmm-accessories">
+          Accessories
+        </a>
+      </li>
+    
+  
+    
+
+    
+    
+
+    
+      <li class="navmenu-item navmenu-id-exclusive">
+        <a class="navmenu-link " href="/collections/cmm-exclusives">
+          Exclusive
+        </a>
+      </li>
+    
+  
+</ul>
+
+      
+    </li>
+  
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+<li class="navmenu-item      navmenu-item-parent      navmenu-id-bisque            " data-test-linkthing="" data-navmenu-parent="">
+      <a class="navmenu-link navmenu-link-parent " href="/collections/bisque" aria-haspopup="true" aria-expanded="false">
+        Bisque
+        
+      </a>
+
+      
+        
+
+<button class="navmenu-button" data-navmenu-trigger="" aria-expanded="false">
+  <div class="navmenu-button-wrapper" tabindex="-1">
+    <span class="navmenu-icon navmenu-icon-depth-1">
+      
+      
+                                <svg class="icon-chevron-down-small " aria-hidden="true" focusable="false" role="presentation" xmlns="http://www.w3.org/2000/svg" width="8" height="6" viewBox="0 0 8 6" fill="none">          <title>Chevron down icon</title>        <path class="icon-chevron-down-left" d="M4 4.5L7 1.5" stroke="currentColor" stroke-width="1.25" stroke-linecap="square"></path>      <path class="icon-chevron-down-right" d="M4 4.5L1 1.5" stroke="currentColor" stroke-width="1.25" stroke-linecap="square"></path>    </svg>                                                                                  
+
+    </span>
+    <span class="visually-hidden">Bisque</span>
+  </div>
+</button>
+
+      
+
+      
+        
+
+
+
+<ul class="navmenu navmenu-depth-2 navmenu-submenu" data-navmenu="" data-navmenu-submenu="" aria-label="Main menu">
+  
+    
+
+    
+    
+
+    
+      <li class="navmenu-item navmenu-id-new">
+        <a class="navmenu-link " href="/collections/new-bisque">
+          New!
+        </a>
+      </li>
+    
+  
+    
+
+    
+    
+
+    
+      <li class="navmenu-item navmenu-id-last-chance">
+        <a class="navmenu-link " href="/collections/last-chance">
+          Last Chance!
+        </a>
+      </li>
+    
+  
+    
+
+    
+    
+
+    
+      <li class="navmenu-item navmenu-id-bisque-accessories">
+        <a class="navmenu-link " href="/collections/bisque-accessories">
+          Bisque Accessories
+        </a>
+      </li>
+    
+  
+    
+
+    
+    
+
+    
+      <li class="navmenu-item navmenu-id-stoneware">
+        <a class="navmenu-link " href="/collections/stoneware">
+          Stoneware
+        </a>
+      </li>
+    
+  
+    
+
+    
+    
+
+    
+      <li class="navmenu-item navmenu-id-plates">
+        <a class="navmenu-link " href="/collections/plates">
+          Plates
+        </a>
+      </li>
+    
+  
+    
+
+    
+    
+
+    
+      <li class="navmenu-item navmenu-id-platters-servers">
+        <a class="navmenu-link " href="/collections/platters-and-servers">
+          Platters &amp; Servers
+        </a>
+      </li>
+    
+  
+    
+
+    
+    
+
+    
+      <li class="navmenu-item navmenu-id-bowls">
+        <a class="navmenu-link " href="/collections/bowls">
+          Bowls
+        </a>
+      </li>
+    
+  
+    
+
+    
+    
+
+    
+      <li class="navmenu-item navmenu-id-drinkware">
+        <a class="navmenu-link " href="/collections/drinkware">
+          Drinkware
+        </a>
+      </li>
+    
+  
+    
+
+    
+    
+
+    
+      <li class="navmenu-item navmenu-id-home-decor">
+        <a class="navmenu-link " href="/collections/home-decor">
+          Home Décor
+        </a>
+      </li>
+    
+  
+    
+
+    
+    
+
+    
+      <li class="navmenu-item navmenu-id-holiday-seasons">
+        <a class="navmenu-link " href="/collections/holidays-season">
+          Holiday &amp; Seasons
+        </a>
+      </li>
+    
+  
+    
+
+    
+    
+
+    
+      <li class="navmenu-item navmenu-id-kids">
+        <a class="navmenu-link " href="/collections/kids-1">
+          Kids
+        </a>
+      </li>
+    
+  
+</ul>
+
+      
+    </li>
+  
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+<li class="navmenu-item      navmenu-item-parent      navmenu-id-color            " data-test-linkthing="" data-navmenu-parent="">
+      <a class="navmenu-link navmenu-link-parent " href="/collections/stroke-coat" aria-haspopup="true" aria-expanded="false">
+        Color
+        
+      </a>
+
+      
+        
+
+<button class="navmenu-button" data-navmenu-trigger="" aria-expanded="false">
+  <div class="navmenu-button-wrapper" tabindex="-1">
+    <span class="navmenu-icon navmenu-icon-depth-1">
+      
+      
+                                <svg class="icon-chevron-down-small " aria-hidden="true" focusable="false" role="presentation" xmlns="http://www.w3.org/2000/svg" width="8" height="6" viewBox="0 0 8 6" fill="none">          <title>Chevron down icon</title>        <path class="icon-chevron-down-left" d="M4 4.5L7 1.5" stroke="currentColor" stroke-width="1.25" stroke-linecap="square"></path>      <path class="icon-chevron-down-right" d="M4 4.5L1 1.5" stroke="currentColor" stroke-width="1.25" stroke-linecap="square"></path>    </svg>                                                                                  
+
+    </span>
+    <span class="visually-hidden">Color</span>
+  </div>
+</button>
+
+      
+
+      
+        
+
+
+
+<ul class="navmenu navmenu-depth-2 navmenu-submenu" data-navmenu="" data-navmenu-submenu="" aria-label="Main menu">
+  
+    
+
+    
+    
+
+    
+      <li class="navmenu-item navmenu-id-fired-color">
+        <a class="navmenu-link " href="/collections/mayco-fired">
+          Fired Color
+        </a>
+      </li>
+    
+  
+    
+
+    
+    
+
+    
+      <li class="navmenu-item navmenu-id-non-fired-color">
+        <a class="navmenu-link " href="/collections/mayco-non-fired">
+          Non-Fired Color
+        </a>
+      </li>
+    
+  
+    
+
+    
+    
+
+    
+      <li class="navmenu-item navmenu-id-clear-glazes">
+        <a class="navmenu-link " href="/collections/clear-glazes-dipping-supplies">
+          Clear Glazes
+        </a>
+      </li>
+    
+  
+    
+
+    
+    
+
+    
+      <li class="navmenu-item navmenu-id-fired-accessories">
+        <a class="navmenu-link " href="/collections/fired-accessories">
+          Fired Accessories
+        </a>
+      </li>
+    
+  
+    
+
+    
+    
+
+    
+      <li class="navmenu-item navmenu-id-non-fired-accessories">
+        <a class="navmenu-link " href="/collections/non-fired-accessories">
+          Non Fired Accessories
+        </a>
+      </li>
+    
+  
+</ul>
+
+      
+    </li>
+  
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+<li class="navmenu-item      navmenu-item-parent      navmenu-id-color-applicators            " data-test-linkthing="" data-navmenu-parent="">
+      <a class="navmenu-link navmenu-link-parent " href="/search" aria-haspopup="true" aria-expanded="false">
+        Color Applicators
+        
+      </a>
+
+      
+        
+
+<button class="navmenu-button" data-navmenu-trigger="" aria-expanded="false">
+  <div class="navmenu-button-wrapper" tabindex="-1">
+    <span class="navmenu-icon navmenu-icon-depth-1">
+      
+      
+                                <svg class="icon-chevron-down-small " aria-hidden="true" focusable="false" role="presentation" xmlns="http://www.w3.org/2000/svg" width="8" height="6" viewBox="0 0 8 6" fill="none">          <title>Chevron down icon</title>        <path class="icon-chevron-down-left" d="M4 4.5L7 1.5" stroke="currentColor" stroke-width="1.25" stroke-linecap="square"></path>      <path class="icon-chevron-down-right" d="M4 4.5L1 1.5" stroke="currentColor" stroke-width="1.25" stroke-linecap="square"></path>    </svg>                                                                                  
+
+    </span>
+    <span class="visually-hidden">Color Applicators</span>
+  </div>
+</button>
+
+      
+
+      
+        
+
+
+
+<ul class="navmenu navmenu-depth-2 navmenu-submenu" data-navmenu="" data-navmenu-submenu="" aria-label="Main menu">
+  
+    
+
+    
+    
+
+    
+      <li class="navmenu-item navmenu-id-last-chance">
+        <a class="navmenu-link " href="/collections/last-chance-color-applicators">
+          Last Chance!
+        </a>
+      </li>
+    
+  
+    
+
+    
+    
+
+    
+      <li class="navmenu-item navmenu-id-applicator-accessories">
+        <a class="navmenu-link " href="/collections/plate-hangers-easels">
+          Applicator Accessories
+        </a>
+      </li>
+    
+  
+    
+
+    
+    
+
+    
+      <li class="navmenu-item navmenu-id-brushes">
+        <a class="navmenu-link " href="/collections/brushes-1">
+          Brushes
+        </a>
+      </li>
+    
+  
+    
+
+    
+    
+
+    
+      <li class="navmenu-item navmenu-id-sponges">
+        <a class="navmenu-link " href="/collections/sponges">
+          Sponges
+        </a>
+      </li>
+    
+  
+    
+
+    
+    
+
+    
+      <li class="navmenu-item navmenu-id-writers">
+        <a class="navmenu-link " href="/collections/writer">
+          Writers
+        </a>
+      </li>
+    
+  
+    
+
+    
+    
+
+    
+      <li class="navmenu-item navmenu-id-pencils-pens">
+        <a class="navmenu-link " href="/collections/pencil-pens">
+          Pencils &amp; Pens
+        </a>
+      </li>
+    
+  
+    
+
+    
+    
+
+    
+      <li class="navmenu-item navmenu-id-silk-screens">
+        <a class="navmenu-link " href="/collections/discontinued">
+          Silk Screens
+        </a>
+      </li>
+    
+  
+</ul>
+
+      
+    </li>
+  
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+<li class="navmenu-item      navmenu-item-parent      navmenu-id-clay-products            " data-test-linkthing="" data-navmenu-parent="">
+      <a class="navmenu-link navmenu-link-parent " href="/search" aria-haspopup="true" aria-expanded="false">
+        Clay Products
+        
+      </a>
+
+      
+        
+
+<button class="navmenu-button" data-navmenu-trigger="" aria-expanded="false">
+  <div class="navmenu-button-wrapper" tabindex="-1">
+    <span class="navmenu-icon navmenu-icon-depth-1">
+      
+      
+                                <svg class="icon-chevron-down-small " aria-hidden="true" focusable="false" role="presentation" xmlns="http://www.w3.org/2000/svg" width="8" height="6" viewBox="0 0 8 6" fill="none">          <title>Chevron down icon</title>        <path class="icon-chevron-down-left" d="M4 4.5L7 1.5" stroke="currentColor" stroke-width="1.25" stroke-linecap="square"></path>      <path class="icon-chevron-down-right" d="M4 4.5L1 1.5" stroke="currentColor" stroke-width="1.25" stroke-linecap="square"></path>    </svg>                                                                                  
+
+    </span>
+    <span class="visually-hidden">Clay Products</span>
+  </div>
+</button>
+
+      
+
+      
+        
+
+
+
+<ul class="navmenu navmenu-depth-2 navmenu-submenu" data-navmenu="" data-navmenu-submenu="" aria-label="Main menu">
+  
+    
+
+    
+    
+
+    
+      <li class="navmenu-item navmenu-id-clay-equipment">
+        <a class="navmenu-link " href="/collections/clay-equipment">
+          Clay Equipment
+        </a>
+      </li>
+    
+  
+    
+
+    
+    
+
+    
+      <li class="navmenu-item navmenu-id-clay-ceramic-tools">
+        <a class="navmenu-link " href="/collections/cutters-drills">
+          Clay &amp; Ceramic Tools
+        </a>
+      </li>
+    
+  
+    
+
+    
+    
+
+    
+      <li class="navmenu-item navmenu-id-clay-ceramic-accessories">
+        <a class="navmenu-link " href="/collections/clay-accessories">
+          Clay &amp; Ceramic Accessories
+        </a>
+      </li>
+    
+  
+    
+
+    
+    
+
+    
+      <li class="navmenu-item navmenu-id-clay-slip">
+        <a class="navmenu-link " href="/collections/clay-slip">
+          Clay &amp; Slip
+        </a>
+      </li>
+    
+  
+</ul>
+
+      
+    </li>
+  
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+<li class="navmenu-item      navmenu-item-parent      navmenu-id-kiln-room            " data-test-linkthing="" data-navmenu-parent="">
+      <a class="navmenu-link navmenu-link-parent " href="/search" aria-haspopup="true" aria-expanded="false">
+        Kiln Room
+        
+      </a>
+
+      
+        
+
+<button class="navmenu-button" data-navmenu-trigger="" aria-expanded="false">
+  <div class="navmenu-button-wrapper" tabindex="-1">
+    <span class="navmenu-icon navmenu-icon-depth-1">
+      
+      
+                                <svg class="icon-chevron-down-small " aria-hidden="true" focusable="false" role="presentation" xmlns="http://www.w3.org/2000/svg" width="8" height="6" viewBox="0 0 8 6" fill="none">          <title>Chevron down icon</title>        <path class="icon-chevron-down-left" d="M4 4.5L7 1.5" stroke="currentColor" stroke-width="1.25" stroke-linecap="square"></path>      <path class="icon-chevron-down-right" d="M4 4.5L1 1.5" stroke="currentColor" stroke-width="1.25" stroke-linecap="square"></path>    </svg>                                                                                  
+
+    </span>
+    <span class="visually-hidden">Kiln Room</span>
+  </div>
+</button>
+
+      
+
+      
+        
+
+
+
+<ul class="navmenu navmenu-depth-2 navmenu-submenu" data-navmenu="" data-navmenu-submenu="" aria-label="Main menu">
+  
+    
+
+    
+    
+
+    
+      <li class="navmenu-item navmenu-id-kiln-accessories">
+        <a class="navmenu-link " href="/collections/kiln-accessories">
+          Kiln Accessories
+        </a>
+      </li>
+    
+  
+    
+
+    
+    
+
+    
+      <li class="navmenu-item navmenu-id-kiln-stilts">
+        <a class="navmenu-link " href="/collections/stilts">
+          Kiln Stilts
+        </a>
+      </li>
+    
+  
+    
+
+    
+    
+
+    
+      <li class="navmenu-item navmenu-id-kiln-furniture">
+        <a class="navmenu-link " href="/collections/shelves">
+          Kiln Furniture
+        </a>
+      </li>
+    
+  
+    
+
+    
+    
+
+    
+      <li class="navmenu-item navmenu-id-skutt-kilns">
+        <a class="navmenu-link " href="/collections/skutt">
+          Skutt Kilns
+        </a>
+      </li>
+    
+  
+    
+
+    
+    
+
+    
+      <li class="navmenu-item navmenu-id-kiln-parts">
+        <a class="navmenu-link " href="/collections/kiln-parts">
+          Kiln Parts
+        </a>
+      </li>
+    
+  
+</ul>
+
+      
+    </li>
+  
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+<li class="navmenu-item            navmenu-id-my-wishlist            " data-test-linkthing="">
+      <a class="navmenu-link  " href="#swym-wishlist" data-swym-loaded="true">
+        My Wishlist
+        
+      </a>
+
+      
+
+      
+    </li>
+  
+</ul>
+
+    <hr class="navmenu-hr"><div class="navmenu-utility-bar">
+          
+            
+
+
+
+<ul class="navmenu navmenu-depth-1 " data-navmenu="">
+  
+    
+
+    
+    
+
+    
+      <li class="navmenu-item navmenu-id-about-us">
+        <a class="navmenu-link " href="/pages/about-us">
+          About Us
+        </a>
+      </li>
+    
+  
+    
+
+    
+    
+
+    
+      <li class="navmenu-item navmenu-id-policies-shipping">
+        <a class="navmenu-link " href="/pages/faqs">
+          Policies &amp; Shipping
+        </a>
+      </li>
+    
+  
+    
+
+    
+    
+
+    
+      <li class="navmenu-item navmenu-id-faqs">
+        <a class="navmenu-link " href="/pages/faqs-1">
+          FAQ's
+        </a>
+      </li>
+    
+  
+    
+
+    
+    
+
+    
+      <li class="navmenu-item navmenu-id-contact-us">
+        <a class="navmenu-link " href="/pages/contact">
+          Contact Us
+        </a>
+      </li>
+    
+  
+    
+
+    
+    
+
+    
+      <li class="navmenu-item navmenu-id-privacy">
+        <a class="navmenu-link " href="/pages/privacy">
+          Privacy
+        </a>
+      </li>
+    
+  
+    
+
+    
+    
+
+    
+      <li class="navmenu-item navmenu-id-terms-of-use">
+        <a class="navmenu-link " href="/pages/terms-of-service">
+          Terms Of Use
+        </a>
+      </li>
+    
+  
+</ul>
+
+          
+
+          
+        </div></div>
+
+  </div>
+
+  <div class="mobile-nav-overlay" data-mobile-nav-overlay=""></div>
+</div>
+
+</header>
+
+</div>
+      
+
+    
+    
+
+    <main id="site-main" class="site-main" aria-label="Main content" tabindex="-1">
+      
+        <div id="shopify-section-static-slideshow" class="shopify-section slideshow--section"><script type="application/json" data-section-type="static-slideshow" data-section-id="static-slideshow" data-section-data="">
+  {
+    "enable_autoplay": true,
+    "autoplay_duration": 8,
+    "lazyLoad": true
+  }
+</script>
+
+
+  <section class="slideshow slideshow-dots-small flickity-enabled is-draggable" aria-label="Slide show" tabindex="0">
+    
+      
+
+      
+    
+      
+
+      
+    
+      
+
+      
+    
+
+    <style>
+  
+    
+      .slideshow-slide-overlay--slide_dGi4fW {
+        
+          background-color: #000000;
+        
+        opacity: 0.01;
+      }
+    
+
+    .slideshow-height-fullscreen + .slideshow-slide-content--slide_dGi4fW .slideshow-slide-heading,
+    .slideshow-height-fullscreen + .slideshow-slide-content--slide_dGi4fW .slideshow-slide-text {
+      color: #ffffff;
+    }
+
+    @media (min-width: 720px) {
+      .slideshow-slide-content--slide_dGi4fW .slideshow-slide-heading,
+      .slideshow-slide-content--slide_dGi4fW .slideshow-slide-text {
+        color: #ffffff;
+      }
+    }
+  
+    
+      .slideshow-slide-overlay--slide_EMtYXN {
+        
+          background-color: #000000;
+        
+        opacity: 0.01;
+      }
+    
+
+    .slideshow-height-fullscreen + .slideshow-slide-content--slide_EMtYXN .slideshow-slide-heading,
+    .slideshow-height-fullscreen + .slideshow-slide-content--slide_EMtYXN .slideshow-slide-text {
+      color: #ffffff;
+    }
+
+    @media (min-width: 720px) {
+      .slideshow-slide-content--slide_EMtYXN .slideshow-slide-heading,
+      .slideshow-slide-content--slide_EMtYXN .slideshow-slide-text {
+        color: #ffffff;
+      }
+    }
+  
+    
+      .slideshow-slide-overlay--slide_WNxfN4 {
+        
+          background-color: #000000;
+        
+        opacity: 0.01;
+      }
+    
+
+    .slideshow-height-fullscreen + .slideshow-slide-content--slide_WNxfN4 .slideshow-slide-heading,
+    .slideshow-height-fullscreen + .slideshow-slide-content--slide_WNxfN4 .slideshow-slide-text {
+      color: #ffffff;
+    }
+
+    @media (min-width: 720px) {
+      .slideshow-slide-content--slide_WNxfN4 .slideshow-slide-heading,
+      .slideshow-slide-content--slide_WNxfN4 .slideshow-slide-text {
+        color: #ffffff;
+      }
+    }
+  
+</style>
+
+  <div class="flickity-viewport" style="height: 336px; touch-action: pan-y;"><div class="flickity-slider" style="left: 0px; transform: translateX(-300%);"><div class="slideshow-slide slideshow-height-small is-selected" tabindex="0" aria-label="Slide 1 of 3" style="position: absolute; left: 300%;">
+        
+          <a class="
+              slideshow-link
+              slideshow-background-link
+              slideshow-height-small
+            " href="/collections/stoneware" tabindex="-1"></a>
+        
+
+        
+
+        
+
+        <div class="
+            slideshow-background
+            slideshow-background--slide_dGi4fW
+            slideshow-height-small
+            
+          " data-rimg="loaded" data-rimg-scale="1" data-rimg-template="//chesapeakeceramics.com/cdn/shop/files/Web_Banners_-_Setting_Small_-_Guidelines_1_{size}_crop_center.png?v=1765899101" data-rimg-max="1800x1000" data-rimg-crop="center" data-themecolor="#342e37" data-slidecolor="#ffffff" style="background-image: url(&quot;//chesapeakeceramics.com/cdn/shop/files/Web_Banners_-_Setting_Small_-_Guidelines_1_785x336_crop_center.png?v=1765899101&quot;);">
+          
+            
+
+  
+    <noscript data-rimg-noscript="">
+      <img
+        
+          src="//chesapeakeceramics.com/cdn/shop/files/Web_Banners_-_Setting_Small_-_Guidelines_1_1000x1000_crop_center.png?v=1765899101"
+        
+
+        alt=""
+        data-rimg="noscript"
+        srcset="//chesapeakeceramics.com/cdn/shop/files/Web_Banners_-_Setting_Small_-_Guidelines_1_1000x1000_crop_center.png?v=1765899101 1x"
+        class="slideshow-image"
+        
+        
+      >
+    </noscript>
+  
+
+  <img src="//chesapeakeceramics.com/cdn/shop/files/Web_Banners_-_Setting_Small_-_Guidelines_1_1000x1000_crop_center.png?v=1765899101" alt="" data-rimg="loaded" data-rimg-scale="1" data-rimg-template="//chesapeakeceramics.com/cdn/shop/files/Web_Banners_-_Setting_Small_-_Guidelines_1_{size}_crop_center.png?v=1765899101" data-rimg-max="1800x1000" data-rimg-crop="center" srcset="//chesapeakeceramics.com/cdn/shop/files/Web_Banners_-_Setting_Small_-_Guidelines_1_785x336_crop_center.png?v=1765899101 1.00x" class="slideshow-image" data-rimg-template-svg="data:image/svg+xml;utf8,&lt;svg%20xmlns='http://www.w3.org/2000/svg'%20width='1000'%20height='1000'&gt;&lt;/svg&gt;">
+
+
+
+  <div data-rimg-canvas=""></div>
+
+
+          
+
+          
+            <div class="
+                slideshow-slide-overlay
+                slideshow-slide-overlay--slide_dGi4fW
+              "></div>
+          
+        </div>
+
+        
+      </div><div class="
+          slideshow-slide
+          slideshow-height-small
+        " tabindex="0" aria-label="Slide 2 of 3" aria-hidden="true" style="position: absolute; left: 100%;">
+        
+          <a class="
+              slideshow-link
+              slideshow-background-link
+              slideshow-height-small
+            " href="/collections/new-bisque" tabindex="-1"></a>
+        
+
+        
+
+        
+
+        <div class="
+            slideshow-background
+            slideshow-background--slide_EMtYXN
+            slideshow-height-small
+            
+          " data-rimg="lazy" data-rimg-scale="1" data-rimg-template="//chesapeakeceramics.com/cdn/shop/files/Web_Banners_Smaller_Size_{size}_crop_center.png?v=1764091757" data-rimg-max="1500x395" data-rimg-crop="center" data-themecolor="#342e37" data-slidecolor="#ffffff">
+          
+            
+
+  
+    <noscript data-rimg-noscript="">
+      <img
+        
+          src="//chesapeakeceramics.com/cdn/shop/files/Web_Banners_Smaller_Size_395x395_crop_center.png?v=1764091757"
+        
+
+        alt=""
+        data-rimg="noscript"
+        srcset="//chesapeakeceramics.com/cdn/shop/files/Web_Banners_Smaller_Size_395x395_crop_center.png?v=1764091757 1x"
+        class="slideshow-image"
+        
+        
+      >
+    </noscript>
+  
+
+  <img src="//chesapeakeceramics.com/cdn/shop/files/Web_Banners_Smaller_Size_395x395_crop_center.png?v=1764091757" alt="" data-rimg="lazy" data-rimg-scale="1" data-rimg-template="//chesapeakeceramics.com/cdn/shop/files/Web_Banners_Smaller_Size_{size}_crop_center.png?v=1764091757" data-rimg-max="1500x395" data-rimg-crop="center" srcset="data:image/svg+xml;utf8,&lt;svg%20xmlns='http://www.w3.org/2000/svg'%20width='395'%20height='395'&gt;&lt;/svg&gt;" class="slideshow-image">
+
+
+
+  <div data-rimg-canvas=""></div>
+
+
+          
+
+          
+            <div class="
+                slideshow-slide-overlay
+                slideshow-slide-overlay--slide_EMtYXN
+              "></div>
+          
+        </div>
+
+        
+      </div><div class="
+          slideshow-slide
+          slideshow-height-small
+        " tabindex="0" aria-label="Slide 3 of 3" aria-hidden="true" style="position: absolute; left: 200%;">
+        
+          <a class="
+              slideshow-link
+              slideshow-background-link
+              slideshow-height-small
+            " href="/collections/ritual-glaze" tabindex="-1"></a>
+        
+
+        
+
+        
+
+        <div class="
+            slideshow-background
+            slideshow-background--slide_WNxfN4
+            slideshow-height-small
+            
+          " data-rimg="loaded" data-rimg-scale="1" data-rimg-template="//chesapeakeceramics.com/cdn/shop/files/25-10_beads_banner_{size}_crop_center.jpg?v=1762785806" data-rimg-max="1800x1000" data-rimg-crop="center" data-themecolor="#342e37" data-slidecolor="#ffffff" style="background-image: url(&quot;//chesapeakeceramics.com/cdn/shop/files/25-10_beads_banner_785x336_crop_center.jpg?v=1762785806&quot;);">
+          
+            
+
+  
+    <noscript data-rimg-noscript="">
+      <img
+        
+          src="//chesapeakeceramics.com/cdn/shop/files/25-10_beads_banner_1000x1000_crop_center.jpg?v=1762785806"
+        
+
+        alt=""
+        data-rimg="noscript"
+        srcset="//chesapeakeceramics.com/cdn/shop/files/25-10_beads_banner_1000x1000_crop_center.jpg?v=1762785806 1x"
+        class="slideshow-image"
+        
+        
+      >
+    </noscript>
+  
+
+  <img src="//chesapeakeceramics.com/cdn/shop/files/25-10_beads_banner_1000x1000_crop_center.jpg?v=1762785806" alt="" data-rimg="loaded" data-rimg-scale="1" data-rimg-template="//chesapeakeceramics.com/cdn/shop/files/25-10_beads_banner_{size}_crop_center.jpg?v=1762785806" data-rimg-max="1800x1000" data-rimg-crop="center" srcset="//chesapeakeceramics.com/cdn/shop/files/25-10_beads_banner_785x336_crop_center.jpg?v=1762785806 1.00x" class="slideshow-image" data-rimg-template-svg="data:image/svg+xml;utf8,&lt;svg%20xmlns='http://www.w3.org/2000/svg'%20width='1000'%20height='1000'&gt;&lt;/svg&gt;">
+
+
+
+  <div data-rimg-canvas=""></div>
+
+
+          
+
+          
+            <div class="
+                slideshow-slide-overlay
+                slideshow-slide-overlay--slide_WNxfN4
+              "></div>
+          
+        </div>
+
+        
+      </div></div></div><button class="flickity-button flickity-prev-next-button previous" type="button" aria-label="Previous"><svg class="flickity-button-icon" viewBox="0 0 100 100" style="fill: rgb(255, 255, 255);"><path d="M 10,50 L 60,100 L 65,95 L 20,50  L 65,5 L 60,0 Z" class="arrow"></path></svg></button><button class="flickity-button flickity-prev-next-button next" type="button" aria-label="Next"><svg class="flickity-button-icon" viewBox="0 0 100 100" style="fill: rgb(255, 255, 255);"><path d="M 10,50 L 60,100 L 65,95 L 20,50  L 65,5 L 60,0 Z" class="arrow" transform="translate(100, 100) rotate(180) "></path></svg></button><ol class="flickity-page-dots" style="top: auto;"><li class="dot is-selected" aria-label="Page dot 1" aria-current="step" style="background: rgb(255, 255, 255);"></li><li class="dot" aria-label="Page dot 2" style="background: rgb(255, 255, 255);"></li><li class="dot" aria-label="Page dot 3" style="background: rgb(255, 255, 255);"></li></ol></section>
+
+
+<div aria-live="polite" class="live-region visually-hidden"></div></div>
+      
+
+      
+
+
+
+  <div class="easylockdown-content"><!-- BEGIN content_for_index --><div id="shopify-section-1640793350b319282d" class="shopify-section highlights-banners--section"><script type="application/json" data-section-type="dynamic-highlights-banners" data-section-id="1640793350b319282d">
+</script>
+
+
+  <style>
+    #shopify-section-1640793350b319282d {
+      background-color: #6aa5db;
+    }
+
+    #shopify-section-1640793350b319282d .highlights-banners {
+      background-color: #6aa5db;
+      padding-top: 0px;
+      padding-bottom: 0px;
+    }
+
+    @media screen and (min-width: 1024px) {
+      #shopify-section-1640793350b319282d .highlights-banners {
+        padding-top: 0px;
+        padding-bottom: 0px;
+      }
+    }
+
+    #shopify-section-1640793350b319282d .highlights-banners-block {
+      color: #ffffff;
+    }
+
+    #shopify-section-1640793350b319282d .highlights-banners-heading {
+      color: #ffffff;
+    }
+
+    #shopify-section-1640793350b319282d .highlights-banners-block::after {
+      background: #e3e3e3;
+    }
+
+    #shopify-section-1640793350b319282d .highlights-banners-icon {
+      color: #4d4d4d;
+    }
+  </style>
+
+  <div class="highlights-banners-container">
+    <div class="highlights-banners highlight-banners-count-3 highlight-banners-align-center flickity-enabled is-draggable" tabindex="0">
+      
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+    <div class="flickity-viewport" style="height: 20.8125px; touch-action: pan-y;"><div class="flickity-slider" style="left: 0px; transform: translateX(17%);"><div class="highlights-banners-block is-selected" style="position: absolute; left: 0%;">
+            
+            
+              
+              
+            
+            
+            <div class="highlights-banners-text">
+              
+                <span class="highlights-banners-heading">
+                  Customer Care
+                </span>
+              
+
+              
+            </div>
+            
+            
+          </div><div class="highlights-banners-block" aria-hidden="true" style="position: absolute; left: 33%;">
+            
+            
+              
+              
+            
+            
+            <div class="highlights-banners-text">
+              
+                <span class="highlights-banners-heading">
+                  We Are Ready to serve you
+                </span>
+              
+
+              
+            </div>
+            
+            
+          </div></div></div></div>
+  </div>
+
+
+</div><div id="shopify-section-1555973343999" class="shopify-section highlights-banners--section"><script type="application/json" data-section-type="dynamic-highlights-banners" data-section-id="1555973343999">
+</script>
+
+
+  <style>
+    #shopify-section-1555973343999 {
+      background-color: #6aa5db;
+    }
+
+    #shopify-section-1555973343999 .highlights-banners {
+      background-color: #6aa5db;
+      padding-top: 13px;
+      padding-bottom: 13px;
+    }
+
+    @media screen and (min-width: 1024px) {
+      #shopify-section-1555973343999 .highlights-banners {
+        padding-top: 28px;
+        padding-bottom: 28px;
+      }
+    }
+
+    #shopify-section-1555973343999 .highlights-banners-block {
+      color: #ffffff;
+    }
+
+    #shopify-section-1555973343999 .highlights-banners-heading {
+      color: #ffffff;
+    }
+
+    #shopify-section-1555973343999 .highlights-banners-block::after {
+      background: #6aa5db;
+    }
+
+    #shopify-section-1555973343999 .highlights-banners-icon {
+      color: #ffffff;
+    }
+  </style>
+
+  <div class="highlights-banners-container">
+    <div class="highlights-banners highlight-banners-count-4 highlight-banners-align-center flickity-enabled is-draggable" tabindex="0">
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+    <div class="flickity-viewport" style="height: 92.6875px; touch-action: pan-y;"><div class="flickity-slider" style="left: 0px; transform: translateX(0%);"><div class="highlights-banners-block is-selected" style="position: absolute; left: 0%;">
+            
+            
+              
+              
+                <div class="highlights-banners-icon">
+                  
+                    
+
+  
+
+  <img src="//chesapeakeceramics.com/cdn/shop/files/receiving-shipping-box-on-ipad_69x46.jpg?v=1646313641" alt="" data-rimg="" srcset="//chesapeakeceramics.com/cdn/shop/files/receiving-shipping-box-on-ipad_69x46.jpg?v=1646313641 1x, //chesapeakeceramics.com/cdn/shop/files/receiving-shipping-box-on-ipad_138x92.jpg?v=1646313641 2x, //chesapeakeceramics.com/cdn/shop/files/receiving-shipping-box-on-ipad_207x138.jpg?v=1646313641 3x, //chesapeakeceramics.com/cdn/shop/files/receiving-shipping-box-on-ipad_276x184.jpg?v=1646313641 4x" class="highlights-banners-custom-icon">
+
+
+
+
+                  
+                </div>
+              
+            
+            
+            <div class="highlights-banners-text">
+              
+                <span class="highlights-banners-heading">
+                  Damages?
+                </span>
+              
+
+              
+                <p>Customer Care Web Form</p>
+              
+            </div>
+            
+            
+              <a class="highlights-banners-block-link" href="https://chesapeake.freshdesk.com/support/tickets/new">
+              </a>
+            
+          </div><div class="highlights-banners-block" aria-hidden="true" style="position: absolute; left: 27.7%;">
+            
+            
+              
+              
+                <div class="highlights-banners-icon">
+                  
+                    
+
+  
+
+  <img src="//chesapeakeceramics.com/cdn/shop/files/instant-messege-on-laptop_69x46.jpg?v=1646314295" alt="" data-rimg="" srcset="//chesapeakeceramics.com/cdn/shop/files/instant-messege-on-laptop_69x46.jpg?v=1646314295 1x, //chesapeakeceramics.com/cdn/shop/files/instant-messege-on-laptop_138x92.jpg?v=1646314295 2x, //chesapeakeceramics.com/cdn/shop/files/instant-messege-on-laptop_207x138.jpg?v=1646314295 3x, //chesapeakeceramics.com/cdn/shop/files/instant-messege-on-laptop_276x184.jpg?v=1646314295 4x" class="highlights-banners-custom-icon">
+
+
+
+
+                  
+                </div>
+              
+            
+            
+            <div class="highlights-banners-text">
+              
+                <span class="highlights-banners-heading">
+                  Questions?
+                </span>
+              
+
+              
+                <p></p><p>Customer Care Web Form</p>
+              
+            </div>
+            
+            
+              <a class="highlights-banners-block-link" href="https://chesapeake.freshdesk.com/support/tickets/new">
+              </a>
+            
+          </div><div class="highlights-banners-block" aria-hidden="true" style="position: absolute; left: 55.4%;">
+            
+            
+              
+              
+                <div class="highlights-banners-icon">
+                  
+                    
+
+  
+
+  <img src="//chesapeakeceramics.com/cdn/shop/files/bisque_shop_46x46.jpg?v=1638387071" alt="" data-rimg="" srcset="//chesapeakeceramics.com/cdn/shop/files/bisque_shop_46x46.jpg?v=1638387071 1x, //chesapeakeceramics.com/cdn/shop/files/bisque_shop_92x92.jpg?v=1638387071 2x, //chesapeakeceramics.com/cdn/shop/files/bisque_shop_138x138.jpg?v=1638387071 3x, //chesapeakeceramics.com/cdn/shop/files/bisque_shop_184x184.jpg?v=1638387071 4x" class="highlights-banners-custom-icon">
+
+
+
+
+                  
+                </div>
+              
+            
+            
+            <div class="highlights-banners-text">
+              
+                <span class="highlights-banners-heading">
+                  Product Inquiries?
+                </span>
+              
+
+              
+                <p>Customer Care Web Form</p>
+              
+            </div>
+            
+            
+              <a class="highlights-banners-block-link" href="https://chesapeake.freshdesk.com/support/tickets/new">
+              </a>
+            
+          </div><div class="highlights-banners-block" aria-hidden="true" style="position: absolute; left: 83.1%;">
+            
+            
+              
+              
+                <div class="highlights-banners-icon">
+                  
+                    
+
+  
+
+  <img src="//chesapeakeceramics.com/cdn/shop/files/wallet-and-money_69x46.jpg?v=1646315149" alt="" data-rimg="" srcset="//chesapeakeceramics.com/cdn/shop/files/wallet-and-money_69x46.jpg?v=1646315149 1x, //chesapeakeceramics.com/cdn/shop/files/wallet-and-money_138x92.jpg?v=1646315149 2x, //chesapeakeceramics.com/cdn/shop/files/wallet-and-money_207x138.jpg?v=1646315149 3x, //chesapeakeceramics.com/cdn/shop/files/wallet-and-money_276x184.jpg?v=1646315149 4x" class="highlights-banners-custom-icon">
+
+
+
+
+                  
+                </div>
+              
+            
+            
+            <div class="highlights-banners-text">
+              
+                <span class="highlights-banners-heading">
+                  Accounting?
+                </span>
+              
+
+              
+                <p>Customer Care Web Form</p><p></p>
+              
+            </div>
+            
+            
+              <a class="highlights-banners-block-link" href="https://chesapeake.freshdesk.com/support/tickets/new">
+              </a>
+            
+          </div></div></div></div>
+  </div>
+
+
+</div><div id="shopify-section-163838673938f6d0d9" class="shopify-section logolist--section"><style data-shopify="">
+  #shopify-section-163838673938f6d0d9 {
+    background-color: ;
+  }
+
+  #shopify-section-163838673938f6d0d9 .logolist--container {
+    padding-top: 36px;
+    padding-bottom: 36px;
+  }
+
+  @media screen and (min-width: 720px) {
+    #shopify-section-163838673938f6d0d9 .logolist--container {
+      padding-top: 50px;
+      padding-bottom: 50px;
+    }
+  }
+
+  #shopify-section-163838673938f6d0d9 .logolist--container .home-section--title {
+    color: #4d4d4d;
+  }
+
+  #shopify-section-163838673938f6d0d9 .logolist--container .home-section--subheading,
+  #shopify-section-163838673938f6d0d9 .logolist--container .home-section--subheading a {
+    color: #4d4d4d;
+  }
+</style>
+
+<section class="logolist--container">
+  
+    <div class="home-section--title-container">
+    
+      <h2 class="home-section--title">
+        BRANDS YOU CAN TRUST
+      </h2>
+    
+    
+      <div class="home-section--subheading">
+        <p>Only The Best</p>
+      </div>
+    
+    </div>
+  
+
+  <div class="home-section--content logolist--inner">
+    
+      <div class="logolist--item">
+        
+
+        
+          
+
+  
+    <noscript data-rimg-noscript="">
+      <img
+        
+          src="//chesapeakeceramics.com/cdn/shop/files/Mayco_160x160.png?v=1638387672"
+        
+
+        alt=""
+        data-rimg="noscript"
+        srcset="//chesapeakeceramics.com/cdn/shop/files/Mayco_160x160.png?v=1638387672 1x, //chesapeakeceramics.com/cdn/shop/files/Mayco_320x320.png?v=1638387672 2x, //chesapeakeceramics.com/cdn/shop/files/Mayco_480x480.png?v=1638387672 3x, //chesapeakeceramics.com/cdn/shop/files/Mayco_499x499.png?v=1638387672 3.12x"
+        class="logolist--image"
+        
+        
+      >
+    </noscript>
+  
+
+  <img src="//chesapeakeceramics.com/cdn/shop/files/Mayco_160x160.png?v=1638387672" alt="" data-rimg="lazy" data-rimg-scale="1" data-rimg-template="//chesapeakeceramics.com/cdn/shop/files/Mayco_{size}.png?v=1638387672" data-rimg-max="500x500" data-rimg-crop="false" srcset="data:image/svg+xml;utf8,&lt;svg%20xmlns='http://www.w3.org/2000/svg'%20width='160'%20height='160'&gt;&lt;/svg&gt;" class="logolist--image">
+
+
+
+  <div data-rimg-canvas=""></div>
+
+
+        
+
+        
+      </div>
+    
+      <div class="logolist--item">
+        
+
+        
+          
+
+  
+    <noscript data-rimg-noscript="">
+      <img
+        
+          src="//chesapeakeceramics.com/cdn/shop/files/CC_logo_160x87.png?v=1643320418"
+        
+
+        alt=""
+        data-rimg="noscript"
+        srcset="//chesapeakeceramics.com/cdn/shop/files/CC_logo_160x87.png?v=1643320418 1x, //chesapeakeceramics.com/cdn/shop/files/CC_logo_278x151.png?v=1643320418 1.74x"
+        class="logolist--image"
+        
+        
+      >
+    </noscript>
+  
+
+  <img src="//chesapeakeceramics.com/cdn/shop/files/CC_logo_160x87.png?v=1643320418" alt="" data-rimg="lazy" data-rimg-scale="1" data-rimg-template="//chesapeakeceramics.com/cdn/shop/files/CC_logo_{size}.png?v=1643320418" data-rimg-max="282x152" data-rimg-crop="false" srcset="data:image/svg+xml;utf8,&lt;svg%20xmlns='http://www.w3.org/2000/svg'%20width='160'%20height='87'&gt;&lt;/svg&gt;" class="logolist--image">
+
+
+
+  <div data-rimg-canvas=""></div>
+
+
+        
+
+        
+      </div>
+    
+      <div class="logolist--item">
+        
+
+        
+          
+
+  
+    <noscript data-rimg-noscript="">
+      <img
+        
+          src="//chesapeakeceramics.com/cdn/shop/files/download_3_125x160.jpg?v=1646316625"
+        
+
+        alt=""
+        data-rimg="noscript"
+        srcset="//chesapeakeceramics.com/cdn/shop/files/download_3_125x160.jpg?v=1646316625 1x, //chesapeakeceramics.com/cdn/shop/files/download_3_198x253.jpg?v=1646316625 1.58x"
+        class="logolist--image"
+        
+        
+      >
+    </noscript>
+  
+
+  <img src="//chesapeakeceramics.com/cdn/shop/files/download_3_125x160.jpg?v=1646316625" alt="" data-rimg="lazy" data-rimg-scale="1" data-rimg-template="//chesapeakeceramics.com/cdn/shop/files/download_3_{size}.jpg?v=1646316625" data-rimg-max="198x255" data-rimg-crop="false" srcset="data:image/svg+xml;utf8,&lt;svg%20xmlns='http://www.w3.org/2000/svg'%20width='125'%20height='160'&gt;&lt;/svg&gt;" class="logolist--image">
+
+
+
+  <div data-rimg-canvas=""></div>
+
+
+        
+
+        
+      </div>
+    
+      <div class="logolist--item">
+        
+
+        
+          
+
+  
+    <noscript data-rimg-noscript="">
+      <img
+        
+          src="//chesapeakeceramics.com/cdn/shop/files/duncan-200x200_160x160.png?v=1638387538"
+        
+
+        alt=""
+        data-rimg="noscript"
+        srcset="//chesapeakeceramics.com/cdn/shop/files/duncan-200x200_160x160.png?v=1638387538 1x, //chesapeakeceramics.com/cdn/shop/files/duncan-200x200_200x200.png?v=1638387538 1.25x"
+        class="logolist--image"
+        
+        
+      >
+    </noscript>
+  
+
+  <img src="//chesapeakeceramics.com/cdn/shop/files/duncan-200x200_160x160.png?v=1638387538" alt="" data-rimg="lazy" data-rimg-scale="1" data-rimg-template="//chesapeakeceramics.com/cdn/shop/files/duncan-200x200_{size}.png?v=1638387538" data-rimg-max="200x200" data-rimg-crop="false" srcset="data:image/svg+xml;utf8,&lt;svg%20xmlns='http://www.w3.org/2000/svg'%20width='160'%20height='160'&gt;&lt;/svg&gt;" class="logolist--image">
+
+
+
+  <div data-rimg-canvas=""></div>
+
+
+        
+
+        
+      </div>
+    
+      <div class="logolist--item">
+        
+
+        
+          
+
+  
+    <noscript data-rimg-noscript="">
+      <img
+        
+          src="//chesapeakeceramics.com/cdn/shop/files/download_2_160x125.jpg?v=1646316527"
+        
+
+        alt=""
+        data-rimg="noscript"
+        srcset="//chesapeakeceramics.com/cdn/shop/files/download_2_160x125.jpg?v=1646316527 1x, //chesapeakeceramics.com/cdn/shop/files/download_2_253x198.jpg?v=1646316527 1.58x"
+        class="logolist--image"
+        
+        
+      >
+    </noscript>
+  
+
+  <img src="//chesapeakeceramics.com/cdn/shop/files/download_2_160x125.jpg?v=1646316527" alt="" data-rimg="lazy" data-rimg-scale="1" data-rimg-template="//chesapeakeceramics.com/cdn/shop/files/download_2_{size}.jpg?v=1646316527" data-rimg-max="255x198" data-rimg-crop="false" srcset="data:image/svg+xml;utf8,&lt;svg%20xmlns='http://www.w3.org/2000/svg'%20width='160'%20height='125'&gt;&lt;/svg&gt;" class="logolist--image">
+
+
+
+  <div data-rimg-canvas=""></div>
+
+
+        
+
+        
+      </div>
+    
+  </div>
+</section>
+
+</div><div id="shopify-section-1556047304740" class="shopify-section dynamic-newsletter-section"><style data-shopify="">
+  #shopify-section-1556047304740 {
+    background-color: #f2ece3;
+  }
+
+  #shopify-section-1556047304740 .dynamic-newsletter {
+    padding-top: 50px;
+    padding-bottom: 50px;
+  }
+
+  @media screen and (min-width: 720px) {
+    #shopify-section-1556047304740 .dynamic-newsletter {
+      padding-top: 47px;
+      padding-bottom: 47px;
+    }
+  }
+
+  #shopify-section-1556047304740 .dynamic-newsletter .home-section--title {
+    color: #1d7aa1;
+    }
+
+  #shopify-section-1556047304740 .dynamic-newsletter .home-section--subheading,
+  #shopify-section-1556047304740 .dynamic-newsletter .home-section--subheading a {
+    color: #212121;
+  }
+</style>
+
+<script type="application/json" data-section-type="dynamic-newsletter" data-section-id="1556047304740">
+</script>
+
+<section class="
+    dynamic-newsletter
+    dynamic-newsletter-desktop-alignment-left
+    dynamic-newsletter-mobile-alignment-top
+  ">
+  
+
+  <div class="dynamic-newsletter-content">
+    <div class="home-section--title-container">
+        
+          <h2 class="home-section--title">
+            CHESAPEAKE NEWS
+          </h2>
+        
+
+        
+          <div class="dynamic-newsletter-text home-section--subheading">
+            <p>Sign up to get the latest updates!</p>
+          </div>
+        
+    </div>
+
+    
+
+
+
+<form method="post" action="/contact#contact_form" accept-charset="UTF-8" class="newsletter" data-persist-bound="true"><input type="hidden" name="form_type" value="customer"><input type="hidden" name="utf8" value="✓">
+  
+    <input type="hidden" name="contact[tags]" value="prospect, newsletter">
+
+    <div class="form-fields-inline">
+      <div class="form-field newsletter-input">
+        <input class="form-field-input form-field-text" name="contact[email]" id="newsletter_email" type="email" aria-label="Email address">
+
+        <label class="form-field-title" for="newsletter_email">
+          Email address
+        </label>
+      </div>
+
+      <button class="
+          form-field
+          newsletter-submit
+          button-primary
+        " name="subscribe" type="submit">
+        Sign up
+      </button>
+    </div>
+  
+</form>
+
+  </div>
+</section>
+
+</div><!-- END content_for_index --></div>
+  
+  
+
+  
+
+    </main>
+
+    <div id="shopify-section-static-footer" class="shopify-section"><script type="application/json" data-section-id="static-footer" data-section-type="static-footer">
+</script>
+
+<footer class="site-footer" role="contentinfo" aria-label="Footer" data-mobile-alignment="left">
+  
+    <div class="
+        site-footer-item
+        site-footer-blocks
+        column-count-4
+      ">
+      
+        <div class="site-footer-block-item  site-footer-block-rich-text  ">
+
+  
+    
+      <h2 class="site-footer-block-title">
+        About Us
+      </h2>
+    
+
+    
+      <div class="site-footer-block-content rte">
+        <p>Chesapeake Ceramics is a leading global supplier of ceramic art products.&nbsp;In business In the early 90s, as the first paint-your-own-pottery studios began to appear, Chesapeake Ceramics was the first U.S. supplier to source a full container of bisque from Italy to meet the demands of this exciting new industry.&nbsp;<br><br></p>
+      </div>
+    
+
+    
+  
+
+</div>
+
+      
+        <div class="site-footer-block-item  site-footer-block-menu  has-accordion">
+
+  
+      <h2 class="site-footer-block-title" data-accordion-trigger="">
+        Quick Links
+
+        <span class="site-footer-block-icon accordion--icon">
+          
+                                    <svg class="icon-chevron-down " aria-hidden="true" focusable="false" role="presentation" xmlns="http://www.w3.org/2000/svg" width="14" height="8" viewBox="0 0 14 8" fill="none">          <title>Chevron down icon</title>        <path class="icon-chevron-down-left" d="M7 6.75L12.5 1.25" stroke="currentColor" stroke-width="1.75" stroke-linecap="square"></path>      <path class="icon-chevron-down-right" d="M7 6.75L1.5 1.25" stroke="currentColor" stroke-width="1.75" stroke-linecap="square"></path>    </svg>                                                                              
+
+        </span>
+      </h2>
+
+      <div class="site-footer-block-content accordion--content" data-accordion-content="">
+        
+
+
+
+<ul class="navmenu navmenu-depth-1 " data-navmenu="">
+  
+    
+
+    
+    
+
+    
+      <li class="navmenu-item navmenu-id-about-us">
+        <a class="navmenu-link " href="/pages/about-us">
+          About Us
+        </a>
+      </li>
+    
+  
+    
+
+    
+    
+
+    
+      <li class="navmenu-item navmenu-id-policies-shipping">
+        <a class="navmenu-link " href="/pages/faqs">
+          Policies &amp; Shipping
+        </a>
+      </li>
+    
+  
+    
+
+    
+    
+
+    
+      <li class="navmenu-item navmenu-id-faqs">
+        <a class="navmenu-link " href="/pages/faqs-1">
+          FAQ's
+        </a>
+      </li>
+    
+  
+    
+
+    
+    
+
+    
+      <li class="navmenu-item navmenu-id-contact-us">
+        <a class="navmenu-link " href="/pages/contact">
+          Contact Us
+        </a>
+      </li>
+    
+  
+    
+
+    
+    
+
+    
+      <li class="navmenu-item navmenu-id-privacy">
+        <a class="navmenu-link " href="/pages/privacy">
+          Privacy
+        </a>
+      </li>
+    
+  
+    
+
+    
+    
+
+    
+      <li class="navmenu-item navmenu-id-terms-of-use">
+        <a class="navmenu-link " href="/pages/terms-of-service">
+          Terms Of Use
+        </a>
+      </li>
+    
+  
+</ul>
+
+      </div>
+  
+
+</div>
+
+      
+        <div class="site-footer-block-item  site-footer-block-social-accounts  ">
+
+  
+    <h2 class="site-footer-block-title">
+      Follow us
+    </h2>
+
+    <div class="site-footer-block-content">
+      
+
+
+
+
+
+  
+  
+    
+    
+
+
+  <div class="social-icons social-icons-dark-light">
+<a class="social-link social-link-facebook" title="Facebook" href="https://www.facebook.com/chesapeakeceramics/" target="_blank">
+<svg aria-hidden="true" focusable="false" role="presentation" xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 28 28">      <path fill="currentColor" fill-rule="evenodd" d="M16.913 13.919h-2.17v7.907h-3.215V13.92H10v-2.794h1.528V9.316c0-1.294.601-3.316 3.245-3.316l2.38.01V8.72h-1.728c-.282 0-.68.145-.68.762v1.642h2.449l-.281 2.794z"></path>    </svg>
+<span class="visually-hidden">Find us on Facebook</span>
+</a>
+
+
+<a class="social-link social-link-instagram" title="Instagram" href="https://www.instagram.com/chesapeake_ceramics/?hl=en" target="_blank">
+<svg aria-hidden="true" focusable="false" role="presentation" xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 28 28">      <path fill="currentColor" fill-rule="evenodd" d="M13.99734212 5.50536055c-2.30775185 0-2.59712311.0097771-3.5034532.05111062-.9044412.0412661-1.52214209.18482087-2.06266832.39479248-.55877426.21705158-1.03264964.5074651-1.50504089.97963151-.47239125.47216641-.76294307.94581624-.980098 1.50432454-.2100716.54023525-.35369473 1.15764213-.39498048 2.06165285C5.50974803 11.40277126 5.5 11.69200479 5.5 13.99865823c0 2.30661977.00974802 2.59585327.05110123 3.50175197.04128575.9040107.18490888 1.5214176.39498048 2.0616529.21715493.5585083.50770675 1.0321581.980098 1.5043582.47239125.4721664.94626663.7625799 1.50504089.9796315.54052623.2099379 1.15822712.3535264 2.06266832.3947588.90633009.0413335 1.19570135.0511106 3.5034532.0511106 2.30771808 0 2.59708938-.0097771 3.50341948-.0511106.9044412-.0412324 1.5221421-.1848209 2.0626346-.3947588.5587742-.2170516 1.0326496-.5074651 1.5050746-.9796315.4723912-.4722001.7629431-.9458499.980098-1.5043582.2100379-.5402353.3536947-1.1576422.3949467-2.0616529.0413532-.9058987.051135-1.1951322.051135-3.50175197 0-2.30665344-.0097818-2.59588697-.051135-3.50178568-.041252-.90401072-.1849088-1.5214176-.3949467-2.06165285-.2171549-.5585083-.5077068-1.03215813-.980098-1.50432454-.472425-.4721664-.9463004-.76257993-1.5050746-.97963151-.5404925-.20997161-1.1581934-.35352638-2.0626346-.39479248-.9063301-.04133353-1.1957014-.05111062-3.50341948-.05111062zm0 1.53035185c2.26886098 0 2.53762308.00863082 3.43363168.04949234.8284809.03779354 1.2784078.17615634 1.5778307.29243638.3966332.15407358.6796969.33815274.9770285.6353428.2973653.29719007.4814984.58015278.6356454.97656353.1163691.29928035.2547978.74899315.2925756 1.57707964.040881.89558219.0495496 1.16421638.0495496 3.43203114 0 2.26778107-.0086686 2.53641527-.0495496 3.43199747-.0377778.8280865-.1762065 1.2777993-.2925756 1.5770796-.154147.3964445-.3382801.6793735-.6356454.9765635-.2973316.2972238-.5803953.4812693-.9770285.6353428-.2994229.1163138-.7493498.2546766-1.5778307.2924364-.8958737.0408615-1.1646021.0495261-3.43363168.0495261-2.26906333 0-2.53775799-.0086646-3.43366545-.0495261-.82848082-.0377598-1.27840777-.1761226-1.57783063-.2924364-.39663325-.1540735-.67969697-.338119-.97706229-.6353428-.29733158-.29719-.4814984-.580119-.63561162-.9765635-.11636914-.2992803-.25479782-.7489931-.29260936-1.5770796-.04088098-.8955822-.04951591-1.1642164-.04951591-3.43199747 0-2.26781476.00863493-2.53644895.04951591-3.43203114.03781154-.82808649.17624022-1.27779929.29260936-1.57707964.15411322-.39641075.33828004-.67937346.63561162-.97656353.29736532-.29719006.58042904-.48126922.97706229-.6353428.29942286-.11628004.74934981-.25464284 1.57783063-.29243638.89600865-.04086152 1.16477077-.04949234 3.43366545-.04949234z"></path>      <path fill="currentColor" fill-rule="evenodd" d="M13.99734212 16.829735c-1.56433856 0-2.83245862-1.2675165-2.83245862-2.83107677 0-1.56359398 1.26812006-2.83111046 2.83245862-2.83111046 1.56430478 0 2.83242488 1.26751648 2.83242488 2.83111046 0 1.56356027-1.2681201 2.83107677-2.83242488 2.83107677zm0-7.19250537c-2.40992058 0-4.36350548 1.95265506-4.36350548 4.3614286 0 2.40873987 1.9535849 4.36139487 4.36350548 4.36139487 2.40988688 0 4.36347178-1.952655 4.36347178-4.36139487 0-2.40877354-1.9535849-4.3614286-4.36347178-4.3614286z"></path>      <path fill="currentColor" fill-rule="evenodd" d="M19.5529061 9.46491671c0 .56289113-.4565381 1.01917819-1.0196973 1.01917819-.5631254 0-1.0196635-.45628706-1.0196635-1.01917819 0-.56289114.4565381-1.0191782 1.0196635-1.0191782.5631592 0 1.0196973.45628706 1.0196973 1.0191782z"></path>    </svg>
+<span class="visually-hidden">Find us on Instagram</span>
+</a>
+
+
+<a class="social-link social-link-linkedin" title="LinkedIn" href="https://www.linkedin.com/company/chesapeake-ceramics" target="_blank">
+<svg aria-hidden="true" focusable="false" role="presentation" xmlns="http://www.w3.org/2000/svg" width="26" height="28" viewBox="-12 -10 50 50">      <path fill="currentColor" fill-rule="evenodd" d="M9.7 9.8h4.8v2.5c.7-1.4 2.5-2.8 5.1-2.8 5.2 0 6.4 3 6.4 8.4V28h-5.2v-8.8c0-3.1-.7-4.9-2.5-4.9-2.4 0-3.4 1.9-3.4 4.9V28H9.7V9.8zm-9 18H6V9.5H.7v18.3zm6-24.2c0 2-1.5 3.5-3.4 3.5C1.5 7.1 0 5.5 0 3.6 0 1.6 1.5 0 3.3 0c1.9 0 3.4 1.6 3.4 3.6z" clip-rule="evenodd"></path>    </svg>
+<span class="visually-hidden">Find us on LinkedIn</span>
+</a>
+
+
+      
+      
+<a class="social-link social-link-email" title="E-mail" href="mailto:Questions@ChesapeakeCeramics.com" target="_blank">
+<svg aria-hidden="true" focusable="false" role="presentation" xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 28 28">      <path fill="currentColor" fill-rule="evenodd" d="M21.924 9H7.076l7.424 5.372L21.924 9zM14.5 15.891L7 10.449v8.347h15v-8.347l-7.5 5.442z"></path>    </svg>
+<span class="visually-hidden">Find us on E-mail</span>
+</a>
+
+</div>
+
+
+    </div>
+  
+
+</div>
+
+      
+        <div class="site-footer-block-item  site-footer-block-menu  has-accordion">
+
+  
+      <h2 class="site-footer-block-title" data-accordion-trigger="">
+        Main menu
+
+        <span class="site-footer-block-icon accordion--icon">
+          
+                                    <svg class="icon-chevron-down " aria-hidden="true" focusable="false" role="presentation" xmlns="http://www.w3.org/2000/svg" width="14" height="8" viewBox="0 0 14 8" fill="none">          <title>Chevron down icon</title>        <path class="icon-chevron-down-left" d="M7 6.75L12.5 1.25" stroke="currentColor" stroke-width="1.75" stroke-linecap="square"></path>      <path class="icon-chevron-down-right" d="M7 6.75L1.5 1.25" stroke="currentColor" stroke-width="1.75" stroke-linecap="square"></path>    </svg>                                                                              
+
+        </span>
+      </h2>
+
+      <div class="site-footer-block-content accordion--content" data-accordion-content="">
+        
+
+
+
+<ul class="navmenu navmenu-depth-1 " data-navmenu="">
+  
+    
+
+    
+    
+
+    
+      <li class="navmenu-item navmenu-id-home">
+        <a class="navmenu-link navmenu-link-active" href="/">
+          Home
+        </a>
+      </li>
+    
+  
+    
+
+    
+    
+
+    
+      <li class="navmenu-item navmenu-id-color-me-mine">
+        <a class="navmenu-link " href="/collections/cmm-color">
+          Color Me Mine
+        </a>
+      </li>
+    
+  
+    
+
+    
+    
+
+    
+      <li class="navmenu-item navmenu-id-bisque">
+        <a class="navmenu-link " href="/collections/bisque">
+          Bisque
+        </a>
+      </li>
+    
+  
+    
+
+    
+    
+
+    
+      <li class="navmenu-item navmenu-id-color">
+        <a class="navmenu-link " href="/collections/stroke-coat">
+          Color
+        </a>
+      </li>
+    
+  
+    
+
+    
+    
+
+    
+      <li class="navmenu-item navmenu-id-color-applicators">
+        <a class="navmenu-link " href="/search">
+          Color Applicators
+        </a>
+      </li>
+    
+  
+    
+
+    
+    
+
+    
+      <li class="navmenu-item navmenu-id-clay-products">
+        <a class="navmenu-link " href="/search">
+          Clay Products
+        </a>
+      </li>
+    
+  
+    
+
+    
+    
+
+    
+      <li class="navmenu-item navmenu-id-kiln-room">
+        <a class="navmenu-link " href="/search">
+          Kiln Room
+        </a>
+      </li>
+    
+  
+    
+
+    
+    
+
+    
+      <li class="navmenu-item navmenu-id-my-wishlist">
+        <a class="navmenu-link " href="#swym-wishlist" data-swym-loaded="true">
+          My Wishlist
+        </a>
+      </li>
+    
+  
+</ul>
+
+      </div>
+  
+
+</div>
+
+      
+    </div>
+  
+
+  <div class="site-footer-item site-footer-information">
+    <div class="site-footer-information-nav-credits">
+      
+
+      <p class="site-footer-credits">
+        
+        Copyright © 2025 Chesapeake Ceramics .
+      </p>
+
+      <div class="site-footer-credits">
+        <p><a href="https://www.pixelunion.net/shopify-themes/">Superstore Theme by Pixel Union.</a> <a href="https://www.shopify.ca/?utm_campaign=poweredby&amp;utm_medium=shopify&amp;utm_source=onlinestore">Powered by Shopify</a></p>
+      </div>
+    </div><div class="site-footer-information__payment-icons-cross-border">
+        
+        <form method="post" action="/localization" id="localization_form" accept-charset="UTF-8" class="shopify-localization-form" enctype="multipart/form-data"><input type="hidden" name="form_type" value="localization"><input type="hidden" name="utf8" value="✓"><input type="hidden" name="_method" value="put"><input type="hidden" name="return_to" value="/">
+          
+        
+          
+        </form>
+        
+
+
+        
+          <ul class="payment-icons">
+            
+              <li class="payment-icons-item">
+                <svg xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="pi-american_express" viewBox="0 0 38 24" width="38" height="24"><title id="pi-american_express">American Express</title><path fill="#000" d="M35 0H3C1.3 0 0 1.3 0 3v18c0 1.7 1.4 3 3 3h32c1.7 0 3-1.3 3-3V3c0-1.7-1.4-3-3-3Z" opacity=".07"></path><path fill="#006FCF" d="M35 1c1.1 0 2 .9 2 2v18c0 1.1-.9 2-2 2H3c-1.1 0-2-.9-2-2V3c0-1.1.9-2 2-2h32Z"></path><path fill="#FFF" d="M22.012 19.936v-8.421L37 11.528v2.326l-1.732 1.852L37 17.573v2.375h-2.766l-1.47-1.622-1.46 1.628-9.292-.02Z"></path><path fill="#006FCF" d="M23.013 19.012v-6.57h5.572v1.513h-3.768v1.028h3.678v1.488h-3.678v1.01h3.768v1.531h-5.572Z"></path><path fill="#006FCF" d="m28.557 19.012 3.083-3.289-3.083-3.282h2.386l1.884 2.083 1.89-2.082H37v.051l-3.017 3.23L37 18.92v.093h-2.307l-1.917-2.103-1.898 2.104h-2.321Z"></path><path fill="#FFF" d="M22.71 4.04h3.614l1.269 2.881V4.04h4.46l.77 2.159.771-2.159H37v8.421H19l3.71-8.421Z"></path><path fill="#006FCF" d="m23.395 4.955-2.916 6.566h2l.55-1.315h2.98l.55 1.315h2.05l-2.904-6.566h-2.31Zm.25 3.777.875-2.09.873 2.09h-1.748Z"></path><path fill="#006FCF" d="M28.581 11.52V4.953l2.811.01L32.84 9l1.456-4.046H37v6.565l-1.74.016v-4.51l-1.644 4.494h-1.59L30.35 7.01v4.51h-1.768Z"></path></svg>
+
+              </li>
+            
+              <li class="payment-icons-item">
+                <svg viewBox="0 0 38 24" xmlns="http://www.w3.org/2000/svg" role="img" width="38" height="24" aria-labelledby="pi-diners_club"><title id="pi-diners_club">Diners Club</title><path opacity=".07" d="M35 0H3C1.3 0 0 1.3 0 3v18c0 1.7 1.4 3 3 3h32c1.7 0 3-1.3 3-3V3c0-1.7-1.4-3-3-3z"></path><path fill="#fff" d="M35 1c1.1 0 2 .9 2 2v18c0 1.1-.9 2-2 2H3c-1.1 0-2-.9-2-2V3c0-1.1.9-2 2-2h32"></path><path d="M12 12v3.7c0 .3-.2.3-.5.2-1.9-.8-3-3.3-2.3-5.4.4-1.1 1.2-2 2.3-2.4.4-.2.5-.1.5.2V12zm2 0V8.3c0-.3 0-.3.3-.2 2.1.8 3.2 3.3 2.4 5.4-.4 1.1-1.2 2-2.3 2.4-.4.2-.4.1-.4-.2V12zm7.2-7H13c3.8 0 6.8 3.1 6.8 7s-3 7-6.8 7h8.2c3.8 0 6.8-3.1 6.8-7s-3-7-6.8-7z" fill="#3086C8"></path></svg>
+              </li>
+            
+              <li class="payment-icons-item">
+                <svg viewBox="0 0 38 24" width="38" height="24" role="img" aria-labelledby="pi-discover" fill="none" xmlns="http://www.w3.org/2000/svg"><title id="pi-discover">Discover</title><path fill="#000" opacity=".07" d="M35 0H3C1.3 0 0 1.3 0 3v18c0 1.7 1.4 3 3 3h32c1.7 0 3-1.3 3-3V3c0-1.7-1.4-3-3-3z"></path><path d="M35 1c1.1 0 2 .9 2 2v18c0 1.1-.9 2-2 2H3c-1.1 0-2-.9-2-2V3c0-1.1.9-2 2-2h32z" fill="#fff"></path><path d="M3.57 7.16H2v5.5h1.57c.83 0 1.43-.2 1.96-.63.63-.52 1-1.3 1-2.11-.01-1.63-1.22-2.76-2.96-2.76zm1.26 4.14c-.34.3-.77.44-1.47.44h-.29V8.1h.29c.69 0 1.11.12 1.47.44.37.33.59.84.59 1.37 0 .53-.22 1.06-.59 1.39zm2.19-4.14h1.07v5.5H7.02v-5.5zm3.69 2.11c-.64-.24-.83-.4-.83-.69 0-.35.34-.61.8-.61.32 0 .59.13.86.45l.56-.73c-.46-.4-1.01-.61-1.62-.61-.97 0-1.72.68-1.72 1.58 0 .76.35 1.15 1.35 1.51.42.15.63.25.74.31.21.14.32.34.32.57 0 .45-.35.78-.83.78-.51 0-.92-.26-1.17-.73l-.69.67c.49.73 1.09 1.05 1.9 1.05 1.11 0 1.9-.74 1.9-1.81.02-.89-.35-1.29-1.57-1.74zm1.92.65c0 1.62 1.27 2.87 2.9 2.87.46 0 .86-.09 1.34-.32v-1.26c-.43.43-.81.6-1.29.6-1.08 0-1.85-.78-1.85-1.9 0-1.06.79-1.89 1.8-1.89.51 0 .9.18 1.34.62V7.38c-.47-.24-.86-.34-1.32-.34-1.61 0-2.92 1.28-2.92 2.88zm12.76.94l-1.47-3.7h-1.17l2.33 5.64h.58l2.37-5.64h-1.16l-1.48 3.7zm3.13 1.8h3.04v-.93h-1.97v-1.48h1.9v-.93h-1.9V8.1h1.97v-.94h-3.04v5.5zm7.29-3.87c0-1.03-.71-1.62-1.95-1.62h-1.59v5.5h1.07v-2.21h.14l1.48 2.21h1.32l-1.73-2.32c.81-.17 1.26-.72 1.26-1.56zm-2.16.91h-.31V8.03h.33c.67 0 1.03.28 1.03.82 0 .55-.36.85-1.05.85z" fill="#231F20"></path><path d="M20.16 12.86a2.931 2.931 0 100-5.862 2.931 2.931 0 000 5.862z" fill="url(#pi-paint0_linear)"></path><path opacity=".65" d="M20.16 12.86a2.931 2.931 0 100-5.862 2.931 2.931 0 000 5.862z" fill="url(#pi-paint1_linear)"></path><path d="M36.57 7.506c0-.1-.07-.15-.18-.15h-.16v.48h.12v-.19l.14.19h.14l-.16-.2c.06-.01.1-.06.1-.13zm-.2.07h-.02v-.13h.02c.06 0 .09.02.09.06 0 .05-.03.07-.09.07z" fill="#231F20"></path><path d="M36.41 7.176c-.23 0-.42.19-.42.42 0 .23.19.42.42.42.23 0 .42-.19.42-.42 0-.23-.19-.42-.42-.42zm0 .77c-.18 0-.34-.15-.34-.35 0-.19.15-.35.34-.35.18 0 .33.16.33.35 0 .19-.15.35-.33.35z" fill="#231F20"></path><path d="M37 12.984S27.09 19.873 8.976 23h26.023a2 2 0 002-1.984l.024-3.02L37 12.985z" fill="#F48120"></path><defs><linearGradient id="pi-paint0_linear" x1="21.657" y1="12.275" x2="19.632" y2="9.104" gradientUnits="userSpaceOnUse"><stop stop-color="#F89F20"></stop><stop offset=".25" stop-color="#F79A20"></stop><stop offset=".533" stop-color="#F68D20"></stop><stop offset=".62" stop-color="#F58720"></stop><stop offset=".723" stop-color="#F48120"></stop><stop offset="1" stop-color="#F37521"></stop></linearGradient><linearGradient id="pi-paint1_linear" x1="21.338" y1="12.232" x2="18.378" y2="6.446" gradientUnits="userSpaceOnUse"><stop stop-color="#F58720"></stop><stop offset=".359" stop-color="#E16F27"></stop><stop offset=".703" stop-color="#D4602C"></stop><stop offset=".982" stop-color="#D05B2E"></stop></linearGradient></defs></svg>
+              </li>
+            
+              <li class="payment-icons-item">
+                <svg viewBox="0 0 38 24" xmlns="http://www.w3.org/2000/svg" role="img" width="38" height="24" aria-labelledby="pi-master"><title id="pi-master">Mastercard</title><path opacity=".07" d="M35 0H3C1.3 0 0 1.3 0 3v18c0 1.7 1.4 3 3 3h32c1.7 0 3-1.3 3-3V3c0-1.7-1.4-3-3-3z"></path><path fill="#fff" d="M35 1c1.1 0 2 .9 2 2v18c0 1.1-.9 2-2 2H3c-1.1 0-2-.9-2-2V3c0-1.1.9-2 2-2h32"></path><circle fill="#EB001B" cx="15" cy="12" r="7"></circle><circle fill="#F79E1B" cx="23" cy="12" r="7"></circle><path fill="#FF5F00" d="M22 12c0-2.4-1.2-4.5-3-5.7-1.8 1.3-3 3.4-3 5.7s1.2 4.5 3 5.7c1.8-1.2 3-3.3 3-5.7z"></path></svg>
+              </li>
+            
+              <li class="payment-icons-item">
+                <svg xmlns="http://www.w3.org/2000/svg" role="img" viewBox="0 0 38 24" width="38" height="24" aria-labelledby="pi-shopify_pay"><title id="pi-shopify_pay">Shop Pay</title><path opacity=".07" d="M35 0H3C1.3 0 0 1.3 0 3v18c0 1.7 1.4 3 3 3h32c1.7 0 3-1.3 3-3V3c0-1.7-1.4-3-3-3z" fill="#000"></path><path d="M35.889 0C37.05 0 38 .982 38 2.182v19.636c0 1.2-.95 2.182-2.111 2.182H2.11C.95 24 0 23.018 0 21.818V2.182C0 .982.95 0 2.111 0H35.89z" fill="#5A31F4"></path><path d="M9.35 11.368c-1.017-.223-1.47-.31-1.47-.705 0-.372.306-.558.92-.558.54 0 .934.238 1.225.704a.079.079 0 00.104.03l1.146-.584a.082.082 0 00.032-.114c-.475-.831-1.353-1.286-2.51-1.286-1.52 0-2.464.755-2.464 1.956 0 1.275 1.15 1.597 2.17 1.82 1.02.222 1.474.31 1.474.705 0 .396-.332.582-.993.582-.612 0-1.065-.282-1.34-.83a.08.08 0 00-.107-.035l-1.143.57a.083.083 0 00-.036.111c.454.92 1.384 1.437 2.627 1.437 1.583 0 2.539-.742 2.539-1.98s-1.155-1.598-2.173-1.82v-.003zM15.49 8.855c-.65 0-1.224.232-1.636.646a.04.04 0 01-.069-.03v-2.64a.08.08 0 00-.08-.081H12.27a.08.08 0 00-.08.082v8.194a.08.08 0 00.08.082h1.433a.08.08 0 00.081-.082v-3.594c0-.695.528-1.227 1.239-1.227.71 0 1.226.521 1.226 1.227v3.594a.08.08 0 00.081.082h1.433a.08.08 0 00.081-.082v-3.594c0-1.51-.981-2.577-2.355-2.577zM20.753 8.62c-.778 0-1.507.24-2.03.588a.082.082 0 00-.027.109l.632 1.088a.08.08 0 00.11.03 2.5 2.5 0 011.318-.366c1.25 0 2.17.891 2.17 2.068 0 1.003-.736 1.745-1.669 1.745-.76 0-1.288-.446-1.288-1.077 0-.361.152-.657.548-.866a.08.08 0 00.032-.113l-.596-1.018a.08.08 0 00-.098-.035c-.799.299-1.359 1.018-1.359 1.984 0 1.46 1.152 2.55 2.76 2.55 1.877 0 3.227-1.313 3.227-3.195 0-2.018-1.57-3.492-3.73-3.492zM28.675 8.843c-.724 0-1.373.27-1.845.746-.026.027-.069.007-.069-.029v-.572a.08.08 0 00-.08-.082h-1.397a.08.08 0 00-.08.082v8.182a.08.08 0 00.08.081h1.433a.08.08 0 00.081-.081v-2.683c0-.036.043-.054.069-.03a2.6 2.6 0 001.808.7c1.682 0 2.993-1.373 2.993-3.157s-1.313-3.157-2.993-3.157zm-.271 4.929c-.956 0-1.681-.768-1.681-1.783s.723-1.783 1.681-1.783c.958 0 1.68.755 1.68 1.783 0 1.027-.713 1.783-1.681 1.783h.001z" fill="#fff"></path></svg>
+
+              </li>
+            
+              <li class="payment-icons-item">
+                <svg viewBox="0 0 38 24" xmlns="http://www.w3.org/2000/svg" role="img" width="38" height="24" aria-labelledby="pi-visa"><title id="pi-visa">Visa</title><path opacity=".07" d="M35 0H3C1.3 0 0 1.3 0 3v18c0 1.7 1.4 3 3 3h32c1.7 0 3-1.3 3-3V3c0-1.7-1.4-3-3-3z"></path><path fill="#fff" d="M35 1c1.1 0 2 .9 2 2v18c0 1.1-.9 2-2 2H3c-1.1 0-2-.9-2-2V3c0-1.1.9-2 2-2h32"></path><path d="M28.3 10.1H28c-.4 1-.7 1.5-1 3h1.9c-.3-1.5-.3-2.2-.6-3zm2.9 5.9h-1.7c-.1 0-.1 0-.2-.1l-.2-.9-.1-.2h-2.4c-.1 0-.2 0-.2.2l-.3.9c0 .1-.1.1-.1.1h-2.1l.2-.5L27 8.7c0-.5.3-.7.8-.7h1.5c.1 0 .2 0 .2.2l1.4 6.5c.1.4.2.7.2 1.1.1.1.1.1.1.2zm-13.4-.3l.4-1.8c.1 0 .2.1.2.1.7.3 1.4.5 2.1.4.2 0 .5-.1.7-.2.5-.2.5-.7.1-1.1-.2-.2-.5-.3-.8-.5-.4-.2-.8-.4-1.1-.7-1.2-1-.8-2.4-.1-3.1.6-.4.9-.8 1.7-.8 1.2 0 2.5 0 3.1.2h.1c-.1.6-.2 1.1-.4 1.7-.5-.2-1-.4-1.5-.4-.3 0-.6 0-.9.1-.2 0-.3.1-.4.2-.2.2-.2.5 0 .7l.5.4c.4.2.8.4 1.1.6.5.3 1 .8 1.1 1.4.2.9-.1 1.7-.9 2.3-.5.4-.7.6-1.4.6-1.4 0-2.5.1-3.4-.2-.1.2-.1.2-.2.1zm-3.5.3c.1-.7.1-.7.2-1 .5-2.2 1-4.5 1.4-6.7.1-.2.1-.3.3-.3H18c-.2 1.2-.4 2.1-.7 3.2-.3 1.5-.6 3-1 4.5 0 .2-.1.2-.3.2M5 8.2c0-.1.2-.2.3-.2h3.4c.5 0 .9.3 1 .8l.9 4.4c0 .1 0 .1.1.2 0-.1.1-.1.1-.1l2.1-5.1c-.1-.1 0-.2.1-.2h2.1c0 .1 0 .1-.1.2l-3.1 7.3c-.1.2-.1.3-.2.4-.1.1-.3 0-.5 0H9.7c-.1 0-.2 0-.2-.2L7.9 9.5c-.2-.2-.5-.5-.9-.6-.6-.3-1.7-.5-1.9-.5L5 8.2z" fill="#142688"></path></svg>
+              </li>
+            
+          </ul>
+        
+      </div>
+    
+  </div>
+  <div class="custom-model-main">
+   <div class="custom-model-inner">
+      <div class="close-btn">×</div>
+      <div class="custom-model-wrap">
+         <div class="pop-up-content-wrap">
+            <h2>Added to Cart</h2>
+         </div>
+      </div>
+   </div>
+   <div class="bg-overlay"></div>
+</div>
+
+  <script>
+    const checkForJqueryLoaded = function() {
+      if (window.jQuery) {
+        $("#add_all_to_cart").on('click', function() {
+          $(".custom-model-main").addClass('model-open');
+          $(".custom-model-main").delay(500).queue(function(){
+            $(this).removeClass("model-open");
+          });
+        }); 
+        $(".close-btn, .bg-overlay").click(function(){
+          $(".custom-model-main").removeClass('model-open');
+        })
+      } else {
+        setTimeout(checkForJqueryLoaded, 50)
+      }
+    }
+    checkForJqueryLoaded()
+  </script>
+  
+</footer>
+
+</div>
+
+    
+    <div style="display: none;" aria-hidden="true" data-templates="">
+      <div class="message-banner--container" role="alert" data-message-banner="">
+  <div class="message-banner--outer">
+    <div class="message-banner--inner" data-message-banner-content=""></div>
+
+    <button class="message-banner--close" type="button" aria-label="Close" data-message-banner-close="">
+      
+                                                                  <svg class="icon-menu-close " aria-hidden="true" focusable="false" role="presentation" xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 13 13" fill="none">          <title>Close icon</title>        <path fill-rule="evenodd" clip-rule="evenodd" d="M6.5 7.73744L1.61872 12.6187L0.381283 11.3813L5.26256 6.50001L0.381283 1.61872L1.61872 0.381287L6.5 5.26257L11.3813 0.381287L12.6187 1.61872L7.73744 6.5L12.6187 11.3813L11.3813 12.6187L6.5 7.73744Z" fill="currentColor"></path>    </svg>                                                
+
+    </button>
+  </div>
+</div>
+
+      <section class="atc-banner--container" role="log" data-atc-banner="">
+  <div class="atc-banner--outer">
+    <div class="atc-banner--inner">
+      <div class="atc-banner--product">
+        <h2 class="atc-banner--product-title">
+          <span class="atc-banner--product-title--icon">
+                            <svg class="icon-checkmark " aria-hidden="true" focusable="false" role="presentation" xmlns="http://www.w3.org/2000/svg" width="18" height="13" viewBox="0 0 18 13" fill="none">          <title>Checkmark icon</title>        <path d="M1 6L6 11L17 1" stroke="currentColor" stroke-width="2"></path>    </svg>                                                                                      
+</span>
+          Added to your cart:
+        </h2>
+
+        <div class="atc--product">
+          <div class="atc--product-image" data-atc-banner-product-image="">
+            <svg class="placeholder--image" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 525.5 525.5"><path d="M324.5 212.7H203c-1.6 0-2.8 1.3-2.8 2.8V308c0 1.6 1.3 2.8 2.8 2.8h121.6c1.6 0 2.8-1.3 2.8-2.8v-92.5c0-1.6-1.3-2.8-2.9-2.8zm1.1 95.3c0 .6-.5 1.1-1.1 1.1H203c-.6 0-1.1-.5-1.1-1.1v-92.5c0-.6.5-1.1 1.1-1.1h121.6c.6 0 1.1.5 1.1 1.1V308z"></path><path d="M210.4 299.5H240v.1s.1 0 .2-.1h75.2v-76.2h-105v76.2zm1.8-7.2l20-20c1.6-1.6 3.8-2.5 6.1-2.5s4.5.9 6.1 2.5l1.5 1.5 16.8 16.8c-12.9 3.3-20.7 6.3-22.8 7.2h-27.7v-5.5zm101.5-10.1c-20.1 1.7-36.7 4.8-49.1 7.9l-16.9-16.9 26.3-26.3c1.6-1.6 3.8-2.5 6.1-2.5s4.5.9 6.1 2.5l27.5 27.5v7.8zm-68.9 15.5c9.7-3.5 33.9-10.9 68.9-13.8v13.8h-68.9zm68.9-72.7v46.8l-26.2-26.2c-1.9-1.9-4.5-3-7.3-3s-5.4 1.1-7.3 3l-26.3 26.3-.9-.9c-1.9-1.9-4.5-3-7.3-3s-5.4 1.1-7.3 3l-18.8 18.8V225h101.4z"></path><path d="M232.8 254c4.6 0 8.3-3.7 8.3-8.3s-3.7-8.3-8.3-8.3-8.3 3.7-8.3 8.3 3.7 8.3 8.3 8.3zm0-14.9c3.6 0 6.6 2.9 6.6 6.6s-2.9 6.6-6.6 6.6-6.6-2.9-6.6-6.6 3-6.6 6.6-6.6z"></path></svg>
+          </div>
+          <div class="atc--product-details">
+            <h2 class="atc--product-details--title" data-atc-banner-product-title=""></h2>
+            <span class="atc--product-details--options" data-atc-banner-product-options=""></span>
+            <span class="atc--product-details--price">
+              <span class="atc--product-details--price-quantity" data-atc-banner-product-price-quantity=""></span>
+              <span class="atc--product-details--price-value money" data-atc-banner-product-price-value=""></span>
+              <span class="atc--product-details--unit-price hidden" data-atc-banner-unit-price="">
+                ** total_quantity ** | ** unit_price ** / ** unit_measure **
+              </span>
+            </span>
+          </div>
+        </div>
+      </div>
+
+      <div class="atc-banner--cart">
+        <div class="atc-banner--cart-subtotal">
+          <span class="atc-subtotal--label">
+            Cart subtotal
+          </span>
+          <span class="atc-subtotal--price money" data-atc-banner-cart-subtotal=""></span>
+        </div>
+
+        <footer class="atc-banner--cart-footer">
+          <a class="button-secondary atc-button--viewcart" href="/cart" data-atc-banner-cart-button="">
+            View cart (<span></span>)
+          </a>
+
+          <form action="/cart" method="post" aria-label="cart checkout">
+            <button class="button-primary atc-button--checkout" type="submit" name="checkout" data-atc-button-checkout="">
+              
+              <span>Checkout</span>
+            </button>
+          </form>
+        </footer>
+      </div>
+    </div>
+
+    <button class="atc-banner--close" type="button" aria-label="Close" data-atc-banner-close="">
+      
+                                                                  <svg class="icon-menu-close " aria-hidden="true" focusable="false" role="presentation" xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 13 13" fill="none">          <title>Close icon</title>        <path fill-rule="evenodd" clip-rule="evenodd" d="M6.5 7.73744L1.61872 12.6187L0.381283 11.3813L5.26256 6.50001L0.381283 1.61872L1.61872 0.381287L6.5 5.26257L11.3813 0.381287L12.6187 1.61872L7.73744 6.5L12.6187 11.3813L11.3813 12.6187L6.5 7.73744Z" fill="currentColor"></path>    </svg>                                                
+
+    </button>
+  </div>
+</section>
+
+    </div>
+
+    
+    <div class="modal" data-modal-container="" aria-label="modal window">
+  <div class="modal-inner" data-modal-inner="">
+    <button class="modal-close" type="button" aria-label="Close" data-modal-close="">
+      
+                                                                  <svg class="icon-menu-close " aria-hidden="true" focusable="false" role="presentation" xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 13 13" fill="none">          <title>Close icon</title>        <path fill-rule="evenodd" clip-rule="evenodd" d="M6.5 7.73744L1.61872 12.6187L0.381283 11.3813L5.26256 6.50001L0.381283 1.61872L1.61872 0.381287L6.5 5.26257L11.3813 0.381287L12.6187 1.61872L7.73744 6.5L12.6187 11.3813L11.3813 12.6187L6.5 7.73744Z" fill="currentColor"></path>    </svg>                                                
+
+    </button>
+    <div class="modal-content" data-modal-content=""></div>
+  </div>
+</div>
+
+
+    
+    
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true" aria-label="Product zoom dialog" data-photoswipe="">
+
+  
+  <div class="pswp__bg"></div>
+
+  
+  <div class="pswp__scroll-wrap">
+      
+      <div class="pswp__container" aria-hidden="true">
+          <div class="pswp__item"></div>
+          <div class="pswp__item"></div>
+          <div class="pswp__item"></div>
+      </div>
+
+      
+      <div class="pswp__ui pswp__ui--hidden">
+          <div class="pswp__top-bar">
+              
+              <div class="pswp__counter"></div>
+              <button class="pswp__button pswp__button--close" title="Close">
+                <span tabindex="-1">
+                  
+                  <svg class="icon-close " aria-hidden="true" focusable="false" role="presentation" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 18 18" fill="none">      <path d="M17 1L1 17" stroke="currentColor" stroke-width="1.75" stroke-linejoin="round"></path>      <path d="M1 1L17 17" stroke="currentColor" stroke-width="1.75" stroke-linejoin="round"></path>    </svg>                                                                                                
+
+                </span>
+              </button>
+              <button class="pswp__button pswp__button--share" title="Share"></button>
+              <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+              <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+              
+              
+              <div class="pswp__preloader">
+                  <div class="pswp__preloader__icn">
+                    <div class="pswp__preloader__cut">
+                      <div class="pswp__preloader__donut"></div>
+                    </div>
+                  </div>
+              </div>
+          </div>
+
+          <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+              <div class="pswp__share-tooltip"></div>
+          </div>
+
+          <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+          </button>
+          <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+          </button>
+
+          <div class="pswp__caption">
+              <div class="pswp__caption__center"></div>
+          </div>
+      </div>
+  </div>
+  <div class="product-zoom--thumbnails" data-photoswipe-thumbs="">
+    <button class="gallery-navigation--scroll-button scroll-left" aria-label="Scroll thumbnails left" data-gallery-scroll-button="">
+      
+                                    <svg class="icon-chevron-down " aria-hidden="true" focusable="false" role="presentation" xmlns="http://www.w3.org/2000/svg" width="14" height="8" viewBox="0 0 14 8" fill="none">          <title>Chevron down icon</title>        <path class="icon-chevron-down-left" d="M7 6.75L12.5 1.25" stroke="currentColor" stroke-width="1.75" stroke-linecap="square"></path>      <path class="icon-chevron-down-right" d="M7 6.75L1.5 1.25" stroke="currentColor" stroke-width="1.75" stroke-linecap="square"></path>    </svg>                                                                              
+
+    </button>
+    <button class="gallery-navigation--scroll-button scroll-right" aria-label="Scroll thumbnails right" data-gallery-scroll-button="">
+      
+                                    <svg class="icon-chevron-down " aria-hidden="true" focusable="false" role="presentation" xmlns="http://www.w3.org/2000/svg" width="14" height="8" viewBox="0 0 14 8" fill="none">          <title>Chevron down icon</title>        <path class="icon-chevron-down-left" d="M7 6.75L12.5 1.25" stroke="currentColor" stroke-width="1.75" stroke-linecap="square"></path>      <path class="icon-chevron-down-right" d="M7 6.75L1.5 1.25" stroke="currentColor" stroke-width="1.75" stroke-linecap="square"></path>    </svg>                                                                              
+
+    </button>
+    <div class="product-zoom--thumb-scroller" data-photoswipe-thumb-scroller=""></div>
+  </div>
+</div>
+
+
+    
+      <link rel="stylesheet" href="//chesapeakeceramics.com/cdn/shop/t/25/assets/theme.css?v=46220770089272069631762785820"><div tabindex="-1" aria-hidden="true" id="web-pixels-manager-sandbox-container" data-shopify-privacy="exclude" style="height: 0px !important; width: 0px !important; position: fixed !important; visibility: hidden !important; overflow: hidden !important; z-index: -100 !important; margin: 0px !important; padding: 0px !important; border: 0px !important;"><iframe tabindex="-1" aria-hidden="true" name="web-pixel-sandbox-CUSTOM-shopify-custom-pixel-LAX-da62cc92w68dfea28pcf9825a4m392e00d0" src="https://chesapeakeceramics.com/web-pixels@da62cc92w68dfea28pcf9825a4m392e00d0/custom/web-pixel-shopify-custom-pixel@0450/sandbox/modern/" id="web-pixel-sandbox-CUSTOM-shopify-custom-pixel-LAX-da62cc92w68dfea28pcf9825a4m392e00d0" sandbox="allow-scripts allow-forms" style="height: 0px !important; width: 0px !important; visibility: hidden !important;"></iframe></div>
+
+      
+    
+
+    <script src="//chesapeakeceramics.com/cdn/shop/t/25/assets/superstore.js?v=71894189849404837881698492902" data-scripts="" data-shopify-api-url="//chesapeakeceramics.com/cdn/shopifycloud/storefront/assets/themes_support/api.jquery-7ab1a3a4.js" data-shopify-countries="/services/javascripts/countries.js" data-shopify-common="//chesapeakeceramics.com/cdn/shopifycloud/storefront/assets/themes_support/shopify_common-5f594365.js" data-shopify-cart="//chesapeakeceramics.com/cdn/shop/t/25/assets/jquery.cart.js?14947" data-pxu-polyfills="//chesapeakeceramics.com/cdn/shop/t/25/assets/polyfills.js?v=87639215708569788191698492902" defer="">
+    </script>
+
+    
+
+    
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script type="application/ld+json">
+  {
+    "@context": "http://schema.org",
+    "@type": "WebSite",
+    "name": "Chesapeake Ceramics ",
+    "url": "https://chesapeakeceramics.com"
+  }
+</script>
+
+
+    <script>
+    (function () {
+      function handleFirstTab(e) {
+        if (e.keyCode === 9) { // the "I am a keyboard user" key
+          document.body.classList.add('user-is-tabbing');
+          window.removeEventListener('keydown', handleFirstTab);
+        }
+      }
+      window.addEventListener('keydown', handleFirstTab);
+    })();
+    </script>
+
+    
+    
+
+    
+      <script src="//chesapeakeceramics.com/cdn/shop/t/25/assets/instantPage.min.js?v=24721118876524332941698492906" type="module" defer="">
+      </script>
+    
+  <script src="https://zooomyapps.com/wishlist/ZooomyColl.js" data-shop-id="chesapeake-ceramics.myshopify.com" data-cus-id="7789717455092" data-cus-email="santamonica@colormemine.com" data-cus-name="Wyatt Elliott" data-page="index"></script>
+      
+    <script src="//chesapeakeceramics.com/cdn/shop/t/25/assets/shopify-ajax-add-to-cart.js?v=124132522486623100091698492912" defer="defer"></script>
+ 	
+<!--BeginCFFPersistentCartCart-->
+
+<script>
+
+    window.cffCustomer = {
+        name: 'Wyatt Elliott',
+        email: 'santamonica@colormemine.com',
+        hasAccount: 'true',
+        id: '7789717455092'
+    };
+
+
+</script>
+
+
+
+<script>
+    window.cffPCLiquidPlaced = true
+</script>
+
+<!--EndCFFPersistentCartCart-->
+<!-- Back in Stock helper snippet -->
+
+
+<script id="back-in-stock-helper">
+  var _BISConfig = _BISConfig || {};
+
+
+
+
+  _BISConfig.customer = { email: "santamonica@colormemine.com" };
+
+</script>
+
+<!-- End Back in Stock helper snippet -->
+
+
+<link rel="dns-prefetch" href="https://swymstore-v3starter-01.swymrelay.com" crossorigin="">
+<link rel="dns-prefetch" href="//swymv3starter-01.azureedge.net/code/swym-shopify.js">
+<link rel="preconnect" href="//swymv3starter-01.azureedge.net/code/swym-shopify.js">
+<script id="swym-snippet">
+  window.swymLandingURL = document.URL;
+  window.swymCart = {"note":null,"attributes":{},"original_total_price":0,"total_price":0,"total_discount":0,"total_weight":0.0,"item_count":0,"items":[],"requires_shipping":false,"currency":"USD","items_subtotal_price":0,"cart_level_discount_applications":[],"checkout_charge_amount":0};
+  window.swymPageLoad = function(){
+    window.SwymProductVariants = window.SwymProductVariants || {};
+    window.SwymHasCartItems = 0 > 0;
+    window.SwymPageData = {}, window.SwymProductInfo = {};
+    var unknown = {et: 0};
+    window.SwymPageData = unknown;
+    
+    window.SwymPageData.uri = window.swymLandingURL;
+  };
+
+  if(window.selectCallback){
+    (function(){
+      // Variant select override
+      var originalSelectCallback = window.selectCallback;
+      window.selectCallback = function(variant){
+        originalSelectCallback.apply(this, arguments);
+        try{
+          if(window.triggerSwymVariantEvent){
+            window.triggerSwymVariantEvent(variant.id);
+          }
+        }catch(err){
+          console.warn("Swym selectCallback", err);
+        }
+      };
+    })();
+  }
+  window.swymCustomerId = "7789717455092";
+  window.swymCustomerExtraCheck = true;
+
+  var swappName = ("Wishlist" || "Wishlist");
+  var swymJSObject = {
+    pid: "UbXXW9duNPRlHoUKIwc8ybQ26wez1ctlbi5sCbeod4E=" || "UbXXW9duNPRlHoUKIwc8ybQ26wez1ctlbi5sCbeod4E=",
+    interface: "/apps/swym" + swappName + "/interfaces/interfaceStore.php?appname=" + swappName
+  };
+  window.swymJSShopifyLoad = function(){
+    if(window.swymPageLoad) swymPageLoad();
+    if(!window._swat) {
+      (function (s, w, r, e, l, a, y) {
+        r['SwymRetailerConfig'] = s;
+        r[s] = r[s] || function (k, v) {
+          r[s][k] = v;
+        };
+      })('_swrc', '', window);
+      _swrc('RetailerId', swymJSObject.pid);
+      _swrc('Callback', function(){initSwymShopify();});
+    }else if(window._swat.postLoader){
+      _swrc = window._swat.postLoader;
+      _swrc('RetailerId', swymJSObject.pid);
+      _swrc('Callback', function(){initSwymShopify();});
+    }else{
+      initSwymShopify();
+    }
+  }
+  if(!window._SwymPreventAutoLoad) {
+    swymJSShopifyLoad();
+  }
+  window.swymGetCartCookies = function(){
+    var RequiredCookies = ["cart", "swym-session-id", "swym-swymRegid", "swym-email"];
+    var reqdCookies = {};
+    RequiredCookies.forEach(function(k){
+      reqdCookies[k] = _swat.storage.getRaw(k);
+    });
+    var cart_token = window.swymCart.token;
+    var data = {
+        action:'cart',
+        token:cart_token,
+        cookies:reqdCookies
+    };
+    return data;
+  }
+
+  window.swymGetCustomerData = function(){
+    
+    var regid = _swat.get(_swat.key.REGID);
+    var swym_session_id = _swat.storage.getSessionId();
+    var customer_id = "7789717455092";
+    var data = {action: 'customer', regid:regid, customer_id:customer_id,swym_session_id:swym_session_id};
+    return {status:0,data:data};
+    
+  }
+</script>
+
+<script id="swym-wrap-login-handler">
+window.SwymCallbacks = window.SwymCallbacks || [];
+window.SwymCallbacks.push(function(swat) {
+  if(swat.isAlreadyAuth()) {
+    var postLoginRedirect = swat.storage.get(swat.key.POSTLOGINRD);
+    if(postLoginRedirect && postLoginRedirect != window.location) {
+      swat.storage.remove(swat.key.POSTLOGINRD);
+      window.location = postLoginRedirect;
+    }
+  }
+});
+</script>
+
+<style id="safari-flasher-pre"></style>
+<script>
+  if (navigator.userAgent.indexOf('Safari') != -1 && navigator.userAgent.indexOf('Chrome') == -1) {
+    document.getElementById("safari-flasher-pre").innerHTML = ''
+      + '#swym-plugin,#swym-hosted-plugin{display: none;}'
+      + '.swym-button.swym-add-to-wishlist{display: none;}'
+      + '.swym-button.swym-add-to-watchlist{display: none;}'
+      + '#swym-plugin  #swym-notepad, #swym-hosted-plugin  #swym-notepad{opacity: 0; visibility: hidden;}'
+      + '#swym-plugin  #swym-notepad, #swym-plugin  #swym-overlay, #swym-plugin  #swym-notification,'
+      + '#swym-hosted-plugin  #swym-notepad, #swym-hosted-plugin  #swym-overlay, #swym-hosted-plugin  #swym-notification'
+      + '{-webkit-transition: none; transition: none;}'
+      + '';
+    window.SwymCallbacks = window.SwymCallbacks || [];
+    window.SwymCallbacks.push(function(tracker){
+      tracker.evtLayer.addEventListener(tracker.JSEvents.configLoaded, function(){
+        // flash-preventer
+        var x = function(){
+          SwymUtils.onDOMReady(function() {
+            var d = document.createElement("div");
+            d.innerHTML = "<style id='safari-flasher-post'>"
+              + "#swym-plugin:not(.swym-ready),#swym-hosted-plugin:not(.swym-ready){display: none;}"
+              + ".swym-button.swym-add-to-wishlist:not(.swym-loaded){display: none;}"
+              + ".swym-button.swym-add-to-watchlist:not(.swym-loaded){display: none;}"
+              + "#swym-plugin.swym-ready  #swym-notepad, #swym-plugin.swym-ready  #swym-overlay, #swym-plugin.swym-ready  #swym-notification,"
+              + "#swym-hosted-plugin.swym-ready  #swym-notepad, #swym-hosted-plugin.swym-ready  #swym-overlay, #swym-hosted-plugin.swym-ready  #swym-notification"
+              + "{-webkit-transition: opacity 0.3s, visibility 0.3ms, -webkit-transform 0.3ms !important;-moz-transition: opacity 0.3s, visibility 0.3ms, -moz-transform 0.3ms !important;-ms-transition: opacity 0.3s, visibility 0.3ms, -ms-transform 0.3ms !important;-o-transition: opacity 0.3s, visibility 0.3ms, -o-transform 0.3ms !important;transition: opacity 0.3s, visibility 0.3ms, transform 0.3ms !important;}"
+              + "</style>";
+            document.head.appendChild(d);
+          });
+        };
+        setTimeout(x, 10);
+      });
+    });
+  }
+
+  // Get the money format for the store from shopify
+  window.SwymOverrideMoneyFormat = "\u003cspan class=hide-price-guest\u003e${{amount}}\u003c\/span\u003e";
+</script>
+<style id="swym-product-view-defaults">
+  /* Hide when not loaded */
+  .swym-button.swym-add-to-wishlist-view-product:not(.swym-loaded){
+    display: none;
+  }
+</style>
+
+
+<div id="shopify-block-Ad3lHck9Ccldkb2R1R__12526071353035850722" class="shopify-block shopify-app-block">
+  <script defer="" src="https://backinstock.useamp.com/widget/73078_1765516699.js?category=bis&amp;v=6"></script>
+
+
+<script id="back-in-stock-helper-embedded">
+  var _BISConfig = _BISConfig || {};
+
+  
+
+  
+    _BISConfig.customer = { email: "santamonica@colormemine.com" };
+  
+</script>
+
+<script id="preorders-helper-embedded">
+  
+</script>
+
+
+<script defer="" type="module" src="https://cdn.shopify.com/extensions/019b6897-0798-769d-b160-af1df0d06a63/back-in-stock-41/assets/preorder-product-page-updater.js"></script>
+
+
+
+
+</div><div id="shopify-block-ASXJCWWEvMUE5L1VWd__5946647744298494267" class="shopify-block shopify-app-block"><!-- BEGIN app snippet: swymVersion --><script>var __SWYM__VERSION__ = '3.184.1';</script><!-- END app snippet -->
+    
+
+
+
+
+
+
+
+
+<script>
+  (function () {
+    // Get CompanyLocation Metadata for B2B customer scenerios (SFS)
+    
+
+    // Put metafields in window variable
+    const commonCustomizationSettings = '';
+    try {
+      const parsedSettings = JSON.parse(commonCustomizationSettings);
+      if (parsedSettings) {
+        window.SwymWishlistCommonCustomizationSettings = parsedSettings[window.Shopify.theme.schema_name] || parsedSettings['global-settings'];
+      } else {
+        window.SwymWishlistCommonCustomizationSettings = {};
+      }
+    } catch (e) {
+      window.SwymWishlistCommonCustomizationSettings = {};
+    }
+
+    let enabledCommonFeatures = '{"multiple-wishlist":true}';
+    try {
+      enabledCommonFeatures = JSON.parse(enabledCommonFeatures) || {};
+    } catch (e) {
+      enabledCommonFeatures = {}; 
+    }
+    // Storing COMMON FEATURES data in the window object for potential use in the storefront JS code.      
+    window.SwymEnabledCommonFeatures = enabledCommonFeatures;
+
+    // Initialize or ensure SwymViewProducts exists
+    if (!window.SwymViewProducts) {
+      window.SwymViewProducts = {};
+    }    
+    
+      try {
+        const socialCountMap = { "https://chesapeakeceramics.com/products/harness-wire-set-km1018-818": { "socialCount": -1, "empi": 7690631053556 }, "https://chesapeakeceramics.com/products/feeder-wire-set-km1018-1018-3": { "socialCount": -1, "empi": 7690716152052 }, "https://chesapeakeceramics.com/products/skutt-lid-lifter-upgrade-kit-for-1027-1022-or-1018": { "socialCount": -1, "empi": 7586072690932 }, "https://chesapeakeceramics.com/products/lid-hinge-strut-for-skutt-models-231101810271227": { "socialCount": -1, "empi": 7110126633160 }, "https://chesapeakeceramics.com/products/101823118-240v-top-or-bottom-elem": { "socialCount": -1, "empi": 7110126534856 }, "https://chesapeakeceramics.com/products/101823118-240v-center-element": { "socialCount": -1, "empi": 7110126567624 }, "https://chesapeakeceramics.com/products/skutt-1018-3-elem-240v-top-bottom-part-1378": { "socialCount": -1, "empi": 7641556025588 }, "https://chesapeakeceramics.com/products/skutt-lid-lifter-upgrade-kit-for-1027-1022-or-1019": { "socialCount": -1, "empi": 7586105753844 }, "https://chesapeakeceramics.com/products/208v-element-skutt-101823118-topbottom": { "socialCount": -1, "empi": 7110127255752 }, "https://chesapeakeceramics.com/products/1-set-feeder-wirekm12271027": { "socialCount": -1, "empi": 7114249437384 }, "https://chesapeakeceramics.com/products/km-harness-wire-set-km1227-km1027-km1222-km1022-km1022-3-3-phase": { "socialCount": -1, "empi": 7716704157940 }, "https://chesapeakeceramics.com/products/km-harness-wire-set-102712271-phase": { "socialCount": -1, "empi": 7114190160072 }, "https://chesapeakeceramics.com/products/copy-of-1-set-feeder-wire-km1227-1027": { "socialCount": -1, "empi": 7640878776564 }, "https://chesapeakeceramics.com/products/240v-skutt-element-for-1027231235-topbottom": { "socialCount": -1, "empi": 7110126371016 }, "https://chesapeakeceramics.com/products/240v-skutt-element-for-1027231235-center": { "socialCount": -1, "empi": 7110126436552 }, "https://chesapeakeceramics.com/products/type-k-thermocouple-block": { "socialCount": -1, "empi": 7640918065396 }, "https://chesapeakeceramics.com/products/skutt-kmt-km1027-3-ks1027-3-208v-top-bottom-element": { "socialCount": -1, "empi": 7641563169012 }, "https://chesapeakeceramics.com/products/10273-240v-top-or-bottom-element": { "socialCount": -1, "empi": 7110128566472 }, "https://chesapeakeceramics.com/products/10273-240v-center-element": { "socialCount": -1, "empi": 7110128632008 }, "https://chesapeakeceramics.com/products/208v-1ph3ph-1027-topbot-element": { "socialCount": -1, "empi": 7110128533704 }, "https://chesapeakeceramics.com/products/1027231235-208v-center-element": { "socialCount": -1, "empi": 7110128599240 }, "https://chesapeakeceramics.com/products/skutt-1027-3-elem-208v-center-part-1377": { "socialCount": -1, "empi": 7641547571444 }, "https://chesapeakeceramics.com/products/1027231235-3ph-only-208v-center": { "socialCount": -1, "empi": 7110128763080 }, "https://chesapeakeceramics.com/products/skutt-1027-3-elem-208v-center-part-1378": { "socialCount": -1, "empi": 7641569067252 }, "https://chesapeakeceramics.com/products/skutt-power-cord-and-plug-for-ks1227-ks1218-ks1027-280-235-231-230-single-phase": { "socialCount": -1, "empi": 7586119090420 }, "https://chesapeakeceramics.com/products/skutt-lid-lifter-upgrade-kit-for-1027-1022-or-1018": { "socialCount": -1, "empi": 7586072690932 }, "https://chesapeakeceramics.com/products/lid-hinge-strut-for-skutt-models-231101810271227": { "socialCount": -1, "empi": 7110126633160 }, "https://chesapeakeceramics.com/products/plug-for-km1227-3-km1218-3-km1027-km1027-3-km1222-3-km1022-km1022-3-kilns": { "socialCount": -1, "empi": 7640846794996 }, "https://chesapeakeceramics.com/products/4w50a-3-ph-plug": { "socialCount": -1, "empi": 9011075449076 }, "https://chesapeakeceramics.com/products/208v-1ph3ph-12273-topbot-element": { "socialCount": -1, "empi": 7110128369864 }, "https://chesapeakeceramics.com/products/208v-3ph-only-12273-center-element": { "socialCount": -1, "empi": 7110128730312 }, "https://chesapeakeceramics.com/products/1-set-feeder-wirekm12271027": { "socialCount": -1, "empi": 7114249437384 }, "https://chesapeakeceramics.com/products/12273-280-240v-center-element": { "socialCount": -1, "empi": 7110128468168 }, "https://chesapeakeceramics.com/products/12273-280-240v-top-or-bot-elemen": { "socialCount": -1, "empi": 7110128304328 }, "https://chesapeakeceramics.com/products/km-harness-wire-set-km1227-km1027-km1222-km1022-km1022-3-3-phase": { "socialCount": -1, "empi": 7716704157940 }, "https://chesapeakeceramics.com/products/km-harness-wire-set-102712271-phase": { "socialCount": -1, "empi": 7114190160072 }, "https://chesapeakeceramics.com/products/12273-280-208v-center-element": { "socialCount": -1, "empi": 7110128500936 }, "https://chesapeakeceramics.com/products/copy-of-1-set-feeder-wire-km1227-1027": { "socialCount": -1, "empi": 7640878776564 }, "https://chesapeakeceramics.com/products/type-k-thermocouple-block": { "socialCount": -1, "empi": 7640918065396 }, "https://chesapeakeceramics.com/products/kmt-km1227-3-pk-240v": { "socialCount": -1, "empi": 7690800398580 }, "https://chesapeakeceramics.com/products/skutt-power-cord-and-plug-for-ks1227-ks1218-ks1027-280-235-231-230-single-phase": { "socialCount": -1, "empi": 7586119090420 }, "https://chesapeakeceramics.com/products/1227-lid": { "socialCount": -1, "empi": 8574582653172 }, "https://chesapeakeceramics.com/products/hotstart-pro-lid-only": { "socialCount": -1, "empi": 8884777386228 }, "https://chesapeakeceramics.com/products/skutt-lid-brace-1227": { "socialCount": -1, "empi": 7110127419592 }, "https://chesapeakeceramics.com/products/lid-hinge-strut-for-skutt-models-231101810271227": { "socialCount": -1, "empi": 7110126633160 }, "https://chesapeakeceramics.com/products/plug-for-km1227-3-km1218-3-km1027-km1027-3-km1222-3-km1022-km1022-3-kilns": { "socialCount": -1, "empi": 7640846794996 }, "https://chesapeakeceramics.com/products/4w50a-3-ph-plug": { "socialCount": -1, "empi": 9011075449076 }, "https://chesapeakeceramics.com/products/section-latch-draw-pull-catch-includes-screws": { "socialCount": -1, "empi": 7640970330356 } };        
+        // Integrate social count data into existing SwymViewProducts structure
+        Object.keys(socialCountMap).forEach(function(key) {
+          if (!window.SwymViewProducts[key]) {
+            window.SwymViewProducts[key] = {};
+          }
+          
+          window.SwymViewProducts[key] = socialCountMap[key];
+        });
+      } catch (e) {
+        // Silent error handling
+      }
+    
+  })();
+</script>
+
+<script id="wishlist-embed-init" defer="" async="">
+  (function () {
+    window.swymWishlistEmbedLoaded = true;
+    var fullAssetUrl = "https://cdn.shopify.com/extensions/019b6998-77c7-775e-bf09-9ed4abfe593e/wishlist-shopify-app-611/assets/apps.bundle.js"; 
+    var assetBaseUrl = fullAssetUrl?.substring(0, fullAssetUrl.lastIndexOf('/') + 1);
+    var swymJsPath = '//startercdn.swymrelay.com/code/swym-shopify.js';
+    var baseJsPath = swymJsPath?.substring(0, swymJsPath.lastIndexOf('/') + 1);
+    window.SwymCurrentJSPath = baseJsPath;
+    window.SwymAssetBaseUrl = assetBaseUrl;
+    
+      window.SwymCurrentStorePath = "//swymstore-v3starter-01.swymrelay.com";
+    
+    function loadSwymShopifyScript() {
+      var element = "";
+      var scriptSrc = "";
+
+      
+        element = "swym-ext-shopify-script";
+        window.SwymShopifyCdnInUse = true;
+        scriptSrc = "https://cdn.shopify.com/extensions/019b6998-77c7-775e-bf09-9ed4abfe593e/wishlist-shopify-app-611/assets/swym-ext-shopify.js";
+      
+
+      if (document.getElementById(element)) {
+        return;
+      }
+
+      var s = document.createElement("script");
+      s.id = element;
+      s.type = "text/javascript";
+      s.async = true;
+      s.defer = true;
+      s.src = scriptSrc;
+
+      s.onerror = function() {
+        console.warn("Failed to load Swym Shopify script: ", scriptSrc, " Continuing with default");
+        // Fallback logic here
+        element = `swym-ext-shopify-script-${__SWYM__VERSION__}`;
+        var fallbackJsPathVal = "\/\/startercdn.swymrelay.com\/code\/swym-shopify.js";
+        var fallbackJsPathWithExt = fallbackJsPathVal.replace("swym-shopify", "swym-ext-shopify");
+        scriptSrc = fallbackJsPathWithExt + '?shop=' + encodeURIComponent(window.Shopify.shop) + '&v=' + __SWYM__VERSION__;
+
+        var fallbackScript = document.createElement("script");
+        fallbackScript.id = element;
+        fallbackScript.type = "text/javascript";
+        fallbackScript.async = true;
+        fallbackScript.defer = true;
+        fallbackScript.src = scriptSrc;
+        var y = document.getElementsByTagName("script")[0];
+        y.parentNode.insertBefore(fallbackScript, y);
+      };
+
+      var x = document.getElementsByTagName("script")[0];
+      x.parentNode.insertBefore(s, x);
+    }
+    
+      var consentAPICallbackInvoked = false;
+      function checkConsentAndLoad() {
+        // Allow app to load in design mode (theme editor) regardless of consent
+        if (window.Shopify?.designMode) {
+          loadSwymShopifyScript();
+          return;
+        }
+        var isCookieBannerVisible = window.Shopify?.customerPrivacy?.shouldShowBanner?.();
+        if(!isCookieBannerVisible) {
+          loadSwymShopifyScript();
+          return;
+        }
+        var shouldLoadSwymScript = window.Shopify?.customerPrivacy?.preferencesProcessingAllowed?.();
+        if (shouldLoadSwymScript) {
+          loadSwymShopifyScript();
+        } else {
+          console.warn("No customer consent to load Swym Wishlist Plus");
+        }
+      }
+      function initialiseConsentCheck() {
+        document.addEventListener("visitorConsentCollected", (event) => { checkConsentAndLoad(); });
+        window.Shopify?.loadFeatures?.(
+          [{name: 'consent-tracking-api', version: '0.1'}],
+          error => { 
+            consentAPICallbackInvoked = true;
+            if (error) {
+              if(!window.Shopify?.customerPrivacy) {
+                loadSwymShopifyScript();
+                return;
+              }
+            }
+            checkConsentAndLoad();
+          }
+        );
+      }
+      function consentCheckFallback(retryCount) {
+        if(!consentAPICallbackInvoked) {
+          if (window.Shopify?.customerPrivacy) {
+            checkConsentAndLoad();
+          } else if (retryCount >= 1) {
+            console.warn("Shopify.loadFeatures unsuccessful on site, refer - https://shopify.dev/docs/api/customer-privacy#loading-the-customer-privacy-api. Proceeding with normal Swym Wishlist Plus load");
+            loadSwymShopifyScript();
+          } else {
+            setTimeout(() => consentCheckFallback(retryCount + 1), 1000);
+          }
+        }
+      }
+      if (document.readyState === "loading") {
+        document.addEventListener("DOMContentLoaded", initialiseConsentCheck);
+        window.addEventListener("load", () => consentCheckFallback(0));
+      } else {
+        initialiseConsentCheck();
+      }
+    
+  })();
+</script><link rel="preconnect" href="//startercdn.swymrelay.com/code/swym-shopify.js"><link rel="dns-prefetch" href="//startercdn.swymrelay.com/code/swym-shopify.js"><link rel="dns-prefetch" href="https://https://swymstore-v3starter-01.swymrelay.com" crossorigin="">
+
+<!-- BEGIN app snippet: swymSnippet --><script defer="">
+  (function () {
+    const currentSwymJSPath = '//startercdn.swymrelay.com/code/swym-shopify.js';
+    const currentSwymStorePath = 'https://swymstore-v3starter-01.swymrelay.com';
+    const dnsPrefetchLink = `<link rel="dns-prefetch" href="https://${currentSwymStorePath}" crossorigin>`;
+    const dnsPrefetchLink2 = `<link rel="dns-prefetch" href="${currentSwymJSPath}">`;
+    const preConnectLink = `<link rel="preconnect" href="${currentSwymJSPath}">`;
+    const swymSnippet = document.getElementById('wishlist-embed-init');        
+    if(dnsPrefetchLink) {swymSnippet.insertAdjacentHTML('afterend', dnsPrefetchLink);}
+    if(dnsPrefetchLink2) {swymSnippet.insertAdjacentHTML('afterend', dnsPrefetchLink2);}
+    if(preConnectLink) {swymSnippet.insertAdjacentHTML('afterend', preConnectLink);}
+  })()
+</script>
+<script id="swym-snippet" type="text">
+  window.swymLandingURL = document.URL;
+  window.swymCart = {"note":null,"attributes":{},"original_total_price":0,"total_price":0,"total_discount":0,"total_weight":0.0,"item_count":0,"items":[],"requires_shipping":false,"currency":"USD","items_subtotal_price":0,"cart_level_discount_applications":[],"checkout_charge_amount":0};
+  window.swymPageLoad = function() {
+    window.SwymProductVariants = window.SwymProductVariants || {};
+    window.SwymHasCartItems = 0 > 0;
+    window.SwymPageData = {}, window.SwymProductInfo = {};
+      var unknown = {et: 0};
+      window.SwymPageData = unknown;
+    
+    window.SwymPageData.uri = window.swymLandingURL;
+  };
+  if(window.selectCallback){
+    (function(){
+      var originalSelectCallback = window.selectCallback;
+      window.selectCallback = function(variant){
+        originalSelectCallback.apply(this, arguments);
+        try{
+          if(window.triggerSwymVariantEvent){
+            window.triggerSwymVariantEvent(variant.id);
+          }
+        }catch(err){
+          console.warn("Swym selectCallback", err);
+        }
+      };})();}
+  window.swymCustomerId ="7789717455092";
+  window.swymCustomerExtraCheck =
+    true;
+  var swappName = ("Wishlist" || "Wishlist");
+  var swymJSObject = {
+    pid: "UbXXW9duNPRlHoUKIwc8ybQ26wez1ctlbi5sCbeod4E=",
+    interface: "/apps/swym" + swappName + "/interfaces/interfaceStore.php?appname=" + swappName
+  };
+  window.swymJSShopifyLoad = function(){
+    if(window.swymPageLoad) swymPageLoad();
+    if(!window._swat) {
+      (function (s, w, r, e, l, a, y) {
+        r['SwymRetailerConfig'] = s;
+        r[s] = r[s] || function (k, v) {
+          r[s][k] = v;
+        };
+      })('_swrc', '', window);
+      _swrc('RetailerId', swymJSObject.pid);
+      _swrc('Callback', function(){initSwymShopify();});
+    }else if(window._swat.postLoader){
+      _swrc = window._swat.postLoader;
+      _swrc('RetailerId', swymJSObject.pid);
+      _swrc('Callback', function(){initSwymShopify();});
+    }else{
+      initSwymShopify();}
+  }
+  if(!window._SwymPreventAutoLoad) {
+    swymJSShopifyLoad();
+  }
+</script>
+
+  <script id="swym-wrap-login-handler">
+    window.SwymCallbacks = window.SwymCallbacks || [];
+    window.SwymCallbacks.push(function (swat) {
+      if (swat.isAlreadyAuth()) {
+        var postLoginRedirect = swat.storage.get(swat.key.POSTLOGINRD);
+        if (postLoginRedirect && postLoginRedirect != window.location) {
+          swat.storage.remove(swat.key.POSTLOGINRD);
+          window.location = postLoginRedirect;}}});
+  </script>
+
+<style id="safari-flasher-pre"></style>
+<script>
+  if (navigator.userAgent.indexOf('Safari') != -1 && navigator.userAgent.indexOf('Chrome') == -1) {
+    document.getElementById("safari-flasher-pre").innerHTML = '' + '#swym-plugin,#swym-hosted-plugin{display: none;}' + '.swym-button.swym-add-to-wishlist{display: none;}' + '.swym-button.swym-add-to-watchlist{display: none;}' + '#swym-plugin  #swym-notepad, #swym-hosted-plugin  #swym-notepad{opacity: 0; visibility: hidden;}' + '#swym-plugin  #swym-notepad, #swym-plugin  #swym-overlay, #swym-plugin  #swym-notification,' + '#swym-hosted-plugin  #swym-notepad, #swym-hosted-plugin  #swym-overlay, #swym-hosted-plugin  #swym-notification' + '{-webkit-transition: none; transition: none;}' + '';
+    window.SwymCallbacks = window.SwymCallbacks || [];
+    window.SwymCallbacks.push(function(tracker) {
+      tracker.evtLayer.addEventListener(tracker.JSEvents.configLoaded, function() {
+        var x = function() {
+          SwymUtils.onDOMReady(function() {
+            var d = document.createElement("div");
+            d.innerHTML = "<style id='safari-flasher-post'>" + "#swym-plugin:not(.swym-ready),#swym-hosted-plugin:not(.swym-ready){display: none;}" + ".swym-button.swym-add-to-wishlist:not(.swym-loaded){display: none;}" + ".swym-button.swym-add-to-watchlist:not(.swym-loaded){display: none;}" + "#swym-plugin.swym-ready  #swym-notepad, #swym-plugin.swym-ready  #swym-overlay, #swym-plugin.swym-ready  #swym-notification," + "#swym-hosted-plugin.swym-ready  #swym-notepad, #swym-hosted-plugin.swym-ready  #swym-overlay, #swym-hosted-plugin.swym-ready  #swym-notification" + "{-webkit-transition: opacity 0.3s, visibility 0.3ms, -webkit-transform 0.3ms !important;-moz-transition: opacity 0.3s, visibility 0.3ms, -moz-transform 0.3ms !important;-ms-transition: opacity 0.3s, visibility 0.3ms, -ms-transform 0.3ms !important;-o-transition: opacity 0.3s, visibility 0.3ms, -o-transform 0.3ms !important;transition: opacity 0.3s, visibility 0.3ms, transform 0.3ms !important;}" + "</style>";
+            document.head.appendChild(d);
+          });};
+        setTimeout(x, 10);
+      });});}
+  window.SwymOverrideMoneyFormat = "\u003cspan class=hide-price-guest\u003e${{amount}}\u003c\/span\u003e";
+</script>
+<style id="swym-product-view-defaults"> .swym-button.swym-add-to-wishlist-view-product:not(.swym-loaded) { display: none; } </style><!-- END app snippet -->
+
+<script id="swymSnippetCheckAndActivate">
+  (function() {
+    function postDomLoad() {
+      var element = document.querySelector('script#swym-snippet:not([type="text"])');                            
+      if (!element) {
+        var script = document.querySelector('script#swym-snippet[type="text"]');
+        if (script) {
+          script.type = 'text/javascript';
+          new Function(script.textContent)();
+        }
+      }
+    }
+    if (document.readyState === "loading") {
+      document.addEventListener("DOMContentLoaded", postDomLoad);
+    } else {
+      postDomLoad();
+    }
+  })();
+</script>
+
+
+
+<script>
+  (function() {
+    // HEARTBEAT
+    let wishlistAppHeartbeatData = '{"137545646324":"2025-11-26T12:24:05.132Z","editor":"2025-10-20T23:40:50.324Z"}';
+    try {
+      wishlistAppHeartbeatData = JSON.parse(wishlistAppHeartbeatData) || {};
+    } catch (e) {
+      wishlistAppHeartbeatData = {}; 
+    }
+    const ShopifyTheme = window.Shopify.theme;
+    const themeId = ShopifyTheme.id;
+    const heartbeatMetadata = {
+      schema_name: ShopifyTheme?.schema_name,
+      schema_version: ShopifyTheme?.schema_version,
+      theme_store_id: ShopifyTheme?.theme_store_id,
+      role: ShopifyTheme?.role
+    };
+    const themeSchemaName = window.Shopify.theme.schema_name;
+    const isDesignMode = !!window.swymDesignMode;
+
+    if (!window.SwymCallbacks) {
+      window.SwymCallbacks = [];
+    }
+    window.SwymCallbacks.push((swat) => {
+      if (!swat || !themeId) {
+        return;
+      }
+
+      const triggerHeartbeat = swat?.ExtensionHealth?.triggerExtensionHeartbeat;
+      if (typeof triggerHeartbeat !== "function") return;
+
+      const lastHeartbeat = isDesignMode ? wishlistAppHeartbeatData?.editor : wishlistAppHeartbeatData?.[themeId];
+      const themeContext = isDesignMode ? 'editor' : themeId;
+      
+      const extensionData = {
+        extensionName: "wishlist-app", 
+        extensionType: "app-embed", 
+        metadata: heartbeatMetadata, 
+        themeId: themeContext, 
+        extensionSource: "default"
+      };
+      // ENABLE COMMON FEATURES
+      let swymEnabledCommonFeatures = window.SwymEnabledCommonFeatures;
+      Object.keys(swymEnabledCommonFeatures).forEach((key) => {
+        if (!swymEnabledCommonFeatures[key]) 
+          return;
+
+        switch (key) {
+          case "add-to-wishlist-collections-button":
+            // Check if app block is already handling the collections button
+            if (window.SwymCollectionsConfig) {
+              return;
+            }
+            
+            swat?.collectionsApi?.setDefaultCustomizationOptions();
+            swat?.collectionsApi?.initializeCollections(swat, false, themeSchemaName);
+
+            // Send basic collections heartbeat
+            let basicCollectionsHeartbeat = '';
+            try {
+              basicCollectionsHeartbeat = JSON.parse(basicCollectionsHeartbeat) || {};
+            } catch (e) {
+              basicCollectionsHeartbeat = {}; 
+            }
+
+            const lastBasicCollectionsHeartbeat = isDesignMode ? basicCollectionsHeartbeat?.editor : basicCollectionsHeartbeat?.[themeId];
+
+            /** Stop heartbeat
+            triggerHeartbeat({
+              extensionName: "basic-add-to-wishlist-collections-button", 
+              extensionType: "app-embed", 
+              metadata: {}, 
+              themeId: themeContext, 
+              extensionSource: "default"    
+            }, lastBasicCollectionsHeartbeat);
+            */
+
+            break;
+          case "add-to-wishlist-pdp-button":
+            // Check if app block is already handling the PDP button
+            if (window.swymATWButtonConfig?.shopifyExtensionType === "appblock") {
+              return;
+            }
+
+            if (!(window.SwymPageData && window.SwymPageData.et === 1)) {
+              // Not initiating pdp button as it is not a product page
+              return 
+            }
+
+            // Inject addtowishlist.css into the document's <head>
+            var head = document.head;
+            var pdpButtonStylesheet = "https://cdn.shopify.com/extensions/019b6998-77c7-775e-bf09-9ed4abfe593e/wishlist-shopify-app-611/assets/addtowishlistbutton.css";
+            var pdpButtonStylesheetTag = document.createElement("link");
+            pdpButtonStylesheetTag.id = `swym-pdp-button-stylesheet`;
+            pdpButtonStylesheetTag.rel = "stylesheet";
+            pdpButtonStylesheetTag.href = pdpButtonStylesheet;
+            
+            if (!document.getElementById("swym-pdp-button-stylesheet")) {
+              head.appendChild(pdpButtonStylesheetTag);
+            }
+
+            var x = document.getElementsByTagName("script")[0];
+            function createAndInsertScript(id, src, onLoadCallback) {
+              var scriptTag = document.createElement("script");
+              scriptTag.id = id;
+              scriptTag.type = "text/javascript";
+              scriptTag.src = src;
+              scriptTag.onload = onLoadCallback;
+              x.parentNode.insertBefore(scriptTag, x);
+            }
+
+            var pdpButtonScript = "https://cdn.shopify.com/extensions/019b6998-77c7-775e-bf09-9ed4abfe593e/wishlist-shopify-app-611/assets/addtowishlistbutton.js";
+            createAndInsertScript(
+              `swym-pdp-button-script`,
+              pdpButtonScript,
+              function () {
+                const pdpBtnApi = window.WishlistPlusPDPButtonAPI;
+                if (pdpBtnApi) {
+                  pdpBtnApi.setDefaultCustomizationOptions(swat);
+                  pdpBtnApi.initializePDPButton(swat, true);
+                }
+              }
+            );
+            break;
+          default:
+            return;
+        }
+      })
+    });
+  })(); // IIFE to prevent polluting global scope
+</script>
+
+
+
+  
+<script> 
+  (function () {
+    // Get the settings from Shopify's Liquid variables and create the styles
+    const isControlCentreEnabledFromMetafield = window?.SwymEnabledCommonFeatures?.["control-centre"];
+    const isCommonCustomizationEnabledFromMetafield = window?.SwymWishlistCommonCustomizationSettings && 
+      Object.keys(window.SwymWishlistCommonCustomizationSettings).length > 0;
+    const isControlCentreEnabledFromBlockSettings = false;
+    
+    if (!(isControlCentreEnabledFromMetafield && isCommonCustomizationEnabledFromMetafield) && !isControlCentreEnabledFromBlockSettings) {
+      // Don't enable control centre if this is disabled and block settings are not enabled
+      return;
+    }
+    
+    let borderRadius = 6;
+    let drawerWidth = window?.SwymWishlistCommonCustomizationSettings?.storefrontLayoutDrawerWidth || 400;
+    
+    // Check if block settings exist, use them, otherwise fall back to common settings
+    let primaryBgColor = isControlCentreEnabledFromBlockSettings ? 
+      "#000000" : 
+      window.SwymWishlistCommonCustomizationSettings.primaryColor;
+    
+    let primaryTextColor = isControlCentreEnabledFromBlockSettings ? 
+      "#ffffff" : 
+      window.SwymWishlistCommonCustomizationSettings.secondaryColor;
+    
+    let secondaryBgColor = isControlCentreEnabledFromBlockSettings ? 
+      "#F4F8FE" : null;
+    let secondaryTextColor = isControlCentreEnabledFromBlockSettings ? 
+      "#333333" : null;
+
+    // Only use color adjustment functions if we're using common settings
+    if (!secondaryBgColor || !secondaryTextColor) {
+      function adjustOpacity(color, opacity) {
+        if (color[0] === '#') {
+          color = color.slice(1);
+        }
+
+        if (color.length === 3) {
+          color = color.split('').map(char => char + char).join('');
+        }
+
+        const r = parseInt(color.slice(0, 2), 16);
+        const g = parseInt(color.slice(2, 4), 16);
+        const b = parseInt(color.slice(4, 6), 16);
+
+        return `rgba(${r}, ${g}, ${b}, ${opacity})`;
+      }
+
+      function hexToRgb(color) {
+        if (color[0] === '#') {
+          color = color.slice(1);
+        }
+        if (color.length === 3) {
+          color = color.split('').map(c => c + c).join('');
+        }
+
+        return {
+          r: parseInt(color.slice(0, 2), 16),
+          g: parseInt(color.slice(2, 4), 16),
+          b: parseInt(color.slice(4, 6), 16)
+        };
+      }
+
+      function getLuminance({ r, g, b }) {
+        return 0.299 * r + 0.587 * g + 0.114 * b;
+      }
+
+      function generateSecondaryColors(primaryBgColor, primaryTextColor) {
+        const secondaryBgOpacity = 0.2;
+        const secondaryTextOpacity = 0.8;
+
+        const secondaryBgColor = adjustOpacity(primaryBgColor, secondaryBgOpacity);
+
+        const bgRgb = hexToRgb(primaryBgColor);
+        const bgLuminance = getLuminance(bgRgb);
+
+        // Determine whether to use dark or light text for contrast
+        const lightText = adjustOpacity(primaryTextColor, secondaryTextOpacity);
+        const darkText = adjustOpacity(primaryBgColor, secondaryTextOpacity);
+
+        const secondaryTextColor = bgLuminance > 186 ? darkText : lightText;
+
+        return {
+          secondaryBgColor,
+          secondaryTextColor
+        };
+      }
+
+      const generatedColors = generateSecondaryColors(primaryBgColor, primaryTextColor);
+      secondaryBgColor = secondaryBgColor || generatedColors.secondaryBgColor;
+      secondaryTextColor = secondaryTextColor || generatedColors.secondaryTextColor;
+    }
+
+    // Create the CSS rule
+    let styles = `
+      .swym-storefront-layout-root-component {
+        --swym-storefront-layout-ui-border-radius: ${borderRadius}px;
+        --swym-storefront-layout-button-border-radius: ${borderRadius}px;
+        --swym-storefront-layout-side-drawer-width: ${drawerWidth}px;
+        --swym-storefront-layout-button-color-bg-primary: ${primaryBgColor};
+        --swym-storefront-layout-button-color-text-primary: ${primaryTextColor};
+        --swym-storefront-layout-button-color-bg-secondary: ${secondaryBgColor};
+        --swym-storefront-layout-button-color-text-secondary: ${secondaryTextColor};
+      }
+    `;
+
+    // Create a <style> element and append the styles
+    let styleSheet = document.createElement("style");
+    styleSheet.type = "text/css";
+    styleSheet.innerText = styles;
+    document.head.appendChild(styleSheet);
+
+    if (typeof window.SwymStorefrontLayoutContext === 'undefined') {
+        window.SwymStorefrontLayoutContext = {};
+    }
+    if (typeof window.SwymStorefrontLayoutExtensions === 'undefined'){
+        window.SwymStorefrontLayoutExtensions = {};
+    }
+    
+    if (isControlCentreEnabledFromBlockSettings) {
+      // If block settings are enabled, use them
+      SwymStorefrontLayoutContext.Settings = {
+        EnableStorefrontLayoutOnLauncher: true,
+        EnableStorefrontLayoutNotification: window?.SwymWishlistCommonCustomizationSettings?.enableStorefrontLayoutNotification || true,
+        StorefrontLayoutType: window?.SwymWishlistCommonCustomizationSettings?.storefrontLayoutType || "as-drawer",
+        StorefrontLayoutDrawerPosition: "left",
+        StorefrontLayoutAsSectionContainerId: "swym-wishlist-render-container",
+        StorefrontLayoutAsSectionPageURL: "/pages/swym-wishlist",
+        EnableStorefrontLayoutVariantSelector: true,
+        StorefrontLayoutNotificationPosition: "left",
+        StorefrontLayoutActionPopupPosition: "left",
+        StorefrontLayoutNotificationDuration: 5000
+      };
+    } else {
+      // If only metafield is enabled but no block settings, use common settings
+      SwymStorefrontLayoutContext.Settings = {
+        EnableStorefrontLayoutOnLauncher: true,
+        EnableStorefrontLayoutNotification: true,
+        StorefrontLayoutType: window?.SwymWishlistCommonCustomizationSettings?.storefrontLayoutType || "as-drawer",
+        StorefrontLayoutDrawerPosition: "left",
+        StorefrontLayoutAsSectionContainerId: "swym-wishlist-render-container",
+        StorefrontLayoutAsSectionPageURL: "/pages/swym-wishlist",
+        EnableStorefrontLayoutVariantSelector: true,
+        StorefrontLayoutNotificationPosition: "left",
+        StorefrontLayoutActionPopupPosition: "left",
+        StorefrontLayoutNotificationDuration: 5000
+      };
+    }
+    const storefrontLayoutCallback = (swat) =>{
+      SwymStorefrontLayoutContext.swat = swat;
+      let isStoreOnPaidPlan = swat.getApp('Wishlist')?.['is-paid'];
+      let isWishlistEnabled = swat.getApp('Wishlist')?.['enabled'];
+      SwymStorefrontLayoutContext.Settings = {
+        ...SwymStorefrontLayoutContext?.Settings,
+        EnableStorefrontLayoutCollection: window?.SwymEnabledCommonFeatures?.["multiple-wishlist"] || false,
+        EnableStorefrontLayout: isWishlistEnabled && (isControlCentreEnabledFromBlockSettings || isControlCentreEnabledFromMetafield),
+      }
+
+      if(SwymStorefrontLayoutContext?.Settings?.EnableStorefrontLayout){
+        if(SwymStorefrontLayoutContext?.CustomEvents?.LayoutInitialized){
+          var event = new CustomEvent(SwymStorefrontLayoutContext.CustomEvents.LayoutInitialized, { 
+            detail: { settings: SwymStorefrontLayoutContext?.Settings }
+          });
+          document.dispatchEvent(event);
+        }else{
+          swat.utils.warn(`LayoutInitialized event is not defined.`);
+        }
+      }else{
+        swat.utils.warn(`Storefront Layout is disabled.`);
+        document.getElementById("swym-storefront-layout-container")?.remove();
+        document.getElementById("swym-storefront-extention-render-container")?.remove();
+      }
+    }
+  
+    if (!window.SwymCallbacks) {
+      window.SwymCallbacks = [];
+    }
+    window.SwymCallbacks.push(storefrontLayoutCallback);
+  
+    SwymStorefrontLayoutContext.SwymCustomerData = {
+      
+        name: "Wyatt",
+        email: "santamonica@colormemine.com"
+      
+    };
+    SwymStorefrontLayoutContext.isShopperLoggedIn = !!SwymStorefrontLayoutContext?.SwymCustomerData?.email;
+  })();
+</script>
+
+
+
+
+</div>
+ <script src="https://www.googletagmanager.com/gtag/js?id=G-5JWF9XLMJZ"></script><shop-cart-sync experiments="{}" data-instance-id="14d6119f-f782-4aa5-a8e6-d14c81d12f9c"></shop-cart-sync><script type="text/javascript" src="https://cdn.shopify.com/extensions/019b6998-77c7-775e-bf09-9ed4abfe593e/wishlist-shopify-app-611/assets/apps.bundle.js?v=3.184.1"></script><div id="swym-styles"><style>#swym-plugin .swym-primary-background-color {background: #FF4500 !important;} #swym-plugin .swym-primary-border-color {border-color: #FF4500 !important;} #swym-plugin .swym-primary-color {color: #FF4500 !important;}.swym-background-color,#swym-notification.swym-santa .swym-image { background-color: #FF4500 !important; }@media (max-width: 820px){ #swym-plugin #swym-notepad .swym-item-filter li.is-active { background-color: #FF4500 !important; } }.swym-text-color { color: #FF4500 !important; }.swym-add-to-wishlist-view-product:after{color: #FF4500 !important;}.swym-add-to-wishlist {background: #FF4500 !important; color: #FFF !important;} .swym-add-to-wishlist+.swym-fave-count{border-color: #FF4500 !important;}#swym-trigger-email-auth-button {background: #FF4500 !important; color: #FFF !important;}.swym-added.swym-add-to-wishlist-view-product:after{color: #FF4500 !important;}.swym-added.swym-add-to-wishlist {background: #FF4500 !important; color: #FFF !important;} .swym-added.swym-add-to-wishlist+.swym-fave-count{border-color: #FF4500 !important;}.swym-powered-by{display: none;}#swym-anchor { display: none !important; }</style></div><div id="swym-container"><script id="swym-widget-products-template" type="x-tmpl-mustache">
+<div class="swym-widget swym-products swym-products-{{render.type}}" id="swym-widget-{{{id}}}">
+  <style>
+    @media screen and (min-width: 800px) {
+      #swym-widget-{{{id}}} .swym-product-grid-li {
+        width: {{render.widths.desktop}}%;
+      }
+      #swym-widget-{{{id}}}.swym-products-grid .swym-product-grid-li:nth-child({{render.cols.desktop}}n+1) {
+        clear: left;
+      }
+    }
+    @media screen and (max-width: 800px) {
+      #swym-widget-{{{id}}} .swym-product-grid-li {
+        width: {{render.widths.tablet}}%;
+      }
+      #swym-widget-{{{id}}} .swym-product-grid-li:nth-child({{render.cols.tablet}}n+1) {
+        clear: left;
+      }
+    }
+    @media screen and (max-width: 570px) {
+      #swym-widget-{{{id}}} .swym-product-grid-li {
+        width: {{render.widths.mobile}}%;
+      }
+      #swym-widget-{{{id}}}.swym-products-grid .swym-product-grid-li:nth-child({{render.cols.mobile}}n+1) {
+        clear: left;
+      }
+    }
+  </style>
+  <ul class="swym-products-loop"></ul>
+  {{#render.iscarousel}}
+  <div class="swym-products-nav">
+    <a class="swym-products-nav-btn swym-products-nav-left" href="#"><i class="swym-icon swym-arrow-left-grey"></i></a>
+    <a class="swym-products-nav-btn swym-products-nav-right" href="#"><i class="swym-icon swym-arrow-right-grey"></i></a>
+  </div>
+  {{/render.iscarousel}}
+</div>
+</script>
+<script id="swym-product-grid-item-template" type="x-tmpl-mustache">
+<div class="swym-product-grid-item">
+    <div class="swym-product-grid-overlay">
+    </div>
+    <a href="{{{du}}}" title="{{{dt}}}" class="swym-product-grid-hyperlink">
+      <div class="swym-product-grid-meta">
+      </div>
+      <div class="swym-product-grid-image">
+          <div class="swym-product-grid-image-placeholder">
+              <span class="swym-v-align-outer">
+                  {{#iu}}
+                  <span class="swym-v-align-inner">
+                      <img src="{{{iu}}}" itemprop="image" alt="{{{dt}}}"/>
+                  </span>
+                  {{/iu}}
+                  {{^iu}}
+                  <span class="swym-image-placeholder">
+                  </span>
+                  {{/iu}}
+              </span>
+          </div>
+      </div>
+      <div class="swym-product-grid-info">
+          <strong>{{{dt}}}</strong>
+          <span>{{{vinfo}}}</span>
+      </div>
+      <div class="swym-product-grid-price">
+          <span>{{#op}}<s class="swym-op">{{{formattedOp}}}</s> {{/op}}<strong class="swym-pr">{{{formattedPr}}}</strong></span>
+      </div>
+    </a>
+    <div class="swym-product-grid-actions">
+    </div>
+</div>
+</script>
+</div><div id="swym-plugin" class="swym-inject swym-ready">
+                    <div id="swym-anchor" role="region" aria-label="My Wishlist" class="swym- swym-heart">
+                        <a href="#swym-wishlist" class="swym-background-color" id="notepad-anchor-title" aria-label="My Wishlist" data-swym-loaded="true"><i class="swym-icon swym-notepad-white"></i>My Wishlist</a>
+                    <span class="swym-anchor-badge" data-count="0">0</span></div>
+                <div class="swym-ui-components swym-is-safari" id="swym-component-container"><div class="swym-wishlist-notifications-container swym-ui-component swym-is-safari"></div><div class="swym-wishlist-modal-container swym-ui-component swym-is-safari"><div class="swym-modals-container"></div></div><div class="swym-ui-component swym-is-safari" id="swym-popover"></div></div><div class="swym-ui-component swym-aw-notification swym-is-safari"></div></div>

@@ -68,16 +68,10 @@ export default function Home() {
   };
 
   return (
-    <div className="flex min-h-screen flex-col items-center justify-center p-24 bg-gray-900 text-gray-100">
+    <div className="flex flex-1 flex-col items-center justify-center p-8 bg-gray-900 text-gray-100 w-full">
       <div className="w-full max-w-sm mb-8 flex justify-between items-center">
          <h1 className="text-4xl font-bold text-white">Pottery Calculator</h1>
       </div>
-      <Link href="/config" className="text-sm text-blue-400 hover:text-blue-300 font-semibold mb-2">
-            Manage Pricing Rules →
-      </Link>
-      <Link href="/analytics" className="text-sm text-purple-400 hover:text-purple-300 font-semibold mb-6">
-            View Analytics →
-      </Link>
       
       <form onSubmit={handleSubmit} className="bg-gray-800 p-6 rounded-lg shadow-xl w-full max-w-sm border border-gray-700">
         <div className="mb-4">

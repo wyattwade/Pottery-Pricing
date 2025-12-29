@@ -125,17 +125,9 @@ const chartData = useMemo(() => {
 
 
   return (
-    <div className="flex min-h-screen flex-col items-center p-8 bg-gray-900 text-gray-100">
+    <div className="flex flex-1 flex-col items-center p-8 bg-gray-900 text-gray-100 w-full">
       <div className="w-full max-w-7xl mb-8 flex justify-between items-center">
         <h1 className="text-4xl font-bold text-white">Analytics</h1>
-        <div className="space-x-4">
-             <Link href="/" className="text-blue-400 hover:text-blue-300 font-semibold">
-               ← Calculator
-             </Link>
-             <Link href="/config" className="text-blue-400 hover:text-blue-300 font-semibold">
-               Configuration →
-             </Link>
-        </div>
       </div>
 
       {/* Stats Summary */}
@@ -209,6 +201,7 @@ const chartData = useMemo(() => {
                     <tr>
                         <th className="px-5 py-3 border-b-2 border-gray-700 bg-gray-900 text-left text-xs font-semibold text-gray-400 uppercase tracking-wider">SKU</th>
                         <th className="px-5 py-3 border-b-2 border-gray-700 bg-gray-900 text-left text-xs font-semibold text-gray-400 uppercase tracking-wider">Name</th>
+                        <th className="px-5 py-3 border-b-2 border-gray-700 bg-gray-900 text-left text-xs font-semibold text-gray-400 uppercase tracking-wider">Vendor</th>
                         <th className="px-5 py-3 border-b-2 border-gray-700 bg-gray-900 text-left text-xs font-semibold text-gray-400 uppercase tracking-wider">Type (Inferred)</th>
                         <th className="px-5 py-3 border-b-2 border-gray-700 bg-gray-900 text-right text-xs font-semibold text-gray-400 uppercase tracking-wider">Cost</th>
                         <th className="px-5 py-3 border-b-2 border-gray-700 bg-gray-900 text-right text-xs font-semibold text-gray-400 uppercase tracking-wider">Price</th>
@@ -223,11 +216,14 @@ const chartData = useMemo(() => {
                             <td className="px-5 py-5 border-b border-gray-700 bg-gray-800 text-sm text-white">
                                 {row.name}
                             </td>
+                            <td className="px-5 py-5 border-b border-gray-700 bg-gray-800 text-sm text-gray-400 capitalize">
+                                {row.vendor}
+                            </td>
                             <td className="px-5 py-5 border-b border-gray-700 bg-gray-800 text-sm text-gray-400 italic capitalize">
                                 {row.typeUsed}
                             </td>
                             <td className="px-5 py-5 border-b border-gray-700 bg-gray-800 text-sm text-right text-gray-300">
-                                ${row.price.toFixed(2)}
+                                ${row.cost?.toFixed(2)}
                             </td>
                             <td className="px-5 py-5 border-b border-gray-700 bg-gray-800 text-sm text-right font-bold text-green-400">
                                 ${row.calculatedPrice.toFixed(2)}

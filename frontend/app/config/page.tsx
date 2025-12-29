@@ -71,12 +71,9 @@ export default function ConfigPage() {
   };
 
   return (
-    <div className="flex min-h-screen flex-col items-center p-24 bg-gray-900 text-gray-100">
+    <div className="flex flex-1 flex-col items-center p-8 bg-gray-900 text-gray-100 w-full">
       <div className="w-full max-w-4xl mb-8 flex justify-between items-center">
         <h1 className="text-4xl font-bold text-white">Configuration</h1>
-        <Link href="/" className="text-blue-400 hover:text-blue-300 font-semibold">
-          ← Back to Calculator
-        </Link>
       </div>
 
       <div className="w-full max-w-4xl bg-gray-800 rounded-lg shadow-xl p-6 border border-gray-700">
