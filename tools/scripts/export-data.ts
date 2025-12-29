@@ -17,7 +17,7 @@ async function exportData() {
       products
     };
 
-    const outputPath = path.resolve(process.cwd(), '../frontend/public/data.json');
+    const outputPath = path.resolve(process.cwd(), '../../frontend/public/data.json');
     console.log(`Writing data to ${outputPath}...`);
     
     fs.writeFileSync(outputPath, JSON.stringify(data, null, 2));

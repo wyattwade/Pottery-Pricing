@@ -1,8 +1,8 @@
 'use client';
-
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { calculatePrice, calculatePriceBySku, PricingData, CalculationResult } from '../lib/pricing';
+import { fetchPricingData } from '../lib/rules_storage';
 
 export default function Home() {
   const [cost, setCost] = useState<string>('');
@@ -14,12 +14,16 @@ export default function Home() {
   const [pricingData, setPricingData] = useState<PricingData | null>(null);
 
   useEffect(() => {
-    // Load the pricing data on mount
-    const basePath = process.env.NEXT_PUBLIC_BASE_PATH || '';
-    fetch(`${basePath}/data.json`)
-      .then(res => res.json())
-      .then(data => setPricingData(data))
-      .catch(err => console.error("Failed to load pricing data", err));
+    const load = async () => {
+        try {
+            const basePath = process.env.NEXT_PUBLIC_BASE_PATH || '';
+            const data = await fetchPricingData(basePath);
+            setPricingData(data);
+        } catch (e) {
+            console.error("Failed to load data", e);
+        }
+    };
+    load();
   }, []);
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -40,6 +44,10 @@ export default function Home() {
     }
 
     try {
+      // Re-merge rules just in case they changed in another tab (though requires refresh usually)
+      // Ideally we rely on initial load unless we listen to storage events. 
+      // For now, let's use the state.
+      
       let res: CalculationResult;
 
       if (sku.trim()) {
@@ -64,8 +72,11 @@ export default function Home() {
       <div className="w-full max-w-sm mb-8 flex justify-between items-center">
          <h1 className="text-4xl font-bold text-white">Pottery Calculator</h1>
       </div>
-      <Link href="/config" className="text-sm text-blue-400 hover:text-blue-300 font-semibold mb-6">
+      <Link href="/config" className="text-sm text-blue-400 hover:text-blue-300 font-semibold mb-2">
             Manage Pricing Rules →
+      </Link>
+      <Link href="/analytics" className="text-sm text-purple-400 hover:text-purple-300 font-semibold mb-6">
+            View Analytics →
       </Link>
       
       <form onSubmit={handleSubmit} className="bg-gray-800 p-6 rounded-lg shadow-xl w-full max-w-sm border border-gray-700">
@@ -148,6 +159,9 @@ export default function Home() {
       {result && (
         <div className="mt-8 p-6 bg-gray-800 rounded-lg shadow-xl w-full max-w-sm border border-gray-700">
           <div className="text-center mb-4">
+             {result.productName && (
+                 <h2 className="text-xl font-bold text-blue-300 mb-2">{result.productName}</h2>
+             )}
              <p className="text-gray-400 mb-1">Base Multiplier: <span className="font-bold text-white">{result.multiplier}</span></p>
              <p className="text-gray-400">Base Price: <span className="font-bold text-white">${result.basePrice}</span></p>
           </div>

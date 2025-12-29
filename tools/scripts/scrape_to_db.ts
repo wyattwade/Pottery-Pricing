@@ -14,10 +14,13 @@ async function autoScroll(page: any){
             var totalHeight = 0;
             var distance = 100;
             var timer = setInterval(() => {
+                // @ts-ignore
                 var scrollHeight = document.body.scrollHeight;
+                // @ts-ignore
                 window.scrollBy(0, distance);
                 totalHeight += distance;
 
+                // @ts-ignore
                 if(totalHeight >= scrollHeight - window.innerHeight){
                     clearInterval(timer);
                     resolve();
@@ -43,44 +46,70 @@ async function autoScroll(page: any){
   let pageNum = 1;
   let hasMore = true;
 
-  // Initial navigation
-  await page.goto(TARGET_URL, { waitUntil: 'networkidle2', timeout: 60000 });
-  await autoScroll(page);
+  // Initial navigation is handled inside the loop
+  
+  while (hasMore && pageNum <= 50) {
+    const pageUrl = `${TARGET_URL}?page=${pageNum}`;
+    console.log(`Navigating to ${pageUrl}...`);
+    
+    try {
+        await page.goto(pageUrl, { waitUntil: 'networkidle2', timeout: 60000 });
+    } catch (e) {
+        console.log(`Navigation failed for ${pageUrl}, retrying...`);
+        await page.goto(pageUrl, { waitUntil: 'domcontentloaded', timeout: 60000 });
+    }
+    
+    await autoScroll(page);
 
-  while (hasMore && pageNum <= 10) {
     console.log(`Processing Page ${pageNum}...`);
 
     const productsOnPage = await page.evaluate((skuSel, priceSel) => {
-        const pResults: {sku: string, price: number}[] = [];
-        const potentialProducts = document.querySelectorAll('.grid-view-item, .product-card, .product-item, .card, .grid__item, .product');
+        const pResults: {sku: string, price: number, name: string}[] = [];
+        // @ts-ignore
+        const potentialProducts = document.querySelectorAll('.grid-view-item, .product-card, .product-item, .card, .grid__item, .product, .productitem');
         
-        potentialProducts.forEach(card => {
-             const skuEl = card.querySelector(skuSel) as HTMLElement;
-             const priceEl = card.querySelector(priceSel) as HTMLElement;
+        potentialProducts.forEach((card: any) => {
+             const skuEl = card.querySelector(skuSel) as any;
+             const priceEl = card.querySelector(priceSel) as any;
+             const titleEl = card.querySelector('.productitem--title a') as any;
+
              if (skuEl && priceEl) {
                  const sku = skuEl.innerText.trim();
                  const priceText = priceEl.innerText.trim().replace(/[$,]/g, '');
                  const price = parseFloat(priceText);
-                 if (sku && !isNaN(price)) pResults.push({ sku, price });
+                 const name = titleEl ? titleEl.innerText.trim() : '';
+                 
+                 if (!name) {
+                    console.log(`Warning: Name not found for SKU ${sku}`);
+                 }
+
+                 if (sku && !isNaN(price)) pResults.push({ sku, price, name });
              }
         });
 
         if (pResults.length === 0) {
+            // @ts-ignore
              const skuElements = document.querySelectorAll(skuSel);
-             skuElements.forEach(skuEl => {
-                const sku = (skuEl as HTMLElement).innerText.trim();
+             skuElements.forEach((skuEl: any) => {
+                const sku = (skuEl as any).innerText.trim();
                 let parent = skuEl.parentElement;
-                let priceEl: Element | null = null;
+                let priceEl: any = null;
+                let titleEl: any = null;
+                
+                // Traverse up to find a container that might have the title and price
                 for (let i = 0; i < 5; i++) {
                     if (!parent) break;
                     priceEl = parent.querySelector(priceSel);
-                    if (priceEl) break;
+                    titleEl = parent.querySelector('.productitem--title a');
+                    if (priceEl && titleEl) break;
                     parent = parent.parentElement;
                 }
+                
                 if (sku && priceEl) {
-                    const priceText = (priceEl as HTMLElement).innerText.trim().replace(/[$,]/g, '');
+                    const priceText = (priceEl as any).innerText.trim().replace(/[$,]/g, '');
                     const price = parseFloat(priceText);
-                    if (!isNaN(price)) pResults.push({ sku, price });
+                    const name = titleEl ? (titleEl as any).innerText.trim() : '';
+                    if (!isNaN(price)) pResults.push({ sku, price, name });
                 }
              });
         }
@@ -95,28 +124,12 @@ async function autoScroll(page: any){
         for (const p of productsOnPage) {
             await prisma.product.upsert({
                 where: { sku: p.sku },
-                update: { price: p.price, vendorId: 1, vendorName: 'chesapeake' },
-                create: { sku: p.sku, price: p.price, vendorId: 1, vendorName: 'chesapeake' }
+                update: { price: p.price, vendorId: 1, vendorName: 'chesapeake', name: p.name },
+                create: { sku: p.sku, price: p.price, vendorId: 1, vendorName: 'chesapeake', name: p.name }
             });
             totalProducts++;
         }
-    }
-
-    // Try to find Next button
-    const nextButtonSelector = '.pagination .next a, .pagination .next, a[aria-label="Next"], .pagination__next';
-    const nextButton = await page.$(nextButtonSelector);
-
-    if (nextButton && hasMore) {
-        console.log('Clicking Next...');
-        await Promise.all([
-            page.waitForNavigation({ waitUntil: 'networkidle2', timeout: 60000 }).catch(() => console.log('Navigation timeout, continuing...')),
-            nextButton.click(),
-        ]);
-        await autoScroll(page);
         pageNum++;
-    } else {
-        console.log('No Next button found or stopped. Finished.');
-        hasMore = false;
     }
   }
 

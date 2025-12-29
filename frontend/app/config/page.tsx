@@ -1,15 +1,8 @@
 'use client';
-
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
-
-interface Rule {
-  id: number;
-  name: string;
-  value: number;
-  type: string;
-  isActive: boolean;
-}
+import { getStoredRules, saveRules, fetchPricingData } from '../../lib/rules_storage';
+import { Rule } from '../../lib/pricing';
 
 export default function ConfigPage() {
   const [rules, setRules] = useState<Rule[]>([]);
@@ -18,32 +11,29 @@ export default function ConfigPage() {
   const [editValue, setEditValue] = useState<string>('');
 
   useEffect(() => {
-    fetchRules();
+    loadRules();
   }, []);
 
-  const fetchRules = async () => {
+  const loadRules = async () => {
     try {
-      const res = await fetch('http://localhost:3001/rules');
-      const data = await res.json();
-      setRules(data);
-    } catch (error) {
-      console.error('Failed to fetch rules', error);
+        const basePath = process.env.NEXT_PUBLIC_BASE_PATH || '';
+        const data = await fetchPricingData(basePath);
+        setRules(data.rules);
+    } catch (e) {
+        console.error("Failed to load rules", e);
     } finally {
-      setLoading(false);
+        setLoading(false);
     }
   };
 
-  const toggleActive = async (rule: Rule) => {
-    try {
-      await fetch(`http://localhost:3001/rules/${rule.id}`, {
-        method: 'PATCH',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ isActive: !rule.isActive }),
-      });
-      fetchRules();
-    } catch (error) {
-      console.error('Failed to update rule', error);
-    }
+  const updateRules = (newRules: Rule[]) => {
+      setRules(newRules);
+      saveRules(newRules);
+  };
+
+  const toggleActive = (rule: Rule) => {
+    const newRules = rules.map(r => r.id === rule.id ? { ...r, isActive: !r.isActive } : r);
+    updateRules(newRules);
   };
 
   const startEditing = (rule: Rule) => {
@@ -51,23 +41,33 @@ export default function ConfigPage() {
     setEditValue(rule.value.toString());
   };
 
-  const saveEdit = async (id: number) => {
-    try {
-      await fetch(`http://localhost:3001/rules/${id}`, {
-        method: 'PATCH',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ value: parseFloat(editValue) }),
-      });
-      setEditingId(null);
-      fetchRules();
-    } catch (error) {
-      console.error('Failed to update rule value', error);
-    }
+  const saveEdit = (id: number) => {
+    const val = parseFloat(editValue);
+    if (isNaN(val)) return;
+
+    const newRules = rules.map(r => r.id === id ? { ...r, value: val } : r);
+    updateRules(newRules);
+    setEditingId(null);
   };
 
   const cancelEdit = () => {
     setEditingId(null);
     setEditValue('');
+  };
+
+  const formatValue = (rule: Rule) => {
+      switch (rule.type) {
+          case 'PERCENTAGE_ADD':
+              return `+${rule.value}%`;
+          case 'ROUND_NEAREST':
+              return `Nearest $${rule.value}`;
+          case 'MIN_FIXED':
+              return `$${rule.value}`;
+          case 'FIXED_DEDUCTION':
+              return `-$${rule.value}`;
+          default:
+              return `${rule.value}`;
+      }
   };
 
   return (
@@ -94,7 +94,7 @@ export default function ConfigPage() {
                   Name
                 </th>
                 <th className="px-5 py-3 border-b-2 border-gray-700 bg-gray-900 text-left text-xs font-semibold text-gray-400 uppercase tracking-wider">
-                  Value (%)
+                  Value
                 </th>
                 <th className="px-5 py-3 border-b-2 border-gray-700 bg-gray-900 text-left text-xs font-semibold text-gray-400 uppercase tracking-wider">
                   Actions
@@ -130,7 +130,7 @@ export default function ConfigPage() {
                         autoFocus
                       />
                     ) : (
-                      `+${rule.value}%`
+                      formatValue(rule)
                     )}
                   </td>
                   <td className="px-5 py-5 border-b border-gray-700 bg-gray-800 text-sm">

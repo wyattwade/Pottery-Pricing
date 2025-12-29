@@ -3,9 +3,9 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
-    "dev": "concurrently \"npm run dev --prefix frontend\" \"npm run start --prefix backend\"",
-    "dev:watch": "concurrently \"npm run dev --prefix frontend\" \"npm run start:dev --prefix backend\"",
-    "install:all": "npm install && npm install --prefix frontend && npm install --prefix backend"
+    "dev": "npm run dev --prefix frontend",
+    "dev:watch": "npm run dev --prefix frontend",
+    "install:all": "npm install && npm install --prefix frontend"
   },
   "devDependencies": {
     "concurrently": "^9.1.0"

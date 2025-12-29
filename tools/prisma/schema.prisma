@@ -46,4 +46,5 @@ model Product {
   price      Float
   vendorId   Int     @default(1)
   vendorName String  @default("chesapeake")
+  name       String  @default("")
 }

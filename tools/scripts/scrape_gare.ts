@@ -51,8 +51,9 @@ async function scrape() {
     // We can wait for that to disappear or for 'a[href*="logout"]' to appear.
     // Let's use a function to check.
     await page.waitForFunction(() => {
-        // Check for common logout text or link
+        // @ts-ignore
         const links = Array.from(document.querySelectorAll('a'));
+        // @ts-ignore
         return links.some(a => a.innerText.toLowerCase().includes('sign out') || a.innerText.toLowerCase().includes('log out'));
     }, { timeout: 0, polling: 1000 });
     
@@ -76,15 +77,16 @@ async function scrape() {
     // Scrape products on the page
     const products = await page.evaluate((catUrl) => {
       const items: any[] = [];
+      // @ts-ignore
       const cardBodies = document.querySelectorAll('.card-body.text-center');
 
-      cardBodies.forEach((card) => {
+      cardBodies.forEach((card: any) => {
         const titleElement = card.querySelector('.card-title a.text-dark');
         const skuElement = card.querySelector('small.text-muted');
         
         if (titleElement && skuElement) {
-          const title = (titleElement as HTMLElement).innerText.trim();
-          let skuText = (skuElement as HTMLElement).innerText.trim(); // e.g., "Item No. 123"
+          const title = (titleElement as any).innerText.trim();
+          let skuText = (skuElement as any).innerText.trim(); // e.g., "Item No. 123"
           
           // Extract digits from SKU
           const skuMatch = skuText.match(/\d+/);
@@ -95,7 +97,7 @@ async function scrape() {
           }
 
           // Extract price from the whole card text
-          const cardText = (card as HTMLElement).innerText;
+          const cardText = (card as any).innerText;
           const priceMatch = cardText.match(/\$\d+\.\d{2}/);
           const price = priceMatch ? priceMatch[0] : 'Price Not Found';
 
@@ -118,7 +120,7 @@ async function scrape() {
   await browser.close();
 
   // Save to JSON for backup/reference
-  const outputPath = path.resolve(__dirname, '../gare_products.json');
+  const outputPath = path.resolve(process.cwd(), '../gare_products.json');
   fs.writeFileSync(outputPath, JSON.stringify(allProducts, null, 2));
   console.log(`Scraping complete. Data saved to ${outputPath}`);
 
@@ -139,13 +141,15 @@ async function scrape() {
             update: {
                 price: priceFloat,
                 vendorName: 'gare',
-                vendorId: 2
+                vendorId: 2,
+                name: product.title
             },
             create: {
                 sku: product.sku,
                 price: priceFloat,
                 vendorName: 'gare',
-                vendorId: 2
+                vendorId: 2,
+                name: product.title
             }
         });
     } catch (e) {

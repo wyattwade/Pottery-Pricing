@@ -21,6 +21,7 @@ export interface Product {
   price: number;
   vendorId: number;
   vendorName: string;
+  name?: string;
 }
 
 export interface PricingData {
@@ -42,6 +43,7 @@ export interface CalculationResult {
   basePrice: number;
   finalPrice: number;
   appliedRules: AppliedRule[];
+  productName?: string;
 }
 
 export function calculatePrice(cost: number, data: PricingData, itemType?: string): CalculationResult {
@@ -60,7 +62,31 @@ export function calculatePrice(cost: number, data: PricingData, itemType?: strin
   const appliedRules: AppliedRule[] = [];
 
   // Filter active rules for userId: 1
-  const activeRules = data.rules.filter((r) => r.isActive);
+  let activeRules = data.rules.filter((r) => r.isActive);
+
+  // Default addedMultiplier (8%)
+  if (!activeRules.some(r => r.name === 'addedMultiplier')) {
+      activeRules.push({
+          id: -1,
+          name: 'addedMultiplier',
+          value: 8,
+          type: 'PERCENTAGE_ADD',
+          isActive: true,
+          userId: 1
+      });
+  }
+
+  // Default roundToDollar (TRUE / 1.0)
+  if (!activeRules.some(r => r.type === 'ROUND_NEAREST')) {
+      activeRules.push({
+          id: -2,
+          name: 'roundToDollar',
+          value: 1.0,
+          type: 'ROUND_NEAREST',
+          isActive: true,
+          userId: 1
+      });
+  }
 
   // 2. Apply Percentage Rules
   for (const rule of activeRules) {
@@ -148,5 +174,9 @@ export function calculatePriceBySku(sku: string, data: PricingData, itemType?: s
     throw new Error(`Product with SKU ${sku} not found`);
   }
 
-  return calculatePrice(product.price, data, itemType);
+  const result = calculatePrice(product.price, data, itemType);
+  return {
+    ...result,
+    productName: product.name
+  };
 }
