@@ -21,6 +21,21 @@ export function saveRules(rules: Rule[]) {
   localStorage.setItem(STORAGE_KEY, JSON.stringify(rules));
 }
 
+
+// --- Flagged SKUs Logic ---
+
+export async function fetchFlaggedSkus(basePath: string = ''): Promise<string[]> {
+    try {
+        const res = await fetch(`${basePath}/flags.json`);
+        if (!res.ok) return [];
+        const skus: string[] = await res.json();
+        return skus;
+    } catch (e) {
+        console.error('Failed to load flagged SKUs', e);
+        return [];
+    }
+}
+
 // Helper to sanitize/force defaults on raw JSON data
 function sanitizeRules(rules: Rule[]): Rule[] {
     const newRules = [...rules];
@@ -47,6 +62,51 @@ function sanitizeRules(rules: Rule[]): Rule[] {
         if (!roundRule.isActive) roundRule.isActive = true;
     } else {
         newRules.push({ id: -2, name: 'roundToDollar', value: 1.0, type: 'ROUND_NEAREST', isActive: true, userId: 1 });
+    }
+
+    // 3. Ensure 'Minus One' rule exists
+    if (!newRules.some(r => r.name === 'roundMultiple10Minus1')) {
+        newRules.push({ 
+            id: -3, 
+            name: 'roundMultiple10Minus1', 
+            value: 1, 
+            type: 'ADJUST_MULTIPLE_10', 
+            isActive: true, 
+            userId: 1 
+        });
+    }
+
+    // 4. Ensure Mug Minimum rule exists
+    if (!newRules.some(r => r.name === 'mugMinPrice')) {
+        newRules.push({ 
+            id: -4, 
+            name: 'mugMinPrice', 
+            value: 20, 
+            type: 'MIN_FIXED_MUG', 
+            isActive: true, 
+            userId: 1 
+        });
+    }
+
+    // 5. Plate Size Pricing Rules (Defaults)
+    if (!newRules.some(r => r.name === 'platePricePerInch')) {
+        newRules.push({ id: -5, name: 'platePricePerInch', value: 3.0, type: 'FACTOR_SIZE', isActive: true, userId: 1 });
+    }
+    if (!newRules.some(r => r.name === 'plateCostWeight')) {
+        newRules.push({ id: -6, name: 'plateCostWeight', value: 0.65, type: 'WEIGHT_COST', isActive: true, userId: 1 });
+    }
+    if (!newRules.some(r => r.name === 'plateSizeWeight')) {
+        newRules.push({ id: -7, name: 'plateSizeWeight', value: 0.35, type: 'WEIGHT_SIZE', isActive: true, userId: 1 });
+    }
+
+    // 6. Max Markup Rule
+    if (!newRules.some(r => r.name === 'maxMarkupAmount')) {
+        newRules.push({ id: -8, name: 'maxMarkupAmount', value: 90, type: 'MAX_MARKUP_CAP', isActive: true, userId: 1 });
+    }
+
+    // 7. Plate Minimum Price
+    if (!newRules.some(r => r.name === 'plateMinPrice')) {
+        newRules.push({ id: -9, name: 'plateMinPrice', value: 20, type: 'MIN_FIXED_PLATE', isActive: true, userId: 1 });
     }
 
     return newRules;

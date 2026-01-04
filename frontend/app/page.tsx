@@ -8,6 +8,7 @@ export default function Home() {
   const [cost, setCost] = useState<string>('');
   const [sku, setSku] = useState<string>('');
   const [itemType, setItemType] = useState<string>(''); 
+  const [size, setSize] = useState<string>('');
   const [result, setResult] = useState<CalculationResult | null>(null);
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState<boolean>(false);
@@ -43,17 +44,29 @@ export default function Home() {
         return;
     }
 
+    // Enforce size for Plates
+    if (itemType === 'plate' && !size) {
+        setError('Please select a size for plates.');
+        setLoading(false);
+        return;
+    }
+
     try {
       // Re-merge rules just in case they changed in another tab (though requires refresh usually)
       // Ideally we rely on initial load unless we listen to storage events. 
       // For now, let's use the state.
       
       let res: CalculationResult;
+      
+      const attributes = {
+          itemType,
+          size: size ? parseFloat(size) : undefined
+      };
 
       if (sku.trim()) {
-        res = calculatePriceBySku(sku.trim(), pricingData, itemType);
+        res = calculatePriceBySku(sku.trim(), pricingData, attributes);
       } else if (cost) {
-        res = calculatePrice(parseFloat(cost), pricingData, itemType);
+        res = calculatePrice(parseFloat(cost), pricingData, attributes);
       } else {
         throw new Error('Please enter a Cost or SKU');
       }
@@ -123,16 +136,39 @@ export default function Home() {
                 id="itemType"
                 value={itemType}
                 onChange={(e) => setItemType(e.target.value)}
-                className="shadow appearance-none border border-gray-600 rounded w-full py-2 px-3 bg-gray-700 text-white leading-tight focus:outline-none focus:border-blue-500"
+                className="shadow appearance-none border border-gray-600 rounded w-full py-2 px-3 bg-gray-700 text-white leading-tight focus:outline-none focus:border-blue-500 mb-2"
             >
                 <option value="" disabled>Select Item Type</option>
                 <option value="cups/mugs">Cups/Mugs</option>
                 <option value="figurines">Figurines</option>
                 <option value="small-figurines">Small Figurines (Tiny Tots)</option>
-                <option value="plates/bowls">Plates/Bowls</option>
+                <option value="plate">Plate</option>
+                <option value="bowl">Bowl</option>
                 <option value="vases">Vases</option>
                 <option value="other">Other</option>
             </select>
+            
+            {itemType === 'plate' && (
+                <div className="mt-2 pl-4 border-l-2 border-blue-500">
+                    <label className="block text-gray-300 text-xs font-bold mb-1" htmlFor="size">
+                        Plate Size (Inches)
+                    </label>
+                    <select
+                        id="size"
+                        value={size}
+                        onChange={(e) => setSize(e.target.value)}
+                        className="shadow appearance-none border border-gray-600 rounded w-full py-2 px-3 bg-gray-700 text-white text-sm leading-tight focus:outline-none focus:border-blue-500"
+                    >
+                        <option value="">Select Size...</option>
+                        {[4, 6, 8, 10, 12, 14, 16].map(s => (
+                            <option key={s} value={s}>{s}"</option>
+                        ))}
+                    </select>
+                    <p className="text-xs text-gray-500 mt-1">
+                        Pricing uses weighted formula: 65% Cost, 35% Size.
+                    </p>
+                </div>
+            )}
         </div>
         
         <button

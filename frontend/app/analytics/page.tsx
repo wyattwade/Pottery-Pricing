@@ -29,7 +29,7 @@ export default function AnalyticsPage() {
                     else if (name.includes('bank') || name.includes('figurine') || name.includes('animal')) type = 'figurines';
                     
                     try {
-                        const res = calculatePriceBySku(p.sku, data, type);
+                        const res = calculatePriceBySku(p.sku, data, { itemType: type });
                         return {
                             ...p,
                             calculatedPrice: res.finalPrice,
@@ -71,30 +71,31 @@ export default function AnalyticsPage() {
         byCategory[r.typeUsed].push(r.calculatedPrice);
     });
     
-    const categoryStats = Object.keys(byCategory).map(cat => {
+    const categoryStats = Object.keys(byCategory).sort().map(cat => {
         const p = byCategory[cat].sort((a,b) => a - b);
-        if (p.length === 0) return { category: cat, mean: 0, median: 0, count: 0 };
+        if (p.length === 0) return { category: cat, mean: 0, median: 0, count: 0, prices: [] };
         return {
             category: cat,
             mean: p.reduce((a,b) => a + b, 0) / p.length,
             median: p[Math.floor(p.length / 2)],
-            count: p.length
+            count: p.length,
+            prices: p
         };
     });
 
-    return { overallMean, overallMedian, categoryStats, allPrices: prices };
+    return { overallMean, overallMedian, categoryStats, allPrices: prices, pricesByCategory: byCategory };
 }, [tableData]);
 
-const chartData = useMemo(() => {
-    if (!stats || !stats.allPrices.length) return [];
+const generateChartData = (prices: number[]) => {
+    if (!prices || prices.length === 0) return [];
     
-    const prices = stats.allPrices;
     const min = Math.floor(prices[0]);
     const max = Math.ceil(prices[prices.length - 1]);
     
-    // Create ~20 buckets or fewer if range is small
+    // Create ~15 buckets 
     const range = max - min;
-    const targetBuckets = 20;
+    const targetBuckets = 15;
+    // Ensure bucket size is at least 1
     const bucketSize = Math.max(1, Math.ceil(range / targetBuckets)); 
     const bucketCount = Math.ceil(range / bucketSize) + 1;
 
@@ -103,7 +104,7 @@ const chartData = useMemo(() => {
        const end = start + bucketSize;
        return { 
           range: `$${start}-${end}`, 
-          rangeLabel: `$${start}`, // Simplified label
+          rangeLabel: `$${start}`, 
           count: 0,
           min: start,
           max: end
@@ -117,12 +118,8 @@ const chartData = useMemo(() => {
         buckets[bucketIndex].count++;
     });
     
-    return buckets.filter(b => b.count > 0); // Optional: filter empty buckets for cleaner chart? Or keep for distribution shape. 
-    // Keeping empty buckets usually better for "Bell Curve" shape visualization.
-    // Let's return all buckets.
-    return buckets;
-}, [stats]);
-
+    return buckets; // Returns all buckets including empty ones for distribution shape
+};
 
   return (
     <div className="flex flex-1 flex-col items-center p-8 bg-gray-900 text-gray-100 w-full">
@@ -132,12 +129,14 @@ const chartData = useMemo(() => {
 
       {/* Stats Summary */}
       {!loading && stats && (
-         <div className="w-full max-w-7xl grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+         <div className="w-full max-w-7xl grid grid-cols-1 gap-6 mb-8">
+            
+            {/* Overall Distribution */}
             <div className="bg-gray-800 p-6 rounded-lg shadow-xl border border-gray-700">
-                <h2 className="text-2xl font-bold mb-4 text-blue-300">Price Distribution</h2>
+                <h2 className="text-2xl font-bold mb-4 text-blue-300">Overall Price Distribution</h2>
                 <div className="h-64 w-full">
                     <ResponsiveContainer width="100%" height="100%">
-                        <BarChart data={chartData}>
+                        <BarChart data={generateChartData(stats.allPrices)}>
                             <CartesianGrid strokeDasharray="3 3" stroke="#374151" />
                             <XAxis dataKey="rangeLabel" stroke="#9CA3AF" tick={{fontSize: 12}} />
                             <YAxis stroke="#9CA3AF" />
@@ -151,8 +150,36 @@ const chartData = useMemo(() => {
                 </div>
             </div>
 
+            {/* Category Distributions */}
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                {stats.categoryStats.map(catStat => (
+                     <div key={catStat.category} className="bg-gray-800 p-6 rounded-lg shadow-xl border border-gray-700">
+                        <h3 className="text-xl font-bold mb-2 text-green-300 capitalize">{catStat.category}</h3>
+                        <div className="flex justify-between text-sm text-gray-400 mb-4">
+                            <span>Count: {catStat.count}</span>
+                            <span>Avg: ${catStat.mean.toFixed(2)}</span>
+                            <span>Med: ${catStat.median.toFixed(2)}</span>
+                        </div>
+                        <div className="h-48 w-full">
+                            <ResponsiveContainer width="100%" height="100%">
+                                <BarChart data={generateChartData(catStat.prices)}>
+                                    <CartesianGrid strokeDasharray="3 3" stroke="#374151" />
+                                    <XAxis dataKey="rangeLabel" stroke="#9CA3AF" tick={{fontSize: 10}} />
+                                    <YAxis stroke="#9CA3AF" tick={{fontSize: 10}} />
+                                    <Tooltip 
+                                        contentStyle={{backgroundColor: '#1F2937', borderColor: '#374151', color: '#F3F4F6'}} 
+                                        cursor={{fill: '#374151', opacity: 0.5}}
+                                    />
+                                    <Bar dataKey="count" fill="#34D399" radius={[4, 4, 0, 0]} name="Products" />
+                                </BarChart>
+                            </ResponsiveContainer>
+                        </div>
+                     </div>
+                ))}
+            </div>
+
             <div className="bg-gray-800 p-6 rounded-lg shadow-xl border border-gray-700">
-                <h2 className="text-2xl font-bold mb-4 text-green-300">Statistics</h2>
+                <h2 className="text-2xl font-bold mb-4 text-green-300">Statistics Summary</h2>
                 <div className="grid grid-cols-2 gap-4 mb-6">
                     <div className="bg-gray-700 p-4 rounded text-center">
                         <p className="text-gray-400 text-sm uppercase">Overall Average</p>
