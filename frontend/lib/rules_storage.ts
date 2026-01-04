@@ -45,9 +45,6 @@ function sanitizeRules(rules: Rule[]): Rule[] {
     const addedMult = newRules.find(r => r.name === 'addedMultiplier');
     if (addedMult) {
         // If it's exactly 10 (the old default), reset to 8. 
-        // If it's something else (e.g. user saved it in DB as 12), we might be overwriting it?
-        // User requested "It's currently 8 in config ... This should apply to all ... They should be variables".
-        // To be safe and compliant with the request "default is 8%", we force it to 8.
         if (addedMult.value === 10) {
             addedMult.value = 8;
         }
