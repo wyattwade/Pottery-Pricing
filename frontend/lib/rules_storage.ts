@@ -111,8 +111,17 @@ function sanitizeRules(rules: Rule[]): Rule[] {
 
 export async function fetchPricingData(basePath: string = ''): Promise<PricingData> {
     try {
-        const res = await fetch(`${basePath}/data.json`);
+        const timestamp = new Date().getTime();
+        const res = await fetch(`${basePath}/data.json?t=${timestamp}`);
         const data: PricingData = await res.json();
+        
+        // Debugging: exact issue identifying
+        if (data.products && data.products.length > 0) {
+            console.log("Loaded data.json. First Product:", data.products[0]);
+            if (data.products[0].cost === undefined) {
+                console.error("CRITICAL: Product cost is undefined!");
+            }
+        }
         
         let rules = data.rules || [];
 
