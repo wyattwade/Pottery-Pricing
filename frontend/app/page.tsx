@@ -13,6 +13,7 @@ export default function Home() {
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState<boolean>(false);
   const [pricingData, setPricingData] = useState<PricingData | null>(null);
+  const [showCostInput, setShowCostInput] = useState<boolean>(false);
 
   useEffect(() => {
     const load = async () => {
@@ -96,36 +97,73 @@ export default function Home() {
             type="text"
             value={sku}
             onChange={(e) => {
-                setSku(e.target.value);
-                if(e.target.value) setCost(''); // Clear cost if SKU is entered
+                const val = e.target.value;
+                setSku(val);
+                if(val) {
+                    setCost(''); // Clear cost if SKU is entered manually to avoid confusion?
+                    // Attempt lookup
+                    if (pricingData && pricingData.products) {
+                        const found = pricingData.products.find(p => p.sku.toLowerCase() === val.toLowerCase());
+                        if (found) {
+                             if (found.cost) setCost(found.cost.toString());
+                             
+                             // Auto-select type
+                             let type = 'other';
+                             const name = found.name ? found.name.toLowerCase() : '';
+                             if (name.includes('mug') || name.includes('cup') || name.includes('stein')) type = 'cups/mugs';
+                             else if (name.includes('plate') || name.includes('platter') || name.includes('tray') || name.includes('charger')) type = 'plate';
+                             else if (name.includes('bowl') || name.includes('basin')) type = 'bowl';
+                             else if (name.includes('vase')) type = 'vases';
+                             else if (name.includes('bank') || name.includes('figurine') || name.includes('animal')) type = 'figurines';
+                             
+                             setItemType(type);
+                             setError(null);
+                        }
+                    }
+                }
             }}
             className="shadow appearance-none border border-gray-600 rounded w-full py-2 px-3 bg-gray-700 text-white leading-tight focus:outline-none focus:border-blue-500"
             placeholder="Enter SKU (e.g. DB38110)"
           />
         </div>
 
-        <div className="flex items-center justify-between mb-4">
-            <hr className="w-full border-gray-600" />
-            <span className="px-2 text-gray-500 text-sm">OR</span>
-            <hr className="w-full border-gray-600" />
-        </div>
+
 
         <div className="mb-4">
-          <label className="block text-gray-300 text-sm font-bold mb-2" htmlFor="cost">
-            Cost ($)
-          </label>
-          <input
-            id="cost"
-            type="number"
-            step="0.01"
-            value={cost}
-            onChange={(e) => {
-                setCost(e.target.value);
-                if(e.target.value) setSku(''); // Clear SKU if cost is entered
-            }}
-            className="shadow appearance-none border border-gray-600 rounded w-full py-2 px-3 bg-gray-700 text-white leading-tight focus:outline-none focus:border-blue-500"
-            placeholder="Enter cost (e.g. 2.00)"
-          />
+          {!showCostInput ? (
+              <div className="text-center">
+                  <button 
+                    type="button"
+                    onClick={() => setShowCostInput(true)}
+                    className="text-blue-400 hover:text-blue-300 underline text-sm cursor-pointer focus:outline-none"
+                  >
+                      sku not available?
+                  </button>
+              </div>
+          ) : (
+            <>
+                <div className="flex items-center justify-between mb-4">
+                    <hr className="w-full border-gray-600" />
+                    <span className="px-2 text-gray-500 text-sm">OR</span>
+                    <hr className="w-full border-gray-600" />
+                </div>
+                <label className="block text-gray-300 text-sm font-bold mb-2" htmlFor="cost">
+                    Cost ($)
+                </label>
+                <input
+                    id="cost"
+                    type="number"
+                    step="0.01"
+                    value={cost}
+                    onChange={(e) => {
+                        setCost(e.target.value);
+                        if(e.target.value) setSku(''); // Clear SKU if cost is entered
+                    }}
+                    className="shadow appearance-none border border-gray-600 rounded w-full py-2 px-3 bg-gray-700 text-white leading-tight focus:outline-none focus:border-blue-500"
+                    placeholder="Enter cost (e.g. 2.00)"
+                />
+            </>
+          )}
         </div>
 
         <div className="mb-6">
