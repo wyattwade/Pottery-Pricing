@@ -88,7 +88,7 @@ export function calculatePrice(cost: number, data: PricingData, attributes: Prod
 
   // Ensure defaults (safety check if not coming from sanitized source)
   if (!activeRules.some(r => r.name === 'addedMultiplier')) {
-      activeRules.push({ id: -1, name: 'addedMultiplier', value: 8, type: 'PERCENTAGE_ADD', isActive: true, userId: 1 });
+      activeRules.push({ id: -1, name: 'addedMultiplier', value: 4, type: 'PERCENTAGE_ADD', isActive: true, userId: 1 });
   }
   if (!activeRules.some(r => r.type === 'ROUND_NEAREST')) {
       activeRules.push({ id: -2, name: 'roundToDollar', value: 1.0, type: 'ROUND_NEAREST', isActive: true, userId: 1 });

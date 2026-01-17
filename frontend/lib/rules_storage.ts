@@ -3,22 +3,24 @@ import { Rule, PricingData } from './pricing';
 const STORAGE_KEY = 'pottery_pricing_rules';
 
 export function getStoredRules(): Rule[] | null {
-  if (typeof window === 'undefined') return null; // Server-side check
+  // if (typeof window === 'undefined') return null; // Server-side check
   
-  const stored = localStorage.getItem(STORAGE_KEY);
-  if (!stored) return null;
+  // const stored = localStorage.getItem(STORAGE_KEY);
+  // if (!stored) return null;
   
-  try {
-    return JSON.parse(stored);
-  } catch (e) {
-    console.error('Failed to parse stored rules', e);
-    return null;
-  }
+  // try {
+  //   return JSON.parse(stored);
+  // } catch (e) {
+  //   console.error('Failed to parse stored rules', e);
+  //   return null;
+  // }
+  return null; // Disabled local storage
 }
 
 export function saveRules(rules: Rule[]) {
-  if (typeof window === 'undefined') return;
-  localStorage.setItem(STORAGE_KEY, JSON.stringify(rules));
+  // if (typeof window === 'undefined') return;
+  // localStorage.setItem(STORAGE_KEY, JSON.stringify(rules));
+  // Disabled local storage
 }
 
 
@@ -40,16 +42,12 @@ export async function fetchFlaggedSkus(basePath: string = ''): Promise<string[]>
 function sanitizeRules(rules: Rule[]): Rule[] {
     const newRules = [...rules];
 
-    // 1. Force addedMultiplier to 8% if it represents the legacy default (10)
-    // OR if it's missing.
+    // 1. Force addedMultiplier to 4% (formerly 8%)
     const addedMult = newRules.find(r => r.name === 'addedMultiplier');
     if (addedMult) {
-        // If it's exactly 10 (the old default), reset to 8. 
-        if (addedMult.value === 10) {
-            addedMult.value = 8;
-        }
+        addedMult.value = 4;
     } else {
-        newRules.push({ id: -1, name: 'addedMultiplier', value: 8, type: 'PERCENTAGE_ADD', isActive: true, userId: 1 });
+        newRules.push({ id: -1, name: 'addedMultiplier', value: 4, type: 'PERCENTAGE_ADD', isActive: true, userId: 1 });
     }
 
     // 2. Force roundToDollar to 1.0 (active)
@@ -78,11 +76,15 @@ function sanitizeRules(rules: Rule[]): Rule[] {
         newRules.push({ 
             id: -4, 
             name: 'mugMinPrice', 
-            value: 20, 
+            value: 19, 
             type: 'MIN_FIXED_MUG', 
             isActive: true, 
             userId: 1 
         });
+    } else {
+        // Update existing to 19
+        const mugMin = newRules.find(r => r.name === 'mugMinPrice');
+        if (mugMin) mugMin.value = 19;
     }
 
     // 5. Plate Size Pricing Rules (Defaults)

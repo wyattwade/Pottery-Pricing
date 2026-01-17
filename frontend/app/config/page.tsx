@@ -137,8 +137,13 @@ export default function ConfigPage() {
          )}
       </div>
 
-      <div className="w-full max-w-4xl bg-gray-800 rounded-lg shadow-xl p-6 border border-gray-700">
-        <h2 className="text-2xl font-bold mb-4 text-gray-200">Pricing Rules</h2>
+      <div className="w-full max-w-4xl bg-gray-800 rounded-lg shadow-xl p-6 border border-gray-700 mb-8">
+        <h2 className="text-2xl font-bold mb-2 text-gray-200">Pricing Rules</h2>
+        <div className="bg-yellow-900/30 border border-yellow-700/50 rounded-lg p-4 mb-6">
+            <p className="text-yellow-200 text-sm">
+                <strong>Read-Only:</strong> Configuration is currently managed directly in the codebase to ensure consistency across all devices.
+            </p>
+        </div>
         {loading ? (
           <p>Loading...</p>
         ) : (
@@ -163,16 +168,15 @@ export default function ConfigPage() {
               {rules.map((rule) => (
                 <tr key={rule.id}>
                   <td className="px-5 py-5 border-b border-gray-700 bg-gray-800 text-sm">
-                    <button
-                      onClick={() => toggleActive(rule)}
-                      className={`px-2 py-1 leading-none rounded-full font-semibold ${
+                    <div
+                      className={`inline-block px-2 py-1 leading-none rounded-full font-semibold ${
                         rule.isActive
                           ? 'bg-green-900 text-green-200'
                           : 'bg-gray-700 text-gray-300'
                       }`}
                     >
                       {rule.isActive ? 'Active' : 'Inactive'}
-                    </button>
+                    </div>
                   </td>
                   <td className="px-5 py-5 border-b border-gray-700 bg-gray-800 text-sm font-medium text-gray-200">
                     <div className="flex items-center">
@@ -203,29 +207,7 @@ export default function ConfigPage() {
                     )}
                   </td>
                   <td className="px-5 py-5 border-b border-gray-700 bg-gray-800 text-sm">
-                    {editingId === rule.id ? (
-                      <div className="flex space-x-2">
-                        <button
-                          onClick={() => saveEdit(rule.id)}
-                          className="text-green-400 hover:text-green-300 font-semibold"
-                        >
-                          Save
-                        </button>
-                        <button
-                          onClick={cancelEdit}
-                          className="text-gray-400 hover:text-gray-300 font-semibold"
-                        >
-                          Cancel
-                        </button>
-                      </div>
-                    ) : (
-                      <button
-                        onClick={() => startEditing(rule)}
-                        className="text-blue-400 hover:text-blue-300 font-semibold"
-                      >
-                        Edit
-                      </button>
-                    )}
+                    <span className="text-gray-500 italic">Locked</span>
                   </td>
                 </tr>
               ))}
