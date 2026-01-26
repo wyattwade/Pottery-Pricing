@@ -3,7 +3,9 @@ export interface PricingMatrix {
   minCost: number;
   maxCost: number;
   multiplier: number;
+  originalMultiplier?: number;
   userId: number;
+  comment?: string;
 }
 
 export interface Rule {
@@ -13,6 +15,7 @@ export interface Rule {
   type: string; // 'PERCENTAGE_ADD', 'ROUND_NEAREST', 'MIN_FIXED'
   isActive: boolean;
   userId: number;
+  comment?: string;
 }
 
 export interface Product {
@@ -23,6 +26,7 @@ export interface Product {
   vendorName: string;
   vendor?: string; // From data.json
   name?: string;
+  comment?: string;
 }
 
 export interface PricingData {
@@ -50,13 +54,9 @@ export interface CalculationResult {
 // Product Attributes Interface
 export interface ProductAttributes {
     itemType?: string;
-    size?: number;
-}
-
-// Product Attributes Interface
-export interface ProductAttributes {
-    itemType?: string;
-    size?: number;
+    size?: number;   // Main size (e.g. Diameter for plates)
+    width?: number;
+    height?: number;
 }
 
 export function calculatePrice(cost: number, data: PricingData, attributes: ProductAttributes = {}): CalculationResult {
@@ -138,6 +138,77 @@ export function calculatePrice(cost: number, data: PricingData, attributes: Prod
           label: `(Formula [$${weightedCostPart.toFixed(2)} + $${weightedSizePart.toFixed(2)}] vs Std $${standardPrice.toFixed(2)})`
       });
 
+  } else if (attributes.itemType === 'bowl' && attributes.width && attributes.height) {
+     // --- Logic for Bowls ---
+     const rPricePerInch = activeRules.find(r => r.name === 'bowlPricePerInch')?.value ?? 3.2;
+     const rWidthWeight = activeRules.find(r => r.name === 'bowlWidthWeight')?.value ?? 1.0;
+     const rHeightWeight = activeRules.find(r => r.name === 'bowlHeightWeight')?.value ?? 1.0;
+     const rCostWeight = activeRules.find(r => r.name === 'bowlCostWeight')?.value ?? 0.60;
+     const rSizeWeight = activeRules.find(r => r.name === 'bowlSizeWeight')?.value ?? 0.40;
+
+     // 1. Standard Price Calculation
+     let standardPrice = cost * range.multiplier;
+     for (const rule of activeRules) {
+        if (rule.type === 'PERCENTAGE_ADD') {
+            standardPrice += (standardPrice * (rule.value / 100));
+        }
+     }
+
+     // 2. Effective Size Calculation
+     const effectiveSize = (attributes.width * rWidthWeight) + (attributes.height * rHeightWeight);
+
+     // 3. Size Component
+     const sizeComp = effectiveSize * rPricePerInch;
+
+     // 4. Weighted Formula
+     const weightedCostPart = standardPrice * rCostWeight;
+     const weightedSizePart = sizeComp * rSizeWeight;
+     
+     const bowlFormulaPrice = weightedCostPart + weightedSizePart;
+     const diff = bowlFormulaPrice - standardPrice;
+
+     finalPrice = standardPrice;
+     adjustedPrice = bowlFormulaPrice;
+
+     appliedRules.push({
+          name: 'Bowl Size Adjustment',
+          value: effectiveSize,
+          addedAmount: Number(diff.toFixed(2)),
+          label: `(Formula [$${weightedCostPart.toFixed(2)} + $${weightedSizePart.toFixed(2)}] vs Std $${standardPrice.toFixed(2)})`
+      });
+
+   } else if (attributes.itemType === 'cups/mugs' && attributes.width && attributes.height) {
+     const rPricePerInch = activeRules.find(r => r.name === 'mugPricePerInch')?.value ?? 3.4;
+     const rWidthWeight = activeRules.find(r => r.name === 'mugWidthWeight')?.value ?? 1.0;
+     const rHeightWeight = activeRules.find(r => r.name === 'mugHeightWeight')?.value ?? 1.0;
+     const rCostWeight = activeRules.find(r => r.name === 'mugCostWeight')?.value ?? 0.80;
+     const rSizeWeight = activeRules.find(r => r.name === 'mugSizeWeight')?.value ?? 0.20;
+
+     let standardPrice = cost * range.multiplier;
+     for (const rule of activeRules) {
+        if (rule.type === 'PERCENTAGE_ADD') {
+            standardPrice += (standardPrice * (rule.value / 100));
+        }
+     }
+
+     const effectiveSize = (attributes.width * rWidthWeight) + (attributes.height * rHeightWeight);
+     const sizeComp = effectiveSize * rPricePerInch;
+     const weightedCostPart = standardPrice * rCostWeight;
+     const weightedSizePart = sizeComp * rSizeWeight;
+     
+     const mugFormulaPrice = weightedCostPart + weightedSizePart;
+     const diff = mugFormulaPrice - standardPrice;
+
+     finalPrice = standardPrice;
+     adjustedPrice = mugFormulaPrice;
+
+     appliedRules.push({
+          name: 'Mug Size Adjustment',
+          value: effectiveSize,
+          addedAmount: Number(diff.toFixed(2)),
+          label: `(Formula [$${weightedCostPart.toFixed(2)} + $${weightedSizePart.toFixed(2)}] vs Std $${standardPrice.toFixed(2)})`
+      });
+
   } else {
       // --- Standard Logic ---
       finalPrice = cost * range.multiplier;
@@ -160,36 +231,43 @@ export function calculatePrice(cost: number, data: PricingData, attributes: Prod
 
   // --- Common Final Steps (Rounding & Minimums) ---
 
-  // 3. Apply Rounding Rule
-  const roundingRule = activeRules.find((r) => r.type === 'ROUND_NEAREST');
-  if (roundingRule) {
-    const preRoundPrice = adjustedPrice;
-    const step = roundingRule.value; // e.g., 1.0
-    adjustedPrice = Math.round(adjustedPrice / step) * step;
+  // 3. Apply Custom Rounding (Ends in 2, 4, 5, 8, 9)
+  // Replaces standard rounding and minus-one logic
+  const validEndings = [2, 4, 5, 8, 9];
+  const currentVal = adjustedPrice;
+  const lower = Math.floor(currentVal / 10) * 10;
+  
+  // Find candidates around the current value
+  let candidates: number[] = [];
+  
+  // Add candidates from current decade, previous decade, and next decade to be safe
+  [-10, 0, 10].forEach(offset => {
+      validEndings.forEach(end => {
+          candidates.push(lower + offset + end);
+      });
+  });
+  
+  // Filter out negative prices if any
+  candidates = candidates.filter(c => c >= 0);
 
-    if (Math.abs(adjustedPrice - preRoundPrice) > 0.001) {
-        appliedRules.push({
-        name: roundingRule.name,
-        value: roundingRule.value,
-        addedAmount: Number((adjustedPrice - preRoundPrice).toFixed(2)),
-        label: '',
-        });
-    }
-  }
+  // Find the closest candidate
+  // If tie, pick the higher price (business preference usually)
+  const bestPrice = candidates.reduce((prev, curr) => {
+      const prevDiff = Math.abs(prev - currentVal);
+      const currDiff = Math.abs(curr - currentVal);
+      if (currDiff < prevDiff) return curr;
+      if (currDiff === prevDiff) return curr > prev ? curr : prev;
+      return prev;
+  });
 
-  // 3.5 Apply "Minus One" Rule 
-  const minusOneRule = activeRules.find(r => r.name === 'roundMultiple10Minus1');
-  if (minusOneRule && adjustedPrice > 0) {
-      if (adjustedPrice % 10 === 0) {
-          const preAdjust = adjustedPrice;
-          adjustedPrice -= minusOneRule.value;
-           appliedRules.push({
-              name: 'Minus One (Multiple of 10)',
-              value: minusOneRule.value,
-              addedAmount: Number((adjustedPrice - preAdjust).toFixed(2)),
-              label: '(-$1)'
-          });
-      }
+  if (Math.abs(bestPrice - currentVal) > 0.001) {
+      adjustedPrice = bestPrice;
+      appliedRules.push({
+          name: 'Rounding (End in 2,4,5,8,9)',
+          value: 0, 
+          addedAmount: Number((bestPrice - currentVal).toFixed(2)),
+          label: ''
+      });
   }
 
   // 4. Apply Minimum Price Rule (Generic)
@@ -238,7 +316,7 @@ export function calculatePrice(cost: number, data: PricingData, attributes: Prod
   }
 
   // 5. Apply Figurine Specific Logic
-  if (attributes.itemType === 'small-figurines') {
+  if (attributes.itemType === 'small-figurines' || attributes.itemType === 'figurines') {
     const figDiscount = activeRules.find((r) => r.name === 'smallFigurineDiscount');
     const figMin = activeRules.find((r) => r.name === 'smallFigurineMinPrice');
 
@@ -256,7 +334,7 @@ export function calculatePrice(cost: number, data: PricingData, attributes: Prod
         adjustedPrice = calculated;
         
         appliedRules.push({
-            name: 'Small Figurine Adjustment',
+            name: 'Figurine Adjustment',
             value: discount,
             addedAmount: Number((adjustedPrice - preFigPrice).toFixed(2)),
             label: ''

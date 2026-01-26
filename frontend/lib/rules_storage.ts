@@ -108,6 +108,40 @@ function sanitizeRules(rules: Rule[]): Rule[] {
         newRules.push({ id: -9, name: 'plateMinPrice', value: 20, type: 'MIN_FIXED_PLATE', isActive: true, userId: 1 });
     }
 
+    // 8. Bowl Pricing Rules (Defaults)
+    if (!newRules.some(r => r.name === 'bowlPricePerInch')) {
+        newRules.push({ id: -10, name: 'bowlPricePerInch', value: 3.2, type: 'FACTOR_SIZE_BOWL', isActive: true, userId: 1 });
+    }
+    if (!newRules.some(r => r.name === 'bowlWidthWeight')) {
+        newRules.push({ id: -11, name: 'bowlWidthWeight', value: 1.0, type: 'WEIGHT_WIDTH', isActive: true, userId: 1 });
+    }
+    if (!newRules.some(r => r.name === 'bowlHeightWeight')) {
+        newRules.push({ id: -12, name: 'bowlHeightWeight', value: 1.0, type: 'WEIGHT_HEIGHT', isActive: true, userId: 1 });
+    }
+    if (!newRules.some(r => r.name === 'bowlCostWeight')) {
+        newRules.push({ id: -13, name: 'bowlCostWeight', value: 0.60, type: 'WEIGHT_COST_BOWL', isActive: true, userId: 1 });
+    }
+    if (!newRules.some(r => r.name === 'bowlSizeWeight')) {
+        newRules.push({ id: -14, name: 'bowlSizeWeight', value: 0.40, type: 'WEIGHT_SIZE_BOWL', isActive: true, userId: 1 });
+    }
+
+    // 9. Mug Pricing Rules (New)
+    if (!newRules.some(r => r.name === 'mugPricePerInch')) {
+        newRules.push({ id: -15, name: 'mugPricePerInch', value: 3.4, type: 'FACTOR_SIZE_MUG', isActive: true, userId: 1 });
+    }
+    if (!newRules.some(r => r.name === 'mugWidthWeight')) {
+        newRules.push({ id: -16, name: 'mugWidthWeight', value: 1.0, type: 'WEIGHT_WIDTH_MUG', isActive: true, userId: 1 });
+    }
+    if (!newRules.some(r => r.name === 'mugHeightWeight')) {
+        newRules.push({ id: -17, name: 'mugHeightWeight', value: 1.0, type: 'WEIGHT_HEIGHT_MUG', isActive: true, userId: 1 });
+    }
+    if (!newRules.some(r => r.name === 'mugCostWeight')) {
+        newRules.push({ id: -18, name: 'mugCostWeight', value: 0.80, type: 'WEIGHT_COST_MUG', isActive: true, userId: 1 });
+    }
+    if (!newRules.some(r => r.name === 'mugSizeWeight')) {
+        newRules.push({ id: -19, name: 'mugSizeWeight', value: 0.20, type: 'WEIGHT_SIZE_MUG', isActive: true, userId: 1 });
+    }
+
     return newRules;
 }
 

@@ -54,147 +54,168 @@
       "id": 1,
       "minCost": 0.25,
       "maxCost": 1,
-      "multiplier": 8.5,
+      "originalMultiplier": 8.5,
+      "multiplier": 12, 
       "userId": 1
     },
     {
       "id": 2,
       "minCost": 1.01,
       "maxCost": 1.5,
-      "multiplier": 8.25,
+      "originalMultiplier": 8.25,
+      "multiplier": 11, 
       "userId": 1
     },
     {
       "id": 3,
       "minCost": 1.51,
       "maxCost": 1.75,
-      "multiplier": 8,
+      "originalMultiplier": 8,
+      "multiplier": 10, 
       "userId": 1
     },
     {
       "id": 4,
       "minCost": 1.76,
       "maxCost": 2.25,
-      "multiplier": 7.75,
+      "originalMultiplier": 7.75,
+      "multiplier": 8.75, 
       "userId": 1
     },
     {
       "id": 5,
       "minCost": 2.26,
       "maxCost": 2.5,
-      "multiplier": 7.5,
+      "originalMultiplier": 7.5,
+      "multiplier": 7.75, 
       "userId": 1
     },
     {
       "id": 6,
       "minCost": 2.51,
       "maxCost": 3,
-      "multiplier": 7.25,
+      "originalMultiplier": 7.25,
+      "multiplier": 7.5, 
       "userId": 1
     },
     {
       "id": 7,
       "minCost": 3.01,
       "maxCost": 3.5,
-      "multiplier": 7,
+      "originalMultiplier": 7,
+      "multiplier": 7.15, 
       "userId": 1
     },
     {
       "id": 8,
       "minCost": 3.51,
       "maxCost": 3.75,
-      "multiplier": 6.75,
+      "originalMultiplier": 6.75,
+      "multiplier": 6.75, 
       "userId": 1
     },
     {
       "id": 9,
       "minCost": 3.76,
       "maxCost": 4.25,
-      "multiplier": 6.5,
+      "originalMultiplier": 6.5,
+      "multiplier": 6.5, 
       "userId": 1
     },
     {
       "id": 10,
       "minCost": 4.26,
       "maxCost": 5,
-      "multiplier": 6.25,
+      "originalMultiplier": 6.25,
+      "multiplier": 6, 
       "userId": 1
     },
     {
       "id": 11,
       "minCost": 5.01,
       "maxCost": 5.5,
-      "multiplier": 6,
+      "originalMultiplier": 6,
+      "multiplier": 5.75, 
       "userId": 1
     },
     {
       "id": 12,
       "minCost": 5.51,
       "maxCost": 6.25,
-      "multiplier": 5.75,
+      "originalMultiplier": 5.75,
+      "multiplier": 5.5, 
       "userId": 1
     },
     {
       "id": 13,
       "minCost": 6.26,
       "maxCost": 6.75,
-      "multiplier": 5.5,
+      "originalMultiplier": 5.5,
+      "multiplier": 5.5, 
       "userId": 1
     },
     {
       "id": 14,
       "minCost": 6.76,
       "maxCost": 7.75,
-      "multiplier": 5.25,
+      "originalMultiplier": 5.25,
+      "multiplier": 5.25, 
       "userId": 1
     },
     {
       "id": 15,
       "minCost": 7.76,
       "maxCost": 8.5,
-      "multiplier": 5,
+      "originalMultiplier": 5,
+      "multiplier": 5, 
       "userId": 1
     },
     {
       "id": 16,
       "minCost": 8.51,
       "maxCost": 9.5,
-      "multiplier": 4.75,
+      "originalMultiplier": 4.75,
+      "multiplier": 4.75, 
       "userId": 1
     },
     {
       "id": 17,
       "minCost": 9.51,
       "maxCost": 10.5,
-      "multiplier": 4.5,
+      "originalMultiplier": 4.5,
+      "multiplier": 4.5, 
       "userId": 1
     },
     {
       "id": 18,
       "minCost": 10.51,
       "maxCost": 11.75,
-      "multiplier": 4.25,
+      "originalMultiplier": 4.25,
+      "multiplier": 4.25, 
       "userId": 1
     },
     {
       "id": 19,
       "minCost": 11.76,
       "maxCost": 13.25,
-      "multiplier": 4,
+      "originalMultiplier": 4,
+      "multiplier": 4, 
       "userId": 1
     },
     {
       "id": 20,
       "minCost": 13.26,
       "maxCost": 15,
-      "multiplier": 3.75,
+      "originalMultiplier": 3.75,
+      "multiplier": 3.75, 
       "userId": 1
     },
     {
       "id": 21,
       "minCost": 15.01,
       "maxCost": 20,
-      "multiplier": 3.5,
+      "originalMultiplier": 3.5,
+      "multiplier": 3.5, 
       "userId": 1
     }
   ],

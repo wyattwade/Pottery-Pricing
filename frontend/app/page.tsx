@@ -9,6 +9,8 @@ export default function Home() {
   const [sku, setSku] = useState<string>('');
   const [itemType, setItemType] = useState<string>(''); 
   const [size, setSize] = useState<string>('');
+  const [width, setWidth] = useState<string>('');
+  const [height, setHeight] = useState<string>('');
   const [result, setResult] = useState<CalculationResult | null>(null);
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState<boolean>(false);
@@ -52,6 +54,13 @@ export default function Home() {
         return;
     }
 
+    // Enforce width/height for Bowls
+    if (itemType === 'bowl' && (!width || !height)) {
+        setError('Please enter width and height for bowls.');
+        setLoading(false);
+        return;
+    }
+
     try {
       // Re-merge rules just in case they changed in another tab (though requires refresh usually)
       // Ideally we rely on initial load unless we listen to storage events. 
@@ -61,7 +70,9 @@ export default function Home() {
       
       const attributes = {
           itemType,
-          size: size ? parseFloat(size) : undefined
+          size: size ? parseFloat(size) : undefined,
+          width: width ? parseFloat(width) : undefined,
+          height: height ? parseFloat(height) : undefined
       };
 
       if (sku.trim()) {
@@ -179,10 +190,10 @@ export default function Home() {
                 <option value="" disabled>Select Item Type</option>
                 <option value="cups/mugs">Cups/Mugs</option>
                 <option value="figurines">Figurines</option>
-                <option value="small-figurines">Small Figurines (Tiny Tots)</option>
                 <option value="plate">Plate</option>
                 <option value="bowl">Bowl</option>
                 <option value="vases">Vases</option>
+                <option value="alcoholic">Alcoholic (Wine etc)</option>
                 <option value="other">Other</option>
             </select>
             
@@ -204,6 +215,41 @@ export default function Home() {
                     </select>
                     <p className="text-xs text-gray-500 mt-1">
                         Pricing uses weighted formula: 65% Cost, 35% Size.
+                    </p>
+                </div>
+            )}
+
+
+            {(itemType === 'bowl' || itemType === 'cups/mugs') && (
+                <div className="mt-2 pl-4 border-l-2 border-green-500">
+                    <label className="block text-gray-300 text-xs font-bold mb-1" htmlFor="width">
+                        {itemType === 'bowl' ? 'Bowl Width (Inches)' : 'Mug Width (Inches, not including handle)'}
+                    </label>
+                    <input
+                        id="width"
+                        type="number"
+                        step="0.1"
+                        value={width}
+                        onChange={(e) => setWidth(e.target.value)}
+                        className="shadow appearance-none border border-gray-600 rounded w-full py-2 px-3 bg-gray-700 text-white text-sm leading-tight focus:outline-none focus:border-green-500 mb-2"
+                        placeholder="e.g. 6.0"
+                    />
+                    
+                    <label className="block text-gray-300 text-xs font-bold mb-1" htmlFor="height">
+                        {itemType === 'bowl' ? 'Bowl' : 'Mug'} Height (Inches)
+                    </label>
+                    <input
+                        id="height"
+                        type="number"
+                        step="0.1"
+                        value={height}
+                        onChange={(e) => setHeight(e.target.value)}
+                        className="shadow appearance-none border border-gray-600 rounded w-full py-2 px-3 bg-gray-700 text-white text-sm leading-tight focus:outline-none focus:border-green-500"
+                        placeholder="e.g. 3.0"
+                    />
+
+                    <p className="text-xs text-gray-500 mt-1">
+                        Pricing uses weighted formula: {itemType === 'cups/mugs' ? '80% Cost, 20% Size' : '60% Cost, 40% Size'} (Width + Height).
                     </p>
                 </div>
             )}
