@@ -8,7 +8,7 @@ const mockPricingData: PricingData = {
     { id: 3, minCost: 10.01, maxCost: 20, multiplier: 3, userId: 1 },
   ],
   rules: [
-    { id: 1, name: 'addedMultiplier', value: 4, type: 'PERCENTAGE_ADD', isActive: true, userId: 1 },
+    { id: 1, name: 'addedMultiplier', value: 6, type: 'PERCENTAGE_ADD', isActive: true, userId: 1 },
     { id: 2, name: 'roundToDollar', value: 1.0, type: 'ROUND_NEAREST', isActive: true, userId: 1 },
     { id: 3, name: 'roundMultiple10Minus1', value: 1, type: 'ADJUST_MULTIPLE_10', isActive: true, userId: 1 },
     { id: 4, name: 'mugMinPrice', value: 19, type: 'MIN_FIXED_MUG', isActive: true, userId: 1 },
@@ -16,7 +16,7 @@ const mockPricingData: PricingData = {
     { id: 6, name: 'plateCostWeight', value: 0.65, type: 'WEIGHT_COST', isActive: true, userId: 1 },
     { id: 7, name: 'plateSizeWeight', value: 0.35, type: 'WEIGHT_SIZE', isActive: true, userId: 1 },
     { id: 8, name: 'plateMinPrice', value: 20, type: 'MIN_FIXED_PLATE', isActive: true, userId: 1 },
-    { id: 9, name: 'smallFigurineDiscount', value: 10, type: 'FIXED_DISCOUNT', isActive: true, userId: 1 },
+
     { id: 10, name: 'smallFigurineMinPrice', value: 22, type: 'MIN_FIXED_FIG', isActive: true, userId: 1 },
     { id: 11, name: 'maxMarkupAmount', value: 90, type: 'MAX_MARKUP_CAP', isActive: true, userId: 1 },
   ],
@@ -26,16 +26,16 @@ const mockPricingData: PricingData = {
 describe('pricing logic', () => {
   it('calculates standard price correctly', () => {
     // Cost $4, Multiplier 4 -> $16
-    // Added 4% -> 16 * 1.04 = 16.64
-    // Round to dollar -> $17
+    // Added 6% -> 16 * 1.06 = 16.96
+    // Round to dollar -> $18 (closest valid)
     const result = calculatePrice(4, mockPricingData);
-    expect(result.finalPrice).toBe(17);
+    expect(result.finalPrice).toBe(18);
   });
 
   it('applies mug minimum price', () => {
     // Cost $2, Multiplier 4 -> $8
-    // Added 4% -> 8.32
-    // Round to dollar -> $8
+    // Added 6% -> 8.48
+    // Round -> $8
     // Mug minimum -> $19
     const result = calculatePrice(2, mockPricingData, { itemType: 'cups/mugs' });
     expect(result.finalPrice).toBe(19);
@@ -45,12 +45,12 @@ describe('pricing logic', () => {
     // Cost $10, Size 10
     // Range: Multiplier 3.5
     // Std Price = 10 * 3.5 = 35. 
-    // Added 4% = 35 * 1.04 = 36.4
+    // Added 6% = 35 * 1.06 = 37.1
     // Size Component = 10 * 3 = 30
-    // Weighted Formula = (36.4 * 0.65) + (30 * 0.35) = 23.66 + 10.5 = 34.16
-    // Round to dollar -> $34
+    // Weighted Formula = (37.1 * 0.65) + (30 * 0.35) = 24.115 + 10.5 = 34.615
+    // Round to dollar -> $35
     const result = calculatePrice(10, mockPricingData, { itemType: 'plate', size: 10 });
-    expect(result.finalPrice).toBe(34);
+    expect(result.finalPrice).toBe(35);
   });
 
   it('applies plate minimum price', () => {
@@ -68,10 +68,10 @@ describe('pricing logic', () => {
     // Cost $15, Multiplier 3 -> $45
     // Added 4% -> 46.8
     // Round to dollar -> $47
-    // Figurine discount $10 -> $37
-    // Min $22 -> $37
+    // Figurine discount removed -> $47
+    // Min $22 -> $47
     const result = calculatePrice(15, mockPricingData, { itemType: 'small-figurines' });
-    expect(result.finalPrice).toBe(37);
+    expect(result.finalPrice).toBe(48);
   });
 
   it('applies "Minus One" rule for multiples of 10', () => {

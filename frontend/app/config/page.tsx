@@ -94,7 +94,6 @@ export default function ConfigPage() {
     'maxMarkupAmount': "Maximum dollar amount allowed above cost (Markup Cap).",
     'roundMultiple10Minus1': "Subtracts $1 if the final rounded price is a multiple of $10 (e.g., $20 -> $19).",
     'mugMinPrice': "Enforces a minimum price for items identified as Mugs.",
-    'smallFigurineDiscount': "Applies a discount to small figurines.",
     'smallFigurineMinPrice': "Enforces a minimum price after discount for small figurines.",
     'minPriceRule': "Ensures no item is sold below this price.",
     'plateMinPrice': "Enforces a minimum price for items of type 'Plate'."

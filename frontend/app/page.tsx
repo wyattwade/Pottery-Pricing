@@ -118,16 +118,8 @@ export default function Home() {
                         if (found) {
                              if (found.cost) setCost(found.cost.toString());
                              
-                             // Auto-select type
-                             let type = 'other';
-                             const name = found.name ? found.name.toLowerCase() : '';
-                             if (name.includes('mug') || name.includes('cup') || name.includes('stein')) type = 'cups/mugs';
-                             else if (name.includes('plate') || name.includes('platter') || name.includes('tray') || name.includes('charger')) type = 'plate';
-                             else if (name.includes('bowl') || name.includes('basin')) type = 'bowl';
-                             else if (name.includes('vase')) type = 'vases';
-                             else if (name.includes('bank') || name.includes('figurine') || name.includes('animal')) type = 'figurines';
-                             
-                             setItemType(type);
+                             // Force reset of type so user must select manually
+                             setItemType('');
                              setError(null);
                         }
                     }
@@ -222,19 +214,6 @@ export default function Home() {
 
             {(itemType === 'bowl' || itemType === 'cups/mugs') && (
                 <div className="mt-2 pl-4 border-l-2 border-green-500">
-                    <label className="block text-gray-300 text-xs font-bold mb-1" htmlFor="width">
-                        {itemType === 'bowl' ? 'Bowl Width (Inches)' : 'Mug Width (Inches, not including handle)'}
-                    </label>
-                    <input
-                        id="width"
-                        type="number"
-                        step="0.1"
-                        value={width}
-                        onChange={(e) => setWidth(e.target.value)}
-                        className="shadow appearance-none border border-gray-600 rounded w-full py-2 px-3 bg-gray-700 text-white text-sm leading-tight focus:outline-none focus:border-green-500 mb-2"
-                        placeholder="e.g. 6.0"
-                    />
-                    
                     <label className="block text-gray-300 text-xs font-bold mb-1" htmlFor="height">
                         {itemType === 'bowl' ? 'Bowl' : 'Mug'} Height (Inches)
                     </label>
@@ -244,8 +223,21 @@ export default function Home() {
                         step="0.1"
                         value={height}
                         onChange={(e) => setHeight(e.target.value)}
-                        className="shadow appearance-none border border-gray-600 rounded w-full py-2 px-3 bg-gray-700 text-white text-sm leading-tight focus:outline-none focus:border-green-500"
+                        className="shadow appearance-none border border-gray-600 rounded w-full py-2 px-3 bg-gray-700 text-white text-sm leading-tight focus:outline-none focus:border-green-500 mb-2"
                         placeholder="e.g. 3.0"
+                    />
+
+                    <label className="block text-gray-300 text-xs font-bold mb-1" htmlFor="width">
+                        {itemType === 'bowl' ? 'Bowl Width (Inches)' : 'Mug Width (Inches, not including handle)'}
+                    </label>
+                    <input
+                        id="width"
+                        type="number"
+                        step="0.1"
+                        value={width}
+                        onChange={(e) => setWidth(e.target.value)}
+                        className="shadow appearance-none border border-gray-600 rounded w-full py-2 px-3 bg-gray-700 text-white text-sm leading-tight focus:outline-none focus:border-green-500"
+                        placeholder="e.g. 6.0"
                     />
 
                     <p className="text-xs text-gray-500 mt-1">

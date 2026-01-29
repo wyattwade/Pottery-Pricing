@@ -88,7 +88,7 @@ export function calculatePrice(cost: number, data: PricingData, attributes: Prod
 
   // Ensure defaults (safety check if not coming from sanitized source)
   if (!activeRules.some(r => r.name === 'addedMultiplier')) {
-      activeRules.push({ id: -1, name: 'addedMultiplier', value: 4, type: 'PERCENTAGE_ADD', isActive: true, userId: 1 });
+      activeRules.push({ id: -1, name: 'addedMultiplier', value: 6, type: 'PERCENTAGE_ADD', isActive: true, userId: 1 });
   }
   if (!activeRules.some(r => r.type === 'ROUND_NEAREST')) {
       activeRules.push({ id: -2, name: 'roundToDollar', value: 1.0, type: 'ROUND_NEAREST', isActive: true, userId: 1 });
@@ -317,28 +317,23 @@ export function calculatePrice(cost: number, data: PricingData, attributes: Prod
 
   // 5. Apply Figurine Specific Logic
   if (attributes.itemType === 'small-figurines' || attributes.itemType === 'figurines') {
-    const figDiscount = activeRules.find((r) => r.name === 'smallFigurineDiscount');
+    // const figDiscount = activeRules.find((r) => r.name === 'smallFigurineDiscount'); // Removed discount logic
     const figMin = activeRules.find((r) => r.name === 'smallFigurineMinPrice');
 
-    if (figDiscount && figMin) {
+    if (figMin) {
         const preFigPrice = adjustedPrice;
-        const discount = figDiscount.value; // 10
         const floor = figMin.value; // 22
 
-        let calculated = adjustedPrice - discount;
-        if (calculated < floor) {
-            calculated = floor;
+        if (adjustedPrice < floor) {
+            adjustedPrice = floor;
+            
+            appliedRules.push({
+                name: 'Figurine Minimum',
+                value: floor,
+                addedAmount: Number((adjustedPrice - preFigPrice).toFixed(2)),
+                label: `(Min $${floor})`
+            });
         }
-        
-        // Adjust the price
-        adjustedPrice = calculated;
-        
-        appliedRules.push({
-            name: 'Figurine Adjustment',
-            value: discount,
-            addedAmount: Number((adjustedPrice - preFigPrice).toFixed(2)),
-            label: ''
-        });
     }
 }
 

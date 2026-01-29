@@ -26,9 +26,9 @@ describe('rules storage', () => {
 
     const data = await fetchPricingData();
     
-    // Check if addedMultiplier was forced to 4
+    // Check if addedMultiplier was forced to 6
     const addedMult = data.rules.find(r => r.name === 'addedMultiplier');
-    expect(addedMult?.value).toBe(4);
+    expect(addedMult?.value).toBe(6);
 
     // Check if defaults were added
     expect(data.rules.some(r => r.name === 'mugMinPrice' && r.value === 19)).toBe(true);

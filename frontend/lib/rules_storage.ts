@@ -42,12 +42,12 @@ export async function fetchFlaggedSkus(basePath: string = ''): Promise<string[]>
 function sanitizeRules(rules: Rule[]): Rule[] {
     const newRules = [...rules];
 
-    // 1. Force addedMultiplier to 4% (formerly 8%)
+    // 1. Force addedMultiplier to 6% (formerly 4%)
     const addedMult = newRules.find(r => r.name === 'addedMultiplier');
     if (addedMult) {
-        addedMult.value = 4;
+        addedMult.value = 6;
     } else {
-        newRules.push({ id: -1, name: 'addedMultiplier', value: 4, type: 'PERCENTAGE_ADD', isActive: true, userId: 1 });
+        newRules.push({ id: -1, name: 'addedMultiplier', value: 6, type: 'PERCENTAGE_ADD', isActive: true, userId: 1 });
     }
 
     // 2. Force roundToDollar to 1.0 (active)

@@ -3,7 +3,7 @@
     {
       "id": 1,
       "name": "addedMultiplier",
-      "value": 10,
+      "value": 6,
       "type": "PERCENTAGE_ADD",
       "isActive": true,
       "userId": 1
@@ -32,14 +32,7 @@
       "isActive": true,
       "userId": 1
     },
-    {
-      "id": 5,
-      "name": "smallFigurineDiscount",
-      "value": 10,
-      "type": "FIXED_DEDUCTION",
-      "isActive": true,
-      "userId": 1
-    },
+
     {
       "id": 6,
       "name": "smallFigurineMinPrice",
