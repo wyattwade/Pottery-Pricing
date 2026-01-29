@@ -54,9 +54,9 @@ export default function Home() {
         return;
     }
 
-    // Enforce width/height for Bowls
-    if (itemType === 'bowl' && (!width || !height)) {
-        setError('Please enter width and height for bowls.');
+    // Enforce width/height for Bowls and Mugs
+    if ((itemType === 'bowl' || itemType === 'cups/mugs') && (!width || !height)) {
+        setError('Please enter width and height for bowls/mugs.');
         setLoading(false);
         return;
     }
