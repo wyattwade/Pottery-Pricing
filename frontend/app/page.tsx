@@ -99,6 +99,7 @@ export default function Home() {
       </div>
       
       <form onSubmit={handleSubmit} className="bg-gray-800 p-6 rounded-lg shadow-xl w-full max-w-sm border border-gray-700">
+        {/* 
         <div className="mb-4">
           <label className="block text-gray-300 text-sm font-bold mb-2" htmlFor="sku">
             SKU
@@ -129,10 +130,12 @@ export default function Home() {
             placeholder="Enter SKU (e.g. DB38110)"
           />
         </div>
+        */}
 
 
 
         <div className="mb-4">
+          {/*
           {!showCostInput ? (
               <div className="text-center">
                   <button 
@@ -150,6 +153,7 @@ export default function Home() {
                     <span className="px-2 text-gray-500 text-sm">OR</span>
                     <hr className="w-full border-gray-600" />
                 </div>
+          */}
                 <label className="block text-gray-300 text-sm font-bold mb-2" htmlFor="cost">
                     Cost ($)
                 </label>
@@ -160,13 +164,14 @@ export default function Home() {
                     value={cost}
                     onChange={(e) => {
                         setCost(e.target.value);
-                        if(e.target.value) setSku(''); // Clear SKU if cost is entered
                     }}
                     className="shadow appearance-none border border-gray-600 rounded w-full py-2 px-3 bg-gray-700 text-white leading-tight focus:outline-none focus:border-blue-500"
                     placeholder="Enter cost (e.g. 2.00)"
                 />
+          {/*
             </>
           )}
+          */}
         </div>
 
         <div className="mb-6">
