@@ -3,7 +3,7 @@
     {
       "id": 1,
       "name": "addedMultiplier",
-      "value": 6,
+      "value": 8,
       "type": "PERCENTAGE_ADD",
       "isActive": true,
       "userId": 1

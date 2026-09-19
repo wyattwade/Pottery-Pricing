@@ -59,6 +59,24 @@ export interface ProductAttributes {
     height?: number;
 }
 
+// Plain-English explanation of a size-blended price, shown under the rule name in the UI.
+// e.g. "65% of the cost price ($15.00 × 3.75 + 8% = $60.75 → $39.49) + 35% of the size price (20" × $3.00/in = $60.00 → $21.00) = $60.49, replacing $60.75"
+function sizeBlendLabel(
+  cost: number, multiplier: number,
+  costWeight: number, standardPrice: number,
+  sizeWeight: number, sizeDesc: string, pricePerInch: number, sizeComp: number,
+  blended: number
+): string {
+  const pct = (w: number) => `${Math.round(w * 100)}%`;
+  const usd = (n: number) => `$${n.toFixed(2)}`;
+  // Back out whatever percentage add(s) turned cost × multiplier into standardPrice
+  const markupPct = Math.round((standardPrice / (cost * multiplier) - 1) * 100);
+  const markup = markupPct !== 0 ? ` + ${markupPct}%` : '';
+  return `${pct(costWeight)} of the cost price (${usd(cost)} × ${multiplier}${markup} = ${usd(standardPrice)} → ${usd(standardPrice * costWeight)})`
+    + ` + ${pct(sizeWeight)} of the size price (${sizeDesc} × ${usd(pricePerInch)}/in = ${usd(sizeComp)} → ${usd(sizeComp * sizeWeight)})`
+    + ` = ${usd(blended)}, replacing ${usd(standardPrice)}`;
+}
+
 export function calculatePrice(cost: number, data: PricingData, attributes: ProductAttributes = {}): CalculationResult {
   // 1. Find the range
   let range = data.pricingMatrix.find(
@@ -88,7 +106,7 @@ export function calculatePrice(cost: number, data: PricingData, attributes: Prod
 
   // Ensure defaults (safety check if not coming from sanitized source)
   if (!activeRules.some(r => r.name === 'addedMultiplier')) {
-      activeRules.push({ id: -1, name: 'addedMultiplier', value: 6, type: 'PERCENTAGE_ADD', isActive: true, userId: 1 });
+      activeRules.push({ id: -1, name: 'addedMultiplier', value: 8, type: 'PERCENTAGE_ADD', isActive: true, userId: 1 });
   }
   if (!activeRules.some(r => r.type === 'ROUND_NEAREST')) {
       activeRules.push({ id: -2, name: 'roundToDollar', value: 1.0, type: 'ROUND_NEAREST', isActive: true, userId: 1 });
@@ -132,10 +150,10 @@ export function calculatePrice(cost: number, data: PricingData, attributes: Prod
       adjustedPrice = plateFormulaPrice;
       
       appliedRules.push({
-          name: 'Plate Size Adjustment',
+          name: `Plate Size Adjustment (${attributes.size}")`,
           value: attributes.size!,
           addedAmount: Number(diff.toFixed(2)),
-          label: `(Formula [$${weightedCostPart.toFixed(2)} + $${weightedSizePart.toFixed(2)}] vs Std $${standardPrice.toFixed(2)})`
+          label: sizeBlendLabel(cost, range.multiplier, rCostWeight, standardPrice, rSizeWeight, `${attributes.size}"`, rPricePerInch, sizeComp, plateFormulaPrice)
       });
 
   } else if (attributes.itemType === 'bowl' && attributes.width && attributes.height) {
@@ -171,10 +189,10 @@ export function calculatePrice(cost: number, data: PricingData, attributes: Prod
      adjustedPrice = bowlFormulaPrice;
 
      appliedRules.push({
-          name: 'Bowl Size Adjustment',
+          name: `Bowl Size Adjustment (${attributes.width}" × ${attributes.height}")`,
           value: effectiveSize,
           addedAmount: Number(diff.toFixed(2)),
-          label: `(Formula [$${weightedCostPart.toFixed(2)} + $${weightedSizePart.toFixed(2)}] vs Std $${standardPrice.toFixed(2)})`
+          label: sizeBlendLabel(cost, range.multiplier, rCostWeight, standardPrice, rSizeWeight, `${attributes.width}" wide + ${attributes.height}" tall = ${effectiveSize}"`, rPricePerInch, sizeComp, bowlFormulaPrice)
       });
 
    } else if (attributes.itemType === 'cups/mugs' && attributes.width && attributes.height) {
@@ -203,10 +221,10 @@ export function calculatePrice(cost: number, data: PricingData, attributes: Prod
      adjustedPrice = mugFormulaPrice;
 
      appliedRules.push({
-          name: 'Mug Size Adjustment',
+          name: `Mug Size Adjustment (${attributes.width}" × ${attributes.height}")`,
           value: effectiveSize,
           addedAmount: Number(diff.toFixed(2)),
-          label: `(Formula [$${weightedCostPart.toFixed(2)} + $${weightedSizePart.toFixed(2)}] vs Std $${standardPrice.toFixed(2)})`
+          label: sizeBlendLabel(cost, range.multiplier, rCostWeight, standardPrice, rSizeWeight, `${attributes.width}" wide + ${attributes.height}" tall = ${effectiveSize}"`, rPricePerInch, sizeComp, mugFormulaPrice)
       });
 
   } else {

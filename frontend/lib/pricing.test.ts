@@ -11,7 +11,7 @@ const mockPricingData: PricingData = {
     { id: 1, name: 'addedMultiplier', value: 6, type: 'PERCENTAGE_ADD', isActive: true, userId: 1 },
     { id: 2, name: 'roundToDollar', value: 1.0, type: 'ROUND_NEAREST', isActive: true, userId: 1 },
     { id: 3, name: 'roundMultiple10Minus1', value: 1, type: 'ADJUST_MULTIPLE_10', isActive: true, userId: 1 },
-    { id: 4, name: 'mugMinPrice', value: 19, type: 'MIN_FIXED_MUG', isActive: true, userId: 1 },
+    { id: 4, name: 'mugMinPrice', value: 21, type: 'MIN_FIXED_MUG', isActive: true, userId: 1 },
     { id: 5, name: 'platePricePerInch', value: 3.0, type: 'FACTOR_SIZE', isActive: true, userId: 1 },
     { id: 6, name: 'plateCostWeight', value: 0.65, type: 'WEIGHT_COST', isActive: true, userId: 1 },
     { id: 7, name: 'plateSizeWeight', value: 0.35, type: 'WEIGHT_SIZE', isActive: true, userId: 1 },
@@ -36,9 +36,9 @@ describe('pricing logic', () => {
     // Cost $2, Multiplier 4 -> $8
     // Added 6% -> 8.48
     // Round -> $8
-    // Mug minimum -> $19
+    // Mug minimum -> $21
     const result = calculatePrice(2, mockPricingData, { itemType: 'cups/mugs' });
-    expect(result.finalPrice).toBe(19);
+    expect(result.finalPrice).toBe(21);
   });
 
   it('applies plate formula correctly', () => {
