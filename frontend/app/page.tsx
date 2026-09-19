@@ -49,7 +49,7 @@ export default function Home() {
 
     // Enforce size for Plates
     if (itemType === 'plate' && !size) {
-        setError('Please select a size for plates.');
+        setError('Please enter a size for plates.');
         setLoading(false);
         return;
     }
@@ -199,17 +199,16 @@ export default function Home() {
                     <label className="block text-gray-300 text-xs font-bold mb-1" htmlFor="size">
                         Plate Size (Inches)
                     </label>
-                    <select
+                    <input
                         id="size"
+                        type="number"
+                        step="0.1"
+                        min="0"
                         value={size}
                         onChange={(e) => setSize(e.target.value)}
                         className="shadow appearance-none border border-gray-600 rounded w-full py-2 px-3 bg-gray-700 text-white text-sm leading-tight focus:outline-none focus:border-blue-500"
-                    >
-                        <option value="">Select Size...</option>
-                        {[4, 6, 8, 10, 12, 14, 16].map(s => (
-                            <option key={s} value={s}>{s}"</option>
-                        ))}
-                    </select>
+                        placeholder="e.g. 10.5"
+                    />
                     <p className="text-xs text-gray-500 mt-1">
                         Pricing uses weighted formula: 65% Cost, 35% Size.
                     </p>
@@ -281,11 +280,16 @@ export default function Home() {
              <div className="mb-4 border-t border-b border-gray-700 py-2">
                 <p className="text-sm text-gray-500 mb-2">Applied Rules:</p>
                 {result.appliedRules.map((rule, idx) => (
-                    <div key={idx} className="flex justify-between text-sm">
-                        <span className="text-gray-300">{rule.name} {rule.label}</span>
-                        <span className={`font-medium ${rule.addedAmount < 0 ? 'text-red-400' : 'text-green-400'}`}>
-                            {rule.addedAmount < 0 ? '-' : '+'}${Math.abs(rule.addedAmount).toFixed(2)}
-                        </span>
+                    <div key={idx} className="mb-2 last:mb-0">
+                        <div className="flex justify-between text-sm">
+                            <span className="text-gray-300">{rule.name}</span>
+                            <span className={`font-medium ml-4 whitespace-nowrap ${rule.addedAmount < 0 ? 'text-red-400' : 'text-green-400'}`}>
+                                {rule.addedAmount < 0 ? '-' : '+'}${Math.abs(rule.addedAmount).toFixed(2)}
+                            </span>
+                        </div>
+                        {rule.label && (
+                            <p className="text-xs text-gray-500 mt-0.5 leading-snug">{rule.label}</p>
+                        )}
                     </div>
                 ))}
              </div>

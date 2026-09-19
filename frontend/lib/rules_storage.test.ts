@@ -26,12 +26,12 @@ describe('rules storage', () => {
 
     const data = await fetchPricingData();
     
-    // Check if addedMultiplier was forced to 6
+    // Check if addedMultiplier was forced to 8
     const addedMult = data.rules.find(r => r.name === 'addedMultiplier');
-    expect(addedMult?.value).toBe(6);
+    expect(addedMult?.value).toBe(8);
 
     // Check if defaults were added
-    expect(data.rules.some(r => r.name === 'mugMinPrice' && r.value === 19)).toBe(true);
+    expect(data.rules.some(r => r.name === 'mugMinPrice' && r.value === 21)).toBe(true);
     expect(data.rules.some(r => r.name === 'plateMinPrice' && r.value === 20)).toBe(true);
     expect(data.rules.some(r => r.name === 'maxMarkupAmount' && r.value === 90)).toBe(true);
   });
