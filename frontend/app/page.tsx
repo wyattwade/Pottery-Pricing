@@ -48,7 +48,7 @@ export default function Home() {
     }
 
     // Enforce size for Plates
-    if (itemType === 'plate' && !size) {
+    if (itemType === 'plate' && !(parseFloat(size) > 0)) {
         setError('Please enter a size for plates.');
         setLoading(false);
         return;

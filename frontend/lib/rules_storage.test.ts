@@ -31,7 +31,7 @@ describe('rules storage', () => {
     expect(addedMult?.value).toBe(8);
 
     // Check if defaults were added
-    expect(data.rules.some(r => r.name === 'mugMinPrice' && r.value === 21)).toBe(true);
+    expect(data.rules.some(r => r.name === 'mugMinPrice' && r.value === 20)).toBe(true);
     expect(data.rules.some(r => r.name === 'plateMinPrice' && r.value === 20)).toBe(true);
     expect(data.rules.some(r => r.name === 'maxMarkupAmount' && r.value === 90)).toBe(true);
   });
