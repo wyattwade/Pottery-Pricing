@@ -111,4 +111,31 @@ describe('pricing logic', () => {
     const result = calculatePrice(50, mockPricingData);
     expect(result.finalPrice).toBe(140);
   });
+
+  it('never prices an item below the top of the tier beneath it', () => {
+    // $5.00 -> 5 * 4 = 20. $5.01 -> 5.01 * 3.5 = 17.54, which would undercut it.
+    // Never-drop rule holds $5.01 at the $20 base of a $5.00 item.
+    const atEdge = calculatePrice(5.00, mockPricingData);
+    const justOver = calculatePrice(5.01, mockPricingData);
+    expect(justOver.finalPrice).toBe(atEdge.finalPrice);
+    expect(justOver.appliedRules.some(r => r.name === 'Tier Floor')).toBe(true);
+    expect(atEdge.appliedRules.some(r => r.name === 'Tier Floor')).toBe(false);
+  });
+
+  it('price never drops as cost rises, for any item type', () => {
+    const types = [
+      {},
+      { itemType: 'cups/mugs', width: 3.5, height: 4 },
+      { itemType: 'plate', size: 10 },
+      { itemType: 'bowl', width: 6, height: 3 },
+    ];
+    for (const attrs of types) {
+      let prev = 0;
+      for (let cents = 1; cents <= 2000; cents++) {
+        const price = calculatePrice(cents / 100, mockPricingData, attrs).finalPrice;
+        expect(price, `${JSON.stringify(attrs)} at $${(cents / 100).toFixed(2)}`).toBeGreaterThanOrEqual(prev);
+        prev = price;
+      }
+    }
+  });
 });
