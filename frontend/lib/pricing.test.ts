@@ -11,7 +11,7 @@ const mockPricingData: PricingData = {
     { id: 1, name: 'addedMultiplier', value: 6, type: 'PERCENTAGE_ADD', isActive: true, userId: 1 },
     { id: 2, name: 'roundToDollar', value: 1.0, type: 'ROUND_NEAREST', isActive: true, userId: 1 },
     { id: 3, name: 'roundMultiple10Minus1', value: 1, type: 'ADJUST_MULTIPLE_10', isActive: true, userId: 1 },
-    { id: 4, name: 'mugMinPrice', value: 21, type: 'MIN_FIXED_MUG', isActive: true, userId: 1 },
+    { id: 4, name: 'mugMinPrice', value: 20, type: 'MIN_FIXED_MUG', isActive: true, userId: 1 },
     { id: 5, name: 'platePricePerInch', value: 3.0, type: 'FACTOR_SIZE', isActive: true, userId: 1 },
     { id: 6, name: 'plateCostWeight', value: 0.65, type: 'WEIGHT_COST', isActive: true, userId: 1 },
     { id: 7, name: 'plateSizeWeight', value: 0.35, type: 'WEIGHT_SIZE', isActive: true, userId: 1 },
@@ -27,18 +27,18 @@ describe('pricing logic', () => {
   it('calculates standard price correctly', () => {
     // Cost $4, Multiplier 4 -> $16
     // Added 6% -> 16 * 1.06 = 16.96
-    // Round to dollar -> $18 (closest valid)
+    // Round to nearest dollar -> $17
     const result = calculatePrice(4, mockPricingData);
-    expect(result.finalPrice).toBe(18);
+    expect(result.finalPrice).toBe(17);
   });
 
   it('applies mug minimum price', () => {
     // Cost $2, Multiplier 4 -> $8
     // Added 6% -> 8.48
     // Round -> $8
-    // Mug minimum -> $21
+    // Mug minimum -> $20
     const result = calculatePrice(2, mockPricingData, { itemType: 'cups/mugs' });
-    expect(result.finalPrice).toBe(21);
+    expect(result.finalPrice).toBe(20);
   });
 
   it('applies plate formula correctly', () => {
@@ -74,13 +74,12 @@ describe('pricing logic', () => {
     expect(result.finalPrice).toBe(48);
   });
 
-  it('applies "Minus One" rule for multiples of 10', () => {
+  it('rounds to the nearest dollar, with no "minus one" adjustment', () => {
     // Cost $2.404, Multiplier 4 -> $9.616
-    // Added 4% -> 10.00064
-    // Round to dollar -> $10
-    // Minus one -> $9
+    // Added 6% -> 10.19
+    // Round to nearest dollar -> $10 (multiples of 10 are allowed)
     const result = calculatePrice(2.404, mockPricingData);
-    expect(result.finalPrice).toBe(9);
+    expect(result.finalPrice).toBe(10);
   });
 
   it('applies max markup cap', () => {
@@ -135,6 +134,23 @@ describe('pricing logic', () => {
         const price = calculatePrice(cents / 100, mockPricingData, attrs).finalPrice;
         expect(price, `${JSON.stringify(attrs)} at $${(cents / 100).toFixed(2)}`).toBeGreaterThanOrEqual(prev);
         prev = price;
+      }
+    }
+  });
+
+  it('skips blocked prices, moving to the closer allowed neighbour', () => {
+    // $8.95 × 3.5 + 6% = $33.20 -> $33 is blocked; $34 is closer than $32
+    expect(calculatePrice(8.95, mockPricingData).finalPrice).toBe(34);
+    // $8.79 × 3.5 + 6% = $32.61 -> $33 is blocked; $32 is closer than $34
+    expect(calculatePrice(8.79, mockPricingData).finalPrice).toBe(32);
+  });
+
+  it('never lands on a blocked price', () => {
+    const blocked = [33, 43, 53, 66, 83, 93];
+    for (const attrs of [{}, { itemType: 'plate', size: 14 }, { itemType: 'bowl', width: 10, height: 4 }]) {
+      for (let cents = 1; cents <= 3000; cents++) {
+        const price = calculatePrice(cents / 100, mockPricingData, attrs).finalPrice;
+        expect(blocked, `${JSON.stringify(attrs)} at $${(cents / 100).toFixed(2)}`).not.toContain(price);
       }
     }
   });

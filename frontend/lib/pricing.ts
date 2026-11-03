@@ -285,42 +285,58 @@ export function calculatePrice(cost: number, data: PricingData, attributes: Prod
 
   // --- Common Final Steps (Rounding & Minimums) ---
 
-  // 3. Apply Custom Rounding (Ends in 2, 4, 5, 8, 9)
-  // Replaces standard rounding and minus-one logic
-  const validEndings = [2, 4, 5, 8, 9];
+  // 3. Rounding: nearest whole dollar, using the roundToDollar rule (default $1).
+  // Ties (x.50) round up. Prices in blockedPrices are skipped: the result moves
+  // to whichever allowed neighbour is closer to the raw price.
+  const blockedPrices = [33, 43, 53, 66, 83, 93];
+  const roundTo = activeRules.find(r => r.type === 'ROUND_NEAREST')?.value || 1;
   const currentVal = adjustedPrice;
-  const lower = Math.floor(currentVal / 10) * 10;
-  
-  // Find candidates around the current value
-  let candidates: number[] = [];
-  
-  // Add candidates from current decade, previous decade, and next decade to be safe
-  [-10, 0, 10].forEach(offset => {
-      validEndings.forEach(end => {
-          candidates.push(lower + offset + end);
-      });
-  });
-  
-  // Filter out negative prices if any
-  candidates = candidates.filter(c => c >= 0);
+  const nearestPrice = Math.round(currentVal / roundTo) * roundTo;
+  let bestPrice = nearestPrice;
+  if (blockedPrices.includes(bestPrice)) {
+      let down = bestPrice - roundTo;
+      let up = bestPrice + roundTo;
+      while (blockedPrices.includes(down)) down -= roundTo;
+      while (blockedPrices.includes(up)) up += roundTo;
+      bestPrice = (currentVal - down < up - currentVal) ? down : up;
+  }
 
-  // Find the closest candidate
-  // If tie, pick the higher price (business preference usually)
-  const bestPrice = candidates.reduce((prev, curr) => {
-      const prevDiff = Math.abs(prev - currentVal);
-      const currDiff = Math.abs(curr - currentVal);
-      if (currDiff < prevDiff) return curr;
-      if (currDiff === prevDiff) return curr > prev ? curr : prev;
-      return prev;
-  });
+  // Price psychology rounding (endings 2, 4, 5, 8, 9) — disabled.
+  // To restore: uncomment this block and delete the nearest-dollar rounding above.
+  //
+  // const validEndings = [2, 4, 5, 8, 9];
+  // const lower = Math.floor(currentVal / 10) * 10;
+  //
+  // // Find candidates around the current value
+  // let candidates: number[] = [];
+  //
+  // // Add candidates from current decade, previous decade, and next decade to be safe
+  // [-10, 0, 10].forEach(offset => {
+  //     validEndings.forEach(end => {
+  //         candidates.push(lower + offset + end);
+  //     });
+  // });
+  //
+  // // Filter out negative prices if any
+  // candidates = candidates.filter(c => c >= 0);
+  //
+  // // Find the closest candidate
+  // // If tie, pick the higher price (business preference usually)
+  // const bestPrice = candidates.reduce((prev, curr) => {
+  //     const prevDiff = Math.abs(prev - currentVal);
+  //     const currDiff = Math.abs(curr - currentVal);
+  //     if (currDiff < prevDiff) return curr;
+  //     if (currDiff === prevDiff) return curr > prev ? curr : prev;
+  //     return prev;
+  // });
 
   if (Math.abs(bestPrice - currentVal) > 0.001) {
       adjustedPrice = bestPrice;
       appliedRules.push({
-          name: 'Rounding (End in 2,4,5,8,9)',
-          value: 0, 
+          name: `Rounding (nearest $${roundTo})`,
+          value: roundTo,
           addedAmount: Number((bestPrice - currentVal).toFixed(2)),
-          label: ''
+          label: bestPrice !== nearestPrice ? `$${nearestPrice} isn't used, so $${bestPrice}` : ''
       });
   }
 

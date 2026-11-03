@@ -63,12 +63,12 @@ describe('Bowl Pricing Logic', () => {
   });
 
   it('falls back to standard pricing if width/height missing', () => {
-      // Cost $2.00 -> Standard $15.50 -> +4% -> $16.12 
-      // Round to 2,4,5,8,9 -> 16.12 closest to 15
+      // Cost $2.00 -> Standard $15.50 -> +6% -> $16.43
+      // Round to nearest dollar -> $16
       const result = calculatePrice(2.00, mockPricingData, { 
           itemType: 'bowl' 
           // Missing width/height
       });
-      expect(result.finalPrice).toBe(15);
+      expect(result.finalPrice).toBe(16);
   });
 });

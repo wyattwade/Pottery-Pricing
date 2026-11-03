@@ -91,15 +91,15 @@ function sanitizeRules(rules: Rule[]): Rule[] {
     newRules.push({
       id: -4,
       name: "mugMinPrice",
-      value: 21,
+      value: 20,
       type: "MIN_FIXED_MUG",
       isActive: true,
       userId: 1,
     });
   } else {
-    // Update existing to 21
+    // Update existing to 20
     const mugMin = newRules.find((r) => r.name === "mugMinPrice");
-    if (mugMin) mugMin.value = 21;
+    if (mugMin) mugMin.value = 20;
   }
 
   // 5. Plate Size Pricing Rules (Defaults)
