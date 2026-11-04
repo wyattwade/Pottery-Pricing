@@ -74,7 +74,7 @@ async function main() {
   await prisma.rule.create({
     data: {
       name: 'minimumStorePrice',
-      value: 16.0,
+      value: 17.0,
       type: 'MIN_FIXED',
       isActive: true,
       userId: 1
@@ -104,7 +104,7 @@ async function main() {
   await prisma.rule.create({
     data: {
       name: 'smallFigurineMinPrice',
-      value: 22.0,
+      value: 21.0,
       type: 'MIN_FIXED', 
       isActive: true,
       userId: 1

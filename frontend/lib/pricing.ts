@@ -392,7 +392,7 @@ export function calculatePrice(cost: number, data: PricingData, attributes: Prod
 
     if (figMin) {
         const preFigPrice = adjustedPrice;
-        const floor = figMin.value; // 22
+        const floor = figMin.value; // 21
 
         if (adjustedPrice < floor) {
             adjustedPrice = floor;
