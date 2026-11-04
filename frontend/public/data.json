@@ -36,7 +36,7 @@
     {
       "id": 6,
       "name": "smallFigurineMinPrice",
-      "value": 22,
+      "value": 21,
       "type": "MIN_FIXED",
       "isActive": true,
       "userId": 1

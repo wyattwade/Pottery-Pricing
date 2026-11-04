@@ -17,7 +17,7 @@ const mockPricingData: PricingData = {
     { id: 7, name: 'plateSizeWeight', value: 0.35, type: 'WEIGHT_SIZE', isActive: true, userId: 1 },
     { id: 8, name: 'plateMinPrice', value: 20, type: 'MIN_FIXED_PLATE', isActive: true, userId: 1 },
 
-    { id: 10, name: 'smallFigurineMinPrice', value: 22, type: 'MIN_FIXED_FIG', isActive: true, userId: 1 },
+    { id: 10, name: 'smallFigurineMinPrice', value: 21, type: 'MIN_FIXED_FIG', isActive: true, userId: 1 },
     { id: 11, name: 'maxMarkupAmount', value: 90, type: 'MAX_MARKUP_CAP', isActive: true, userId: 1 },
   ],
   products: []
@@ -69,9 +69,18 @@ describe('pricing logic', () => {
     // Added 4% -> 46.8
     // Round to dollar -> $47
     // Figurine discount removed -> $47
-    // Min $22 -> $47
+    // Min $21 -> $47
     const result = calculatePrice(15, mockPricingData, { itemType: 'small-figurines' });
     expect(result.finalPrice).toBe(48);
+  });
+
+  it('applies figurine minimum price', () => {
+    // Cost $2, Multiplier 4 -> $8
+    // Added 6% -> 8.48
+    // Round -> $8
+    // Figurine minimum -> $21
+    const result = calculatePrice(2, mockPricingData, { itemType: 'figurines' });
+    expect(result.finalPrice).toBe(21);
   });
 
   it('rounds to the nearest dollar, with no "minus one" adjustment', () => {
