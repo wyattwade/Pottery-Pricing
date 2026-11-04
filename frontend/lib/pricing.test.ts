@@ -74,6 +74,21 @@ describe('pricing logic', () => {
     expect(result.finalPrice).toBe(48);
   });
 
+  it('applies the store minimum price', () => {
+    // Cost $2, Multiplier 4 -> $8
+    // Added 6% -> 8.48
+    // Round -> $8
+    // Store minimum -> $17
+    const withStoreMin: PricingData = {
+      ...mockPricingData,
+      rules: [
+        ...mockPricingData.rules,
+        { id: 12, name: 'minimumStorePrice', value: 17, type: 'MIN_FIXED', isActive: true, userId: 1 },
+      ],
+    };
+    expect(calculatePrice(2, withStoreMin, { itemType: 'other' }).finalPrice).toBe(17);
+  });
+
   it('applies figurine minimum price', () => {
     // Cost $2, Multiplier 4 -> $8
     // Added 6% -> 8.48

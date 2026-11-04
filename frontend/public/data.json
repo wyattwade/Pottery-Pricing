@@ -19,7 +19,7 @@
     {
       "id": 3,
       "name": "minimumStorePrice",
-      "value": 16,
+      "value": 17,
       "type": "MIN_FIXED",
       "isActive": true,
       "userId": 1
